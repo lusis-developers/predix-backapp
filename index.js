@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const dbConnect = require('./config/mongo');
 
 dotenv.config();
 
@@ -13,3 +14,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
+
+dbConnect();
