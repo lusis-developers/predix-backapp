@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import dbConnect from './src/config/mongo';
 import { Request, Response, Application } from 'express';
+import PlanRoutes from './src/routes'
+
 
 dotenv.config();
 
@@ -20,9 +22,8 @@ app.use(express.json());
 
 const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+app.use('/api', PlanRoutes);
+
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

@@ -26,7 +26,7 @@ const createPlan = async (req: Request, res: Response) => {
     await newplans.save();
     res.send(newplans);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(409).send(error);
   }
 };
 
@@ -47,7 +47,7 @@ const updatePlan = async (req: Request, res: Response) => {
       updatedplans: updatedplans,
     });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(404).send(error);
   }
 };
 
@@ -61,7 +61,7 @@ const deletePlan = async (req: Request, res: Response) => {
     await models.planModel.findOneAndDelete({ _id: req.params.id });
     res.send({ message: "Se borro el plans de apuesta exitosamente" });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(404).send(error);
   }
 };
 
