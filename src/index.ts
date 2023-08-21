@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import dbConnect from './src/config/mongo';
-import { Request, Response, Application } from 'express';
+import { Application } from 'express';
 
-dotenv.config();
+import dbConnect from './config/mongo';
+import routerApi from './routes';
 
 const whiteList: string[] = [
   'http://localhost:5173',
@@ -18,14 +18,14 @@ app.use(cors({ origin: whiteList }));
 
 app.use(express.json());
 
+dotenv.config();
+
 const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
-app.get('/', (_req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+routerApi(app);
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
 
 dbConnect();
