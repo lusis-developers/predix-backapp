@@ -18,12 +18,11 @@ export const planValidator = [
     .notEmpty()
     .withMessage('Price is required')
     .isNumeric()
-    .withMessage('Only number allowed'),
+    .withMessage('Only number is allowed'),
 
   body('image')
     .notEmpty()
-    .withMessage('Image required')
+    .withMessage('Image is required')
     .isURL()
     .withMessage('No image URL')
-
 ];
