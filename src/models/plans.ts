@@ -1,6 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-
 export interface Plans extends Document {
   name: string;
   description: string;
@@ -12,7 +11,7 @@ const plansSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique:true 
+      unique: true 
     },
 
     description: {
@@ -24,7 +23,7 @@ const plansSchema: Schema = new mongoose.Schema(
     },
 
     image: {
-      type :String
+      type: String
     }
   },
   {
@@ -33,4 +32,4 @@ const plansSchema: Schema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('planModel', plansSchema);
+export default mongoose.model('plans', plansSchema);

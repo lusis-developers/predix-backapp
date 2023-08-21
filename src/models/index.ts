@@ -1,7 +1,7 @@
-import planModel from './plans';
+import plans from './plans';
 
 const models = {
-  planModel
+  plans
 };
 
-export { models };
+export default models;

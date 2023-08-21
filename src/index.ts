@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import dbConnect from './config/mongo';
 import { Application } from 'express';
 
+import dbConnect from './config/mongo';
 import routerApi from './routes';
 
 const whiteList: string[] = [
@@ -23,11 +23,6 @@ dotenv.config();
 const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
 routerApi(app);
-
-// app.get('/api/ping', (req, res) => {
-//   console.log('someone ping')
-//   res.send('pong')
-// })
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

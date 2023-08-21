@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { models } from "../models/index";
+import { Request, Response } from 'express';
+import models from '../models/index';
 
 /**
  * Obtener lista de la base de datos
@@ -8,10 +8,10 @@ import { models } from "../models/index";
  */
 const getPlans = async (_req: Request, res: Response) => {
   try {
-    const plans = await models.planModel.find({});
+    const plans = await models.plans.find({});
     res.send(plans);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(501).send(error);
   }
 };
 
@@ -21,7 +21,7 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param res
  */
 const createPlan = async (req: Request, res: Response) => {
-  const newplans = new models.planModel(req.body);
+  const newplans = new models.plans(req.body);
   try {
     await newplans.save();
     res.send(newplans);
@@ -37,17 +37,17 @@ const createPlan = async (req: Request, res: Response) => {
  */
 const updatePlan = async (req: Request, res: Response) => {
   try {
-    const updatedplans = await models.planModel.findOneAndUpdate(
+    const updatedplans = await models.plans.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
     );
     res.send({
-      message: "Se actualizo el plans de apuesta exitosamente",
+      message: 'Se actualizo el plans de apuesta exitosamente',
       updatedplans: updatedplans,
     });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(403).send(error);
   }
 };
 
@@ -58,10 +58,10 @@ const updatePlan = async (req: Request, res: Response) => {
  */
 const deletePlan = async (req: Request, res: Response) => {
   try {
-    await models.planModel.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: "Se borro el plans de apuesta exitosamente" });
+    await models.plans.findOneAndDelete({ _id: req.params.id });
+    res.send({ message: 'Se borro el plans de apuesta exitosamente' });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(403).send(error);
   }
 };
 
