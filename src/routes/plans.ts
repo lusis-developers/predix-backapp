@@ -1,10 +1,10 @@
-import { Router} from 'express';
+import express from 'express';
 import { getPlans, createPlan, updatePlan, deletePlan } from '../controllers/plans';
 
-const router = Router();
+const router = express.Router();
 
 // GET: Recibe todo lo que contiene el plan
-router.get('/plan', getPlans);
+router.get('/plans', getPlans);
 
 // POST: Postea el nuevo plan
 router.post('/plan', createPlan);
