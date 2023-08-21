@@ -4,10 +4,7 @@ import dotenv from 'dotenv';
 import dbConnect from './config/mongo';
 import { Application } from 'express';
 
-import routeIndex from './routes/index';
-
-
-dotenv.config();
+import routerApi from './routes';
 
 const whiteList: string[] = [
   'http://localhost:5173',
@@ -21,13 +18,19 @@ app.use(cors({ origin: whiteList }));
 
 app.use(express.json());
 
+dotenv.config();
+
 const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
-app.use('/api', routeIndex);
+routerApi(app);
 
+// app.get('/api/ping', (req, res) => {
+//   console.log('someone ping')
+//   res.send('pong')
+// })
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
 
 dbConnect();
