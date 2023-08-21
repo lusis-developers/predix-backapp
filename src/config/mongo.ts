@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const dbConnect = async (): Promise<void> => {
+async function dbConnect(): Promise<void> {
   try {
     const DB_URI = process.env.DB_URI;
 
@@ -12,6 +12,7 @@ const dbConnect = async (): Promise<void> => {
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
     console.log('*** ERROR DE CONEXION ***');
+    console.log('error', error)
   }
 };
 
