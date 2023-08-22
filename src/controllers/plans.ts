@@ -21,14 +21,15 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param res
  */
 const createPlan = async (req: Request, res: Response) => {
-  const newplans = new models.plans(req.body);
+  const{ body } = req
   try {
-    await newplans.save();
-    res.send(newplans);
+    const newPlan = await models.plans.create(body);
+    res.send(newPlan);
   } catch (error) {
     res.status(409).send(error);
   }
 };
+
 
 /**
  * Actualizar un elemento en la base de datos
