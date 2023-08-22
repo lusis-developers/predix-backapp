@@ -43,7 +43,7 @@ const updatePlan = async (req: Request, res: Response) => {
       { new: true }
     );
     res.send({
-      message: 'Se actualizo el plans de apuesta exitosamente',
+      message: 'UPDATED_SUCCESFULLY',
       updatedplans: updatedplans,
     });
   } catch (error) {
@@ -59,7 +59,7 @@ const updatePlan = async (req: Request, res: Response) => {
 const deletePlan = async (req: Request, res: Response) => {
   try {
     await models.plans.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'Se borro el plans de apuesta exitosamente' });
+    res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
     res.status(403).send(error);
   }
