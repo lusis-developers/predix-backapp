@@ -21,14 +21,15 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param res
  */
 const createPlan = async (req: Request, res: Response) => {
-  const newplans = new models.plans(req.body);
+  const{ body } = req
   try {
-    await newplans.save();
-    res.send(newplans);
+    const newPlan = await models.plans.create(body);
+    res.send(newPlan);
   } catch (error) {
     res.status(409).send(error);
   }
 };
+
 
 /**
  * Actualizar un elemento en la base de datos
@@ -43,7 +44,7 @@ const updatePlan = async (req: Request, res: Response) => {
       { new: true }
     );
     res.send({
-      message: 'Se actualizo el plans de apuesta exitosamente',
+      message: 'UPDATED_SUCCESFULLY',
       updatedplans: updatedplans,
     });
   } catch (error) {
@@ -59,7 +60,7 @@ const updatePlan = async (req: Request, res: Response) => {
 const deletePlan = async (req: Request, res: Response) => {
   try {
     await models.plans.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'Se borro el plans de apuesta exitosamente' });
+    res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
     res.status(403).send(error);
   }
