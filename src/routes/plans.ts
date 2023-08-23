@@ -15,6 +15,6 @@ router.post('/plan', planValidatorCreate,createPlan);
 router.put('/plan/:id', planValidatorUpdate, updatePlan);
 
 // DELETE: Deletea un plan existente
-router.delete('/plan/:id', planValidatorDelete,deletePlan);
+router.delete('/plan/:id', planValidatorDelete, deletePlan);
 
 export default router;
