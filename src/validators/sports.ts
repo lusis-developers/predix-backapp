@@ -1,0 +1,61 @@
+import { NextFunction, Request, Response } from 'express';
+import { check } from 'express-validator';
+
+import validateResults from '../utils/handleValidator';
+
+const sportValidatorCreate = [
+  check('sport')
+    .notEmpty()
+    .isString()
+    .withMessage('Name is required')
+    .isLength({ max: 20 })
+    .withMessage('Max Length 20 characters'),
+
+  check('image')
+    .notEmpty()
+    .withMessage('Image is required')
+    .isURL()
+    .withMessage('No image URL'),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next)
+  }
+];
+
+
+const sportValidatorUpdate = [
+  check('sport')
+    .notEmpty()
+    .isString()
+    .withMessage('Name is required')
+    .isLength({ max: 20 })
+    .withMessage('Max Length 20 characters'),
+
+  check('image')
+    .notEmpty()
+    .withMessage('Image is required')
+    .isURL()
+    .withMessage('No image URL'),
+    
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next)
+  }
+];
+
+const sportValidatorDelete = [
+  check('id')
+    .exists()
+    .notEmpty()
+    .isMongoId(),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next)
+  }
+];
+
+
+export {
+  sportValidatorCreate,
+  sportValidatorUpdate,
+  sportValidatorDelete
+}
