@@ -6,7 +6,7 @@ import models from '../models/index';
  * @param req
  * @param res
  */
-const getPlans = async (_req: Request, res: Response) => {
+async function getPlans (_req: Request, res: Response) {
   try {
     const plans = await models.plans.find({});
     res.send(plans);
@@ -20,7 +20,7 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const createPlan = async (req: Request, res: Response) => {
+async function createPlan (req: Request, res: Response) {
   const{ body } = req
   try {
     const newPlan = await models.plans.create(body);
@@ -36,7 +36,7 @@ const createPlan = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const updatePlan = async (req: Request, res: Response) => {
+async function updatePlan (req: Request, res: Response) {
   try {
     const updatedplans = await models.plans.findOneAndUpdate(
       { _id: req.params.id },
@@ -57,7 +57,7 @@ const updatePlan = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const deletePlan = async (req: Request, res: Response) => {
+async function deletePlan (req: Request, res: Response) {
   try {
     await models.plans.findOneAndDelete({ _id: req.params.id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
