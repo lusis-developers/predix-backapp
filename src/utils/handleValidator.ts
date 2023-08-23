@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator';
 function validateResults(req: Request, res: Response, next: NextFunction): void {
   try {
     validationResult(req).throw();
+    return next();
   } catch (error: any) {
     res.status(400);
     console.log(error);

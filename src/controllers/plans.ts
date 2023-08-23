@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
+import { matchedData } from 'express-validator';
+
 import models from '../models/index';
+import handleHttpError from '../utils/handleErrors';
 
 /**
  * Obtener lista de la base de datos
@@ -11,7 +14,7 @@ const getPlans = async (_req: Request, res: Response) => {
     const plans = await models.plans.find({});
     res.send(plans);
   } catch (error) {
-    res.status(501).send(error);
+    handleHttpError(res, 'Cannot get plans');
   }
 };
 
@@ -21,12 +24,12 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param res
  */
 const createPlan = async (req: Request, res: Response) => {
-  const{ body } = req
+  const{ body } = matchedData(req)
   try {
     const newPlan = await models.plans.create(body);
     res.send(newPlan);
   } catch (error) {
-    res.status(409).send(error);
+    handleHttpError(res, 'Cannot create plan');
   }
 };
 
@@ -38,17 +41,16 @@ const createPlan = async (req: Request, res: Response) => {
  */
 const updatePlan = async (req: Request, res: Response) => {
   try {
-    const updatedplans = await models.plans.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
+    const { id, ...body } = matchedData(req)
+    await models.plans.findByIdAndUpdate(
+      id,
+      body
     );
     res.send({
-      message: 'UPDATED_SUCCESFULLY',
-      updatedplans: updatedplans,
+      message: 'Plan updated',
     });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot update plan');
   }
 };
 
@@ -59,10 +61,11 @@ const updatePlan = async (req: Request, res: Response) => {
  */
 const deletePlan = async (req: Request, res: Response) => {
   try {
-    await models.plans.findOneAndDelete({ _id: req.params.id });
+    const { id } = matchedData(req)
+    await models.plans.findOneAndDelete({ _id: id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot delete plan');
   }
 };
 
