@@ -1,7 +1,12 @@
+import sports from './sports';
 import plans from './plans';
+import leagues from './leagues';
 
 const models = {
-  plans
+  plans,
+  sports,
+  leagues
+
 };
 
 export default models;
