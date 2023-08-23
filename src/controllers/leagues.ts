@@ -6,7 +6,7 @@ import models from '../models/index';
  * @param req
  * @param res
  */
-const getLeagues = async (_req: Request, res: Response) => {
+async function getLeagues (_req: Request, res: Response) {
   try {
     const leagues = await models.leagues.find({});
     res.send(leagues);
@@ -20,7 +20,7 @@ const getLeagues = async (_req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const createLeague = async (req: Request, res: Response) => {
+async function createLeague (req: Request, res: Response) {
   const{ body } = req
   try {
     const newleague = await models.leagues.create(body);
@@ -36,7 +36,7 @@ const createLeague = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const updateLeague = async (req: Request, res: Response) => {
+async function updateLeague (req: Request, res: Response) {
   try {
     const updatedleagues = await models.leagues.findOneAndUpdate(
       { _id: req.params.id },
@@ -57,7 +57,7 @@ const updateLeague = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const deleteLeague = async (req: Request, res: Response) => {
+async function deleteLeague (req: Request, res: Response) {
   try {
     await models.leagues.findOneAndDelete({ _id: req.params.id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
