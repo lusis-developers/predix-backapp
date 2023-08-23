@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import models from '../models/index';
+import handleHttpError from  '../utils/handleErrors'
+
 
 /**
  * Obtener lista de la base de datos
@@ -11,7 +13,7 @@ async function getSports (_req: Request, res: Response) {
     const sports = await models.sports.find({});
     res.send(sports);
   } catch (error) {
-    res.status(501).send(error);
+    handleHttpError(res, 'Cannot get sports');
   }
 };
 
@@ -26,7 +28,7 @@ async function createSport (req: Request, res: Response) {
     const newsport = await models.sports.create(body);
     res.send(newsport);
   } catch (error) {
-    res.status(409).send(error);
+    handleHttpError(res, 'Cannot create sport');
   }
 };
 
@@ -48,7 +50,7 @@ async function updateSport (req: Request, res: Response) {
       updatedplans: updatedsports,
     });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot update sport');
   }
 };
 
@@ -62,7 +64,7 @@ async function deleteSport (req: Request, res: Response) {
     await models.sports.findOneAndDelete({ _id: req.params.id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot delete sport');
   }
 };
 
