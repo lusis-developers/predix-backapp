@@ -1,4 +1,8 @@
+import { NextFunction, Request, Response } from 'express';
+import { check } from 'express-validator';
 import { body } from 'express-validator';
+
+import validateResults from '../utils/handleValidator';
 
 export const planValidator = [
   body('name')
@@ -24,5 +28,9 @@ export const planValidator = [
     .notEmpty()
     .withMessage('Image is required')
     .isURL()
-    .withMessage('No image URL')
+    .withMessage('No image URL'),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next)
+  }
 ];
