@@ -6,7 +6,7 @@ import models from '../models/index';
  * @param req
  * @param res
  */
-const getSports = async (_req: Request, res: Response) => {
+async function getSports (_req: Request, res: Response) {
   try {
     const sports = await models.sports.find({});
     res.send(sports);
@@ -20,7 +20,7 @@ const getSports = async (_req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const createSport = async (req: Request, res: Response) => {
+async function createSport (req: Request, res: Response) {
   const { body } = req
   try {
     const newsport = await models.sports.create(body);
@@ -36,7 +36,7 @@ const createSport = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const updateSport = async (req: Request, res: Response) => {
+async function updateSport (req: Request, res: Response) {
   try {
     const updatedsports = await models.sports.findOneAndUpdate(
       { _id: req.params.id },
@@ -57,7 +57,7 @@ const updateSport = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const deleteSport = async (req: Request, res: Response) => {
+async function deleteSport (req: Request, res: Response) {
   try {
     await models.sports.findOneAndDelete({ _id: req.params.id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
