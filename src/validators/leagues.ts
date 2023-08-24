@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { check } from 'express-validator';
-
 import validateResults from '../utils/handleValidator';
 
 const leagueValidatorCreate = [
@@ -17,10 +16,16 @@ const leagueValidatorCreate = [
     .isURL()
     .withMessage('No image URL'),
 
+  check('sport')
+    .exists()
+    .isMongoId()
+    .withMessage('Sport reference is required'),
+
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
   }
 ];
+
 const leagueValidatorUpdate = [
   check('name')
     .notEmpty()
@@ -35,6 +40,11 @@ const leagueValidatorUpdate = [
     .isURL()
     .withMessage('No image URL'),
 
+  check('sport')
+    .exists()
+    .isMongoId()
+    .withMessage('Sport reference is required'),
+
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
   }
@@ -42,7 +52,6 @@ const leagueValidatorUpdate = [
 
 const leagueValidatorDelete = [
   check('id').exists().notEmpty().isMongoId(),
-
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
   }
