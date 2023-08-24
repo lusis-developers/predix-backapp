@@ -3,4 +3,4 @@ node_modules
 # dist should be ingnored due to the compilation process, as node_modules
 dist
 
-./predix-key.json
+predix-key.json
