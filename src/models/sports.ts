@@ -11,7 +11,6 @@ const sportsSchema: Schema = new mongoose.Schema(
       type: String,
       unique: true
     },
-
     image: {
       type: String
     }
@@ -23,7 +22,7 @@ const sportsSchema: Schema = new mongoose.Schema(
 );
 
 interface SportsModel extends mongoose.Model<Sports> {
-  findAllData(): any[];
+  findAllData(): [];
 }
 
 sportsSchema.statics.findAllData = function () {
@@ -31,7 +30,7 @@ sportsSchema.statics.findAllData = function () {
     {
       $lookup: {
         from: 'leagues',
-        localField: 'league',
+        localField: '_id',
         foreignField: 'sport',
         as: 'LeaguesDetails'
       }
