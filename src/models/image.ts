@@ -1,10 +1,10 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 const planImagesSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true 
+      unique: true
     },
     url: {
       type: String

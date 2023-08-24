@@ -7,7 +7,7 @@ import dbConnect from './config/mongo';
 import routerApi from './routes';
 
 const whiteList: string[] = [
-  'http://localhost:5173',
+  'http://localhost:5173'
   // TODO: add app app domain
   // TODO: add app sandbox domain
 ];

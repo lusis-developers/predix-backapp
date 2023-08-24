@@ -1,7 +1,17 @@
 import express from 'express';
 
-import { planValidatorCreate, planValidatorUpdate, planValidatorDelete } from '../validators/plans';
-import { getPlans, createPlan, updatePlan, deletePlan, uploadPlanImage } from '../controllers/plans';
+import {
+  planValidatorCreate,
+  planValidatorUpdate,
+  planValidatorDelete
+} from '../validators/plans';
+import {
+  getPlans,
+  createPlan,
+  updatePlan,
+  deletePlan,
+  uploadPlanImage
+} from '../controllers/plans';
 
 const router = express.Router();
 

@@ -30,16 +30,12 @@ const planValidatorCreate = [
     .withMessage('No image URL'),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
-
 const planValidatorUpdate = [
-  check('id')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('id').exists().notEmpty().isMongoId(),
 
   check('name')
     .notEmpty()
@@ -67,24 +63,16 @@ const planValidatorUpdate = [
     .withMessage('No image URL'),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
 const planValidatorDelete = [
-  check('id')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('id').exists().notEmpty().isMongoId(),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
-
-export {
-  planValidatorCreate,
-  planValidatorUpdate,
-  planValidatorDelete
-}
+export { planValidatorCreate, planValidatorUpdate, planValidatorDelete };
