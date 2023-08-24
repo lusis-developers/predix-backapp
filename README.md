@@ -29,12 +29,19 @@ Install dependencies
 Before start sever do compilation process
 
 ```bash
-    npm run compilation
+    npm run compile
 ```
 
 Start the server
 
 ```bash
   npm run start
+```
+
+
+Before push the code, please format your code 
+
+```bash
+  npm run prettier-format
 ```
 
