@@ -10,7 +10,7 @@ import handleHttpError from  '../utils/handleErrors'
  */
 async function getSports (_req: Request, res: Response) {
   try {
-    const sports = await models.sports.find({});
+    const sports = await models.sports.findAllData();
     res.send(sports);
   } catch (error) {
     handleHttpError(res, 'Cannot get sports');

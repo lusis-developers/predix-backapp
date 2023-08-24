@@ -22,7 +22,23 @@ const sportsSchema: Schema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('sports', sportsSchema);
+interface SportsModel extends mongoose.Model<Sports> {
+  findAllData(): any[]; 
+}
 
+sportsSchema.statics.findAllData = function () {
+  const joinData = this.aggregate([
+    {
+      $lookup: {
+        from: "leagues",
+        localField: "league",   
+        foreignField: "sport", 
+        as: "LeaguesDetails",
+      },
+    },
+  ])
+  return joinData
+};
 
+export default mongoose.model<Sports, SportsModel>('sports', sportsSchema); 
 
