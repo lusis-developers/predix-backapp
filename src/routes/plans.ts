@@ -1,5 +1,6 @@
 import express from 'express';
 
+import uploadMiddleware from '../middlewares/handleImage';
 import {
   planValidatorCreate,
   planValidatorUpdate,
@@ -18,7 +19,11 @@ const router = express.Router();
 router.get('/plans', getPlans);
 
 // TODO: endpoint to upload image to GCP before createPlan on POST METHOD
-router.post('/planImage', uploadPlanImage);
+router.post(
+  '/planImage',
+  uploadMiddleware.single('planImage'),
+  uploadPlanImage
+);
 
 router.post('/plan', planValidatorCreate, createPlan);
 
