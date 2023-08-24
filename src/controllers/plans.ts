@@ -24,20 +24,18 @@ const getPlans = async (_req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const uploadPlanImage = async (req: any, res: Response) => {
+const uploadPlanImage = async (req: Request, res: Response) => {
   try {
     const { file } = req;
-    console.log(file)
-    const result = await gcpImageUpload(file);
+    const result = await gcpImageUpload(file!);
     const fileData = {
       url: result,
-      filename: result.split('/')[2],
+      filename: result.split('/')[2]
     };
-    const data =  await models.gcpImages.create(fileData);
+    const data = await models.gcpImages.create(fileData);
     res.send({ data });
-  } catch (error: any) {
-    console.error('response', error)
-    handleHttpError(error, 'Error uploading file',);
+  } catch (error) {
+    handleHttpError(res, 'Error uploading file');
   }
 };
 
@@ -47,7 +45,7 @@ const uploadPlanImage = async (req: any, res: Response) => {
  * @param res
  */
 const createPlan = async (req: Request, res: Response) => {
-  const{ body } = matchedData(req)
+  const { body } = matchedData(req);
   try {
     const newPlan = await models.plans.create(body);
     res.send(newPlan);
@@ -56,7 +54,6 @@ const createPlan = async (req: Request, res: Response) => {
   }
 };
 
-
 /**
  * Actualizar un elemento en la base de datos
  * @param req
@@ -64,13 +61,10 @@ const createPlan = async (req: Request, res: Response) => {
  */
 const updatePlan = async (req: Request, res: Response) => {
   try {
-    const { id, ...body } = matchedData(req)
-    await models.plans.findByIdAndUpdate(
-      id,
-      body
-    );
+    const { id, ...body } = matchedData(req);
+    await models.plans.findByIdAndUpdate(id, body);
     res.send({
-      message: 'Plan updated',
+      message: 'Plan updated'
     });
   } catch (error) {
     handleHttpError(res, 'Cannot update plan');
@@ -84,7 +78,7 @@ const updatePlan = async (req: Request, res: Response) => {
  */
 const deletePlan = async (req: Request, res: Response) => {
   try {
-    const { id } = matchedData(req)
+    const { id } = matchedData(req);
     await models.plans.findOneAndDelete({ _id: id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
