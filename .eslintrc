@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "parser": "@typescript-parser",
+  "plugins": [
+    "@typesscript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommend",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 1,
+    "prettier/prettier": 2
+  }
+}
