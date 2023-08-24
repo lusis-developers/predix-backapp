@@ -4,7 +4,7 @@ import { check } from 'express-validator';
 import validateResults from '../utils/handleValidator';
 
 const sportValidatorCreate = [
-  check('sport')
+  check('name')
     .notEmpty()
     .isString()
     .withMessage('Name is required')
@@ -24,7 +24,7 @@ const sportValidatorCreate = [
 
 
 const sportValidatorUpdate = [
-  check('sport')
+  check('name')
     .notEmpty()
     .isString()
     .withMessage('Name is required')

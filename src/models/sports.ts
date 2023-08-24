@@ -1,13 +1,13 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface Sports extends Document {
-  sport: string;
+  name: string;
   image: string;
 }
 
 const sportsSchema: Schema = new mongoose.Schema(
   {
-    sport: {
+    name: {
       type: String,
       unique: true 
     },
