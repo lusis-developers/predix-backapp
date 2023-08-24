@@ -3,8 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const planImagesSchema: Schema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      unique: true
+      type: String
     },
     url: {
       type: String

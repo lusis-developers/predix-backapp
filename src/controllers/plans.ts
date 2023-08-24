@@ -27,7 +27,7 @@ const getPlans = async (_req: Request, res: Response) => {
 const uploadPlanImage = async (req: Request, res: Response) => {
   try {
     const { file } = req;
-    const result = await gcpImageUpload(file!);
+    const result = await gcpImageUpload(file!, 'plans');
     const fileData = {
       url: result,
       filename: result.split('/')[2]
