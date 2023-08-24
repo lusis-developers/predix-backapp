@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import models from '../models/index';
+import { matchedData } from 'express-validator';
 
+import handleHttpError from '../utils/handleErrors';
+import models from '../models/index';
 /**
  * Obtener lista de la base de datos
  * @param req
@@ -11,7 +13,7 @@ async function getLeagues(_req: Request, res: Response) {
     const leagues = await models.leagues.find({});
     res.send(leagues);
   } catch (error) {
-    res.status(501).send(error);
+    handleHttpError(res, 'Cannot get leagues');
   }
 }
 
@@ -26,7 +28,7 @@ async function createLeague(req: Request, res: Response) {
     const newleague = await models.leagues.create(body);
     res.send(newleague);
   } catch (error) {
-    res.status(409).send(error);
+    handleHttpError(res, 'Cannot create leagues');
   }
 }
 
@@ -37,17 +39,13 @@ async function createLeague(req: Request, res: Response) {
  */
 async function updateLeague(req: Request, res: Response) {
   try {
-    const updatedleagues = await models.leagues.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
-    );
+    const { id, ...body } = matchedData(req);
+    await models.plans.findByIdAndUpdate(id, body);
     res.send({
-      message: 'UPDATED_SUCCESFULLY',
-      updatedplans: updatedleagues
+      message: 'Plan updated'
     });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot update league');
   }
 }
 
@@ -61,7 +59,7 @@ async function deleteLeague(req: Request, res: Response) {
     await models.leagues.findOneAndDelete({ _id: req.params.id });
     res.send({ message: 'DELETED_SUCCESFULLY' });
   } catch (error) {
-    res.status(403).send(error);
+    handleHttpError(res, 'Cannot delete league');
   }
 }
 

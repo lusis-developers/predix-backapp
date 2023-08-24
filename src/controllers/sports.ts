@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import models from '../models/index';
-import handleHttpError from '../utils/handleErrors';
+import { matchedData } from 'express-validator';
 
+import handleHttpError from '../utils/handleErrors';
+import models from '../models/index';
 /**
  * Obtener lista de la base de datos
  * @param req
@@ -38,14 +39,10 @@ async function createSport(req: Request, res: Response) {
  */
 async function updateSport(req: Request, res: Response) {
   try {
-    const updatedsports = await models.sports.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
-    );
+    const { id, ...body } = matchedData(req);
+    await models.plans.findByIdAndUpdate(id, body);
     res.send({
-      message: 'UPDATED_SUCCESFULLY',
-      updatedplans: updatedsports
+      message: 'Sport updated'
     });
   } catch (error) {
     handleHttpError(res, 'Cannot update sport');
