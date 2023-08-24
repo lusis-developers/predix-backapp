@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { matchedData } from 'express-validator';
 
-import models from '../models/index';
+import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
+import models from '../models/index';
 
 /**
- * Obtener lista de la base de datos
+ * Get plan array
  * @param req
  * @param res
  */
@@ -15,6 +16,28 @@ const getPlans = async (_req: Request, res: Response) => {
     res.send(plans);
   } catch (error) {
     handleHttpError(res, 'Cannot get plans');
+  }
+};
+
+/**
+ * Upload image before creating plan item
+ * @param req
+ * @param res
+ */
+const uploadPlanImage = async (req: any, res: Response) => {
+  try {
+    const { file } = req;
+    console.log(file)
+    const result = await gcpImageUpload(file);
+    const fileData = {
+      url: result,
+      filename: result.split('/')[2],
+    };
+    const data =  await models.gcpImages.create(fileData);
+    res.send({ data });
+  } catch (error: any) {
+    console.error('response', error)
+    handleHttpError(error, 'Error uploading file',);
   }
 };
 
@@ -69,4 +92,4 @@ const deletePlan = async (req: Request, res: Response) => {
   }
 };
 
-export { getPlans, createPlan, updatePlan, deletePlan };
+export { getPlans, createPlan, updatePlan, deletePlan, uploadPlanImage };

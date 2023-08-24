@@ -1,7 +1,9 @@
 import plans from './plans';
+import gcpImages from './image';
 
 const models = {
-  plans
+  plans,
+  gcpImages
 };
 
 export default models;
