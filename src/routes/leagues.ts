@@ -1,6 +1,15 @@
 import express from 'express';
-import { getLeagues, createLeague, updateLeague, deleteLeague } from '../controllers/leagues';
-import { leagueValidatorCreate, leagueValidatorDelete, leagueValidatorUpdate } from '../validators/leagues';
+import {
+  getLeagues,
+  createLeague,
+  updateLeague,
+  deleteLeague
+} from '../controllers/leagues';
+import {
+  leagueValidatorCreate,
+  leagueValidatorDelete,
+  leagueValidatorUpdate
+} from '../validators/leagues';
 
 const router = express.Router();
 

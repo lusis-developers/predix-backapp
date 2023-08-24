@@ -1,6 +1,15 @@
 import express from 'express';
-import { getSports, createSport, updateSport, deleteSport } from '../controllers/sports';
-import { sportValidatorCreate, sportValidatorDelete, sportValidatorUpdate } from '../validators/sports';
+import {
+  getSports,
+  createSport,
+  updateSport,
+  deleteSport
+} from '../controllers/sports';
+import {
+  sportValidatorCreate,
+  sportValidatorDelete,
+  sportValidatorUpdate
+} from '../validators/sports';
 
 const router = express.Router();
 

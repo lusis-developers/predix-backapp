@@ -18,7 +18,7 @@ const leagueValidatorCreate = [
     .withMessage('No image URL'),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 const leagueValidatorUpdate = [
@@ -34,26 +34,18 @@ const leagueValidatorUpdate = [
     .withMessage('Image is required')
     .isURL()
     .withMessage('No image URL'),
-    
+
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
 const leagueValidatorDelete = [
-  check('id')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('id').exists().notEmpty().isMongoId(),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
-
-export {
-  leagueValidatorCreate,
-  leagueValidatorUpdate,
-  leagueValidatorDelete
-}
+export { leagueValidatorCreate, leagueValidatorUpdate, leagueValidatorDelete };

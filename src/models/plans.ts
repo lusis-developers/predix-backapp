@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface Plans extends Document {
   name: string;
@@ -11,7 +11,7 @@ const plansSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true 
+      unique: true
     },
 
     description: {

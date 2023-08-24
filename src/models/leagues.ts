@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface Leagues extends Document {
   name: string;
@@ -9,7 +9,7 @@ const leaguesSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true 
+      unique: true
     },
 
     image: {

@@ -18,10 +18,9 @@ const sportValidatorCreate = [
     .withMessage('No image URL'),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
-
 
 const sportValidatorUpdate = [
   check('name')
@@ -36,26 +35,18 @@ const sportValidatorUpdate = [
     .withMessage('Image is required')
     .isURL()
     .withMessage('No image URL'),
-    
+
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
 const sportValidatorDelete = [
-  check('id')
-    .exists()
-    .notEmpty()
-    .isMongoId(),
+  check('id').exists().notEmpty().isMongoId(),
 
   (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next)
+    return validateResults(req, res, next);
   }
 ];
 
-
-export {
-  sportValidatorCreate,
-  sportValidatorUpdate,
-  sportValidatorDelete
-}
+export { sportValidatorCreate, sportValidatorUpdate, sportValidatorDelete };

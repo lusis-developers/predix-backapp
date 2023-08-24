@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface Sports extends Document {
   name: string;
@@ -9,7 +9,7 @@ const sportsSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true 
+      unique: true
     },
 
     image: {
@@ -23,22 +23,21 @@ const sportsSchema: Schema = new mongoose.Schema(
 );
 
 interface SportsModel extends mongoose.Model<Sports> {
-  findAllData(): any[]; 
+  findAllData(): any[];
 }
 
 sportsSchema.statics.findAllData = function () {
   const joinData = this.aggregate([
     {
       $lookup: {
-        from: "leagues",
-        localField: "league",   
-        foreignField: "sport", 
-        as: "LeaguesDetails",
-      },
-    },
-  ])
-  return joinData
+        from: 'leagues',
+        localField: 'league',
+        foreignField: 'sport',
+        as: 'LeaguesDetails'
+      }
+    }
+  ]);
+  return joinData;
 };
 
-export default mongoose.model<Sports, SportsModel>('sports', sportsSchema); 
-
+export default mongoose.model<Sports, SportsModel>('sports', sportsSchema);
