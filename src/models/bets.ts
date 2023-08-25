@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { BetEnum } from '../enum/betEnum';
 
 const betsSchema: Schema = new mongoose.Schema(
   {
@@ -25,6 +26,9 @@ const betsSchema: Schema = new mongoose.Schema(
     },
     description: {
       type: String
+    },
+    status: {
+      type: BetEnum
     }
   },
   {

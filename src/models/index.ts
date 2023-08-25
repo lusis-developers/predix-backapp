@@ -4,6 +4,7 @@ import planImages from './planImages';
 import leagues from './leagues';
 import sportImages from './sportImages';
 import leagueImages from './leagueImages';
+import bets from './bets';
 
 const models = {
   plans,
@@ -11,7 +12,8 @@ const models = {
   leagues,
   planImages,
   sportImages,
-  leagueImages
+  leagueImages,
+  bets
 };
 
 export default models;
