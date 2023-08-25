@@ -4,6 +4,7 @@ import { format } from 'url';
 import * as dotenv from 'dotenv';
 
 import handleHttpError from '../utils/handleErrors';
+import { ImagesEnum } from '../enum/imagesEnum';
 import { ImageFile } from '../types/File';
 
 dotenv.config();
@@ -21,7 +22,7 @@ const bucket = storage.bucket(bucketName);
 
 async function gcpImageUpload(
   file: ImageFile,
-  location?: string
+  location?: ImagesEnum
 ): Promise<string> {
   try {
     const ext = file.originalname.split('.').pop();

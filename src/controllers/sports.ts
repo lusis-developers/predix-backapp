@@ -3,6 +3,7 @@ import { matchedData } from 'express-validator';
 
 import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
+import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 /**
  * Obtener lista de la base de datos
@@ -26,7 +27,7 @@ async function getSports(_req: Request, res: Response) {
 async function uploadSportImage(req: Request, res: Response) {
   try {
     const { file } = req;
-    const result = await gcpImageUpload(file!, 'sport');
+    const result = await gcpImageUpload(file!, ImagesEnum.SPORT);
     const fileData = {
       url: result,
       filename: result.split('/')[2]
