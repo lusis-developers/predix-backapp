@@ -1,13 +1,15 @@
 import sports from './sports';
 import plans from './plans';
-import gcpImages from './image';
+import planImages from './planImages';
 import leagues from './leagues';
+import sportImages from './sportImages';
 
 const models = {
   plans,
   sports,
   leagues,
-  gcpImages
+  planImages,
+  sportImages
 };
 
 export default models;

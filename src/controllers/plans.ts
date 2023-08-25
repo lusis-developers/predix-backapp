@@ -32,7 +32,7 @@ async function uploadPlanImage(req: Request, res: Response) {
       url: result,
       filename: result.split('/')[2]
     };
-    const data = await models.gcpImages.create(fileData);
+    const data = await models.planImages.create(fileData);
     res.send({ data });
   } catch (error) {
     handleHttpError(res, 'Error uploading file');

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { matchedData } from 'express-validator';
 
+import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
 /**
@@ -14,6 +15,26 @@ async function getSports(_req: Request, res: Response) {
     res.send(sports);
   } catch (error) {
     handleHttpError(res, 'Cannot get sports');
+  }
+}
+
+/**
+ * Upload image before creating plan item
+ * @param req
+ * @param res
+ */
+async function uploadSportImage(req: Request, res: Response) {
+  try {
+    const { file } = req;
+    const result = await gcpImageUpload(file!, 'sport');
+    const fileData = {
+      url: result,
+      filename: result.split('/')[2]
+    };
+    const data = await models.sportImages.create(fileData);
+    res.send({ data });
+  } catch (error) {
+    handleHttpError(res, 'Error uploading file');
   }
 }
 
@@ -63,4 +84,4 @@ async function deleteSport(req: Request, res: Response) {
   }
 }
 
-export { getSports, createSport, updateSport, deleteSport };
+export { getSports, createSport, updateSport, deleteSport, uploadSportImage };
