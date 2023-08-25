@@ -23,7 +23,7 @@ async function uploadLeagueImage(req: Request, res: Response) {
       url: result,
       filename: result.split('/')[2]
     };
-    const data = await models.sportImages.create(fileData);
+    const data = await models.leagueImages.create(fileData);
     res.send({ data });
   } catch (error) {
     handleHttpError(res, 'Error uploading file');
@@ -43,7 +43,7 @@ async function createLeague(req: Request, res: Response) {
 async function updateLeague(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
-    await models.plans.findByIdAndUpdate(id, body);
+    await models.leagues.findByIdAndUpdate(id, body);
     res.send({
       message: 'Plan updated'
     });
