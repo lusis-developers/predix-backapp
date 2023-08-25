@@ -23,6 +23,8 @@ router.post('/plan', createBet);
 
 router.put('/plan/:id', updateBet);
 
+router.patch('/plan/:id', updateBet);
+
 router.delete('/plan/:id', deleteBet);
 
 export default router;

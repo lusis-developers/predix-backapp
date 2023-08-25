@@ -45,6 +45,21 @@ async function updateBet(req: Request, res: Response) {
   }
 }
 
+async function updateBetStatus(req: Request, res: Response) {
+  try {
+    const { id, ...body } = matchedData(req);
+    const status = body.status;
+
+    await models.bets.findByIdAndUpdate(id, { $set: { status: status } });
+
+    res.send({
+      message: 'Bet Status Updated'
+    });
+  } catch (error) {
+    handleHttpError(res, 'Cannot Update Bet Status');
+  }
+}
+
 async function deleteBet(req: Request, res: Response) {
   try {
     await models.leagues.findOneAndDelete({ _id: req.params.id });
@@ -54,4 +69,4 @@ async function deleteBet(req: Request, res: Response) {
   }
 }
 
-export { getBets, getBet, createBet, updateBet, deleteBet };
+export { getBets, getBet, createBet, updateBet, deleteBet, updateBetStatus };
