@@ -1,10 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
-
-export interface Leagues extends Document {
-  name: string;
-  image: string;
-  sport: mongoose.Schema.Types.ObjectId;
-}
+import mongoose, { Schema } from 'mongoose';
 
 const leaguesSchema: Schema = new mongoose.Schema(
   {
