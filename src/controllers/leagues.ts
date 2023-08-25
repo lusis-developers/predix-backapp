@@ -60,4 +60,10 @@ async function deleteLeague(req: Request, res: Response) {
   }
 }
 
-export { getLeagues, createLeague, updateLeague, deleteLeague, uploadLeagueImage };
+export {
+  getLeagues,
+  createLeague,
+  updateLeague,
+  deleteLeague,
+  uploadLeagueImage
+};
