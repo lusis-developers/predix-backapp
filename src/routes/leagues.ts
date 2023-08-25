@@ -1,9 +1,12 @@
 import express from 'express';
+
+import uploadMiddleware from '../middlewares/handleImage';
 import {
   getLeagues,
   createLeague,
   updateLeague,
-  deleteLeague
+  deleteLeague,
+  uploadLeagueImage
 } from '../controllers/leagues';
 import {
   leagueValidatorCreate,
@@ -15,6 +18,12 @@ const router = express.Router();
 
 // GET: Recibe todo lo que contiene el league
 router.get('/leagues', getLeagues);
+
+router.post(
+  '/leagueImage',
+  uploadMiddleware.single('leagueImage'),
+  uploadLeagueImage
+);
 
 // POST: Postea el nuevo league
 router.post('/league', leagueValidatorCreate, createLeague);

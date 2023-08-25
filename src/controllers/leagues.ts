@@ -1,13 +1,10 @@
 import { Request, Response } from 'express';
 import { matchedData } from 'express-validator';
 
+import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
-/**
- * Obtener lista de la base de datos
- * @param req
- * @param res
- */
+
 async function getLeagues(_req: Request, res: Response) {
   try {
     const leagues = await models.leagues.find({});
@@ -17,11 +14,21 @@ async function getLeagues(_req: Request, res: Response) {
   }
 }
 
-/**
- * Crear un nuevo elemento en la base de datos
- * @param req
- * @param res
- */
+async function uploadLeagueImage(req: Request, res: Response) {
+  try {
+    const { file } = req;
+    const result = await gcpImageUpload(file!, 'league');
+    const fileData = {
+      url: result,
+      filename: result.split('/')[2]
+    };
+    const data = await models.sportImages.create(fileData);
+    res.send({ data });
+  } catch (error) {
+    handleHttpError(res, 'Error uploading file');
+  }
+}
+
 async function createLeague(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -32,11 +39,6 @@ async function createLeague(req: Request, res: Response) {
   }
 }
 
-/**
- * Actualizar un elemento en la base de datos
- * @param req
- * @param res
- */
 async function updateLeague(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -49,11 +51,6 @@ async function updateLeague(req: Request, res: Response) {
   }
 }
 
-/**
- * Eliminar un elemento de la base de datos
- * @param req
- * @param res
- */
 async function deleteLeague(req: Request, res: Response) {
   try {
     await models.leagues.findOneAndDelete({ _id: req.params.id });
@@ -63,4 +60,4 @@ async function deleteLeague(req: Request, res: Response) {
   }
 }
 
-export { getLeagues, createLeague, updateLeague, deleteLeague };
+export { getLeagues, createLeague, updateLeague, deleteLeague, uploadLeagueImage };
