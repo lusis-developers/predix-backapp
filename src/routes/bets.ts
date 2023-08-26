@@ -1,30 +1,34 @@
 import express from 'express';
 
-// import {
-//   planValidatorCreate,
-//   planValidatorUpdate,
-//   planValidatorDelete
-// } from '../validators/plans';
+import {
+  betStatusUpdateValidator,
+  betValidatorCreate,
+  betValidatorDelete,
+  betValidatorUpdate
+} from '../validators/bets';
 import {
   getBet,
   getBets,
   updateBet,
   deleteBet,
-  createBet
+  createBet,
+  updateBetStatus
 } from '../controllers/bets';
 
 const router = express.Router();
 
-router.get('/plans', getBets);
+router.get('/bets', getBets);
 
-router.get('/plan/:id', getBet);
+// TODO: get specific plan
+router.get('/bets/:id', getBet);
 
-router.post('/plan', createBet);
+router.post('/bets', betValidatorCreate, createBet);
 
-router.put('/plan/:id', updateBet);
+router.put('/bets/:id', betValidatorUpdate, updateBet);
 
-router.patch('/plan/:id', updateBet);
+// TODO: update the bet status
+router.patch('/bets/:id', betStatusUpdateValidator, updateBetStatus);
 
-router.delete('/plan/:id', deleteBet);
+router.delete('/bets/:id', betValidatorDelete, deleteBet);
 
 export default router;
