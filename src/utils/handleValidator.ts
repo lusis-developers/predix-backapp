@@ -11,7 +11,6 @@ function validateResults(
     return next();
   } catch (error: any) {
     res.status(400);
-    console.log(error);
     res.send({
       errors: error.array()
     });
