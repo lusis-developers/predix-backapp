@@ -62,7 +62,8 @@ async function updateBetStatus(req: Request, res: Response) {
 
 async function deleteBet(req: Request, res: Response) {
   try {
-    await models.leagues.findOneAndDelete({ _id: req.params.id });
+    const { id } = matchedData(req);
+    await models.bets.findOneAndDelete({ _id: id });
     res.send({ message: 'Bet deleted' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete bet');
