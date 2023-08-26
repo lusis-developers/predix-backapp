@@ -15,8 +15,8 @@ async function getBets(_req: Request, res: Response) {
 
 async function getBet(req: Request, res: Response) {
   try {
-    const { id } = matchedData(req);
-    const data = await models.bets.findById(id);
+    const id = req.params.id;
+    const data = await models.bets.findById({ _id: id });
     res.send({ data });
   } catch (error) {
     handleHttpError(res, 'Cannot get bet');

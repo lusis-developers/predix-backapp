@@ -13,7 +13,12 @@ const betValidatorCreate = [
 
   check('teamB').exists().notEmpty().withMessage('Second team is required.'),
 
-  check('date').exists().notEmpty().isDate().withMessage('Date is required.'),
+  check('date')
+    .exists()
+    .notEmpty()
+    .withMessage('Date is required.')
+    .isISO8601()
+    .withMessage('Date should has ISO format.'),
 
   check('profit').exists().notEmpty().isNumeric().isInt(),
 
@@ -42,7 +47,12 @@ const betValidatorUpdate = [
 
   check('teamB').exists().notEmpty().withMessage('Second team is required.'),
 
-  check('date').exists().notEmpty().isDate().withMessage('Date is required.'),
+  check('date')
+    .exists()
+    .notEmpty()
+    .withMessage('Date is required.')
+    .isISO8601()
+    .withMessage('Date should has ISO format.'),
 
   check('profit').exists().notEmpty().isNumeric().isInt(),
 
@@ -55,13 +65,12 @@ const betValidatorUpdate = [
 
   check('status').exists().notEmpty().withMessage('Status is required.'),
 
-  check('status')
-    .custom((value: string, { req: Request }) => {
-      if (!Object, values(BetEnum).includes(value)) {
-        throw new Error('Invalid status');
-      }
-      return true;
-    })
+  check('status').custom((value: BetEnum) => {
+    if (!Object.values(BetEnum).includes(value)) {
+      throw new Error('Invalid bet status'); //
+    }
+    return true;
+  }),
 
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
