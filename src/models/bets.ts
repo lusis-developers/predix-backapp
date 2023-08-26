@@ -28,7 +28,9 @@ const betsSchema: Schema = new mongoose.Schema(
       type: String
     },
     status: {
-      type: BetEnum
+      type: String,
+      enum: Object.values(BetEnum),
+      required: true
     }
   },
   {
