@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc --watch",
     "dev": "nodemon dist/index.js",
-    "start": "node dist/index.js",
+    "start-production": "tsc --watch && node dist/index.js",
     "build": "rimraf dist && tsc",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts"
