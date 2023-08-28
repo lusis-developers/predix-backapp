@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc --watch",
     "dev": "nodemon dist/index.js",
-    "start": "tsc && node dist/index.js",
-    "build": "rimraf dist && tsc",
+    "start": "src/index.ts",
+    "vercel-build": "echo hello",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts"
   },
@@ -38,7 +38,6 @@
     "nodemon": "^3.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.2",
-    "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   }
 }
