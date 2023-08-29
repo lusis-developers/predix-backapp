@@ -12,7 +12,6 @@ async function dbConnect(): Promise<void> {
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
     console.log('*** ERROR DE CONEXION ***');
-    console.log('error', error);
   }
 }
 

@@ -15,7 +15,6 @@ async function dbConnect() {
     }
     catch (error) {
         console.log('*** ERROR DE CONEXION ***');
-        console.log('error', error);
     }
 }
 exports.default = dbConnect;
