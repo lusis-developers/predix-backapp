@@ -1,5 +1,6 @@
 export enum ImagesEnum {
   SPORT = 'sport',
   PLAN = 'plan',
-  LEAGUE = 'league'
+  LEAGUE = 'league',
+  USER = 'user'
 }
