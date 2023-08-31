@@ -33,7 +33,8 @@ const mongo_1 = __importDefault(require("./config/mongo"));
 const routes_1 = __importDefault(require("./routes"));
 dotenv.config();
 const whiteList = [
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'http://127.0.0.1:5173'
     // TODO: add app app domain
     // TODO: add app sandbox domain
 ];
