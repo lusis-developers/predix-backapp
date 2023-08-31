@@ -7,7 +7,7 @@ import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
 /**
- * Get plan array
+ * Get plans array
  * @param req
  * @param res
  */
@@ -41,7 +41,7 @@ async function uploadPlanImage(req: Request, res: Response) {
 }
 
 /**
- * Crear un nuevo elemento en la base de datos
+ * Create a new plan item in the database
  * @param req
  * @param res
  */
@@ -56,7 +56,7 @@ async function createPlan(req: Request, res: Response) {
 }
 
 /**
- * Actualizar un elemento en la base de datos
+ * Update an plan item in the database
  * @param req
  * @param res
  */
@@ -73,7 +73,7 @@ async function updatePlan(req: Request, res: Response) {
 }
 
 /**
- * Eliminar un elemento de la base de datos
+ * Delete an plan item from the database
  * @param req
  * @param res
  */

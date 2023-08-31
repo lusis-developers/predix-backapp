@@ -4,6 +4,11 @@ import { matchedData } from 'express-validator';
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
 
+/**
+ * Get a list of bets items from the database
+ * @param req
+ * @param res
+ */
 async function getBets(_req: Request, res: Response) {
   try {
     const bets = await models.bets.find({});
@@ -13,6 +18,11 @@ async function getBets(_req: Request, res: Response) {
   }
 }
 
+/**
+ * Get a bet item from the database
+ * @param req
+ * @param res
+ */
 async function getBet(req: Request, res: Response) {
   try {
     const id = req.params.id;
@@ -23,6 +33,11 @@ async function getBet(req: Request, res: Response) {
   }
 }
 
+/**
+ * Upload a bet image to the database
+ * @param req
+ * @param res
+ */
 async function createBet(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -33,6 +48,11 @@ async function createBet(req: Request, res: Response) {
   }
 }
 
+/**
+ * Create a bet item to the database
+ * @param req
+ * @param res
+ */
 async function updateBet(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -45,6 +65,11 @@ async function updateBet(req: Request, res: Response) {
   }
 }
 
+/**
+ * Update a bet item from the database
+ * @param req
+ * @param res
+ */
 async function updateBetStatus(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -60,6 +85,11 @@ async function updateBetStatus(req: Request, res: Response) {
   }
 }
 
+/**
+ * Delete a bet item from the database
+ * @param req
+ * @param res
+ */
 async function deleteBet(req: Request, res: Response) {
   try {
     const { id } = matchedData(req);
