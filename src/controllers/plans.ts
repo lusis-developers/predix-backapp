@@ -81,7 +81,7 @@ async function deletePlan(req: Request, res: Response) {
   try {
     const { id } = matchedData(req);
     await models.plans.findOneAndDelete({ _id: id });
-    res.send({ message: 'DELETED_SUCCESFULLY' });
+    res.send({ message: 'Plan deleted successfully' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete plan');
   }

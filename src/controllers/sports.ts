@@ -62,7 +62,7 @@ async function createSport(req: Request, res: Response) {
 async function updateSport(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
-    await models.plans.findByIdAndUpdate(id, body);
+    await models.sports.findByIdAndUpdate(id, body);
     res.send({
       message: 'Sport updated'
     });
@@ -79,7 +79,7 @@ async function updateSport(req: Request, res: Response) {
 async function deleteSport(req: Request, res: Response) {
   try {
     await models.sports.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'DELETED_SUCCESFULLY' });
+    res.send({ message: 'Sport deleted successfully' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete sport');
   }

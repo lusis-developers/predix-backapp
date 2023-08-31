@@ -88,7 +88,7 @@ async function deletePlan(req, res) {
     try {
         const { id } = (0, express_validator_1.matchedData)(req);
         await index_1.default.plans.findOneAndDelete({ _id: id });
-        res.send({ message: 'DELETED_SUCCESFULLY' });
+        res.send({ message: 'Plan deleted successfully' });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot delete plan');

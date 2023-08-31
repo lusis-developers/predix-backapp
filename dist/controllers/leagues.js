@@ -71,7 +71,7 @@ async function updateLeague(req, res) {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
         await index_1.default.leagues.findByIdAndUpdate(id, body);
         res.send({
-            message: 'Plan updated'
+            message: 'League updated'
         });
     }
     catch (error) {
@@ -87,7 +87,7 @@ exports.updateLeague = updateLeague;
 async function deleteLeague(req, res) {
     try {
         await index_1.default.leagues.findOneAndDelete({ _id: req.params.id });
-        res.send({ message: 'DELETED_SUCCESFULLY' });
+        res.send({ message: 'League deleted successfully' });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot delete league');
