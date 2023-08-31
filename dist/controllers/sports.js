@@ -10,7 +10,7 @@ const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
 /**
- * Obtener lista de la base de datos
+ * Obtain sport list from database
  * @param req
  * @param res
  */
@@ -25,7 +25,7 @@ async function getSports(_req, res) {
 }
 exports.getSports = getSports;
 /**
- * Upload image before creating plan item
+ * Upload image before creating sport item
  * @param req
  * @param res
  */
@@ -46,7 +46,7 @@ async function uploadSportImage(req, res) {
 }
 exports.uploadSportImage = uploadSportImage;
 /**
- * Crear un nuevo elemento en la base de datos
+ * Create a new sport item in the database
  * @param req
  * @param res
  */
@@ -62,7 +62,7 @@ async function createSport(req, res) {
 }
 exports.createSport = createSport;
 /**
- * Actualizar un elemento en la base de datos
+ * Update an sport item in the database
  * @param req
  * @param res
  */
@@ -80,7 +80,7 @@ async function updateSport(req, res) {
 }
 exports.updateSport = updateSport;
 /**
- * Eliminar un elemento de la base de datos
+ * Delete an sport item from the database
  * @param req
  * @param res
  */

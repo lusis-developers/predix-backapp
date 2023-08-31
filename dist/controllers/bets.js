@@ -7,6 +7,11 @@ exports.updateBetStatus = exports.deleteBet = exports.updateBet = exports.create
 const express_validator_1 = require("express-validator");
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
+/**
+ * Get a list of bets items from the database
+ * @param req
+ * @param res
+ */
 async function getBets(_req, res) {
     try {
         const bets = await index_1.default.bets.find({});
@@ -17,6 +22,11 @@ async function getBets(_req, res) {
     }
 }
 exports.getBets = getBets;
+/**
+ * Get a bet item from the database
+ * @param req
+ * @param res
+ */
 async function getBet(req, res) {
     try {
         const id = req.params.id;
@@ -28,6 +38,11 @@ async function getBet(req, res) {
     }
 }
 exports.getBet = getBet;
+/**
+ * Upload a bet image to the database
+ * @param req
+ * @param res
+ */
 async function createBet(req, res) {
     const { body } = req;
     try {
@@ -39,6 +54,11 @@ async function createBet(req, res) {
     }
 }
 exports.createBet = createBet;
+/**
+ * Create a bet item to the database
+ * @param req
+ * @param res
+ */
 async function updateBet(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -52,6 +72,11 @@ async function updateBet(req, res) {
     }
 }
 exports.updateBet = updateBet;
+/**
+ * Update a bet item from the database
+ * @param req
+ * @param res
+ */
 async function updateBetStatus(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -66,6 +91,11 @@ async function updateBetStatus(req, res) {
     }
 }
 exports.updateBetStatus = updateBetStatus;
+/**
+ * Delete a bet item from the database
+ * @param req
+ * @param res
+ */
 async function deleteBet(req, res) {
     try {
         const { id } = (0, express_validator_1.matchedData)(req);
