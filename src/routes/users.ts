@@ -1,37 +1,26 @@
 import express from 'express';
 
-import uploadMiddleware from '../middlewares/handleImage';
-import {
-  getUsers,
-  createUser,
-  updateUser,
-  deleteUser,
-  uploadUserImage
-} from '../controllers/users';
 import {
   userValidatorCreate,
   userValidatorDelete,
   userValidatorUpdate
 } from '../validators/users';
+import {
+  getUser,
+  updateUser,
+  deleteUser,
+  createUser
+} from '../controllers/users';
 
 const router = express.Router();
 
-// GET: Recibe todo lo que contiene el user
-router.get('/users', getUsers);
+// TODO: get specific user
+router.get('/users/:id', getUser);
 
-router.post(
-  '/userImage',
-  uploadMiddleware.single('userImage'),
-  uploadUserImage
-);
+router.post('/users', userValidatorCreate, createUser);
 
-// POST: Postea el nuevo user
-router.post('/user', userValidatorCreate, createUser);
+router.put('/users/:id', userValidatorUpdate, updateUser);
 
-// PUT: Actualiza un user creado
-router.put('/user/:id', userValidatorUpdate, updateUser);
-
-// DELETE: Deletea un user existente
-router.delete('/user/:id', userValidatorDelete, deleteUser);
+router.delete('/users/:id', userValidatorDelete, deleteUser);
 
 export default router;
