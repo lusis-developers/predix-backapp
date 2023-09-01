@@ -28,7 +28,7 @@ router.post(
 );
 
 // TODO: get specific user
-router.get('/users/:id', getUser);
+router.get('/user/:id', getUser);
 
 router.post('/users', userValidatorCreate, createUser);
 

@@ -13,10 +13,10 @@ import models from '../models/index';
  */
 async function getUsers(_req: Request, res: Response) {
   try {
-    const plans = await models.plans.find({});
+    const plans = await models.users.find({});
     res.send(plans);
   } catch (error) {
-    handleHttpError(res, 'Cannot get plans');
+    handleHttpError(res, 'Cannot get users');
   }
 }
 

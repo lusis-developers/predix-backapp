@@ -16,11 +16,11 @@ const index_1 = __importDefault(require("../models/index"));
  */
 async function getUsers(_req, res) {
     try {
-        const plans = await index_1.default.plans.find({});
+        const plans = await index_1.default.users.find({});
         res.send(plans);
     }
     catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot get plans');
+        (0, handleErrors_1.default)(res, 'Cannot get users');
     }
 }
 exports.getUsers = getUsers;
