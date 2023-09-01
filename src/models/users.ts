@@ -3,8 +3,11 @@ import mongoose, { Schema } from 'mongoose';
 const usersSchema: Schema = new mongoose.Schema(
   {
     name: {
-      type: String,
-      unique: true
+      type: String
+    },
+
+    userimage: {
+      type: String
     },
 
     mail: {
@@ -21,12 +24,13 @@ const usersSchema: Schema = new mongoose.Schema(
       type: Date
     },
 
-    twitter: {
-      type: String
-    },
-
-    instagram: {
-      type: String
+    redesSociales: {
+      twitter: {
+        type: String
+      },
+      instagram: {
+        type: String
+      }
     }
   },
   {
