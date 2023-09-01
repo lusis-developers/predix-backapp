@@ -22,13 +22,11 @@ const usersSchema = new mongoose_1.default.Schema({
     birthday: {
         type: Date
     },
-    redesSociales: {
-        twitter: {
-            type: String
-        },
-        instagram: {
-            type: String
-        }
+    twitter: {
+        type: String
+    },
+    instagram: {
+        type: String
     }
 }, {
     timestamps: true,

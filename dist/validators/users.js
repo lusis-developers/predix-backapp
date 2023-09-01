@@ -28,10 +28,7 @@ const userValidatorCreate = [
         .withMessage('Phone is required')
         .isNumeric()
         .withMessage('Only number is allowed'),
-    (0, express_validator_1.check)('birthday')
-        .notEmpty()
-        .isDate()
-        .withMessage('Date is required'),
+    (0, express_validator_1.check)('birthday').notEmpty().isDate().withMessage('Date is required'),
     (0, express_validator_1.check)('twitter')
         .optional()
         .isString()
@@ -56,22 +53,10 @@ const userValidatorUpdate = [
         .withMessage('Name must be a string')
         .isLength({ max: 20 })
         .withMessage('Max Length 20 characters'),
-    (0, express_validator_1.check)('userimage')
-        .optional()
-        .isURL()
-        .withMessage('Invalid image URL'),
-    (0, express_validator_1.check)('mail')
-        .optional()
-        .isEmail()
-        .withMessage('Invalid email format'),
-    (0, express_validator_1.check)('phone')
-        .optional()
-        .isNumeric()
-        .withMessage('Phone must be a number'),
-    (0, express_validator_1.check)('birthday')
-        .optional()
-        .isDate()
-        .withMessage('Invalid date format'),
+    (0, express_validator_1.check)('userimage').optional().isURL().withMessage('Invalid image URL'),
+    (0, express_validator_1.check)('mail').optional().isEmail().withMessage('Invalid email format'),
+    (0, express_validator_1.check)('phone').optional().isNumeric().withMessage('Phone must be a number'),
+    (0, express_validator_1.check)('birthday').optional().isDate().withMessage('Invalid date format'),
     (0, express_validator_1.check)('twitter')
         .optional()
         .isString()

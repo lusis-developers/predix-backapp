@@ -25,10 +25,7 @@ const userValidatorCreate = [
     .withMessage('Phone is required')
     .isNumeric()
     .withMessage('Only number is allowed'),
-  check('birthday')
-    .notEmpty()
-    .isDate()
-    .withMessage('Date is required'),
+  check('birthday').notEmpty().isDate().withMessage('Date is required'),
   check('twitter')
     .optional()
     .isString()
@@ -53,22 +50,10 @@ const userValidatorUpdate = [
     .withMessage('Name must be a string')
     .isLength({ max: 20 })
     .withMessage('Max Length 20 characters'),
-  check('userimage')
-    .optional()
-    .isURL()
-    .withMessage('Invalid image URL'),
-  check('mail')
-    .optional()
-    .isEmail()
-    .withMessage('Invalid email format'),
-  check('phone')
-    .optional()
-    .isNumeric()
-    .withMessage('Phone must be a number'),
-  check('birthday')
-    .optional()
-    .isDate()
-    .withMessage('Invalid date format'),
+  check('userimage').optional().isURL().withMessage('Invalid image URL'),
+  check('mail').optional().isEmail().withMessage('Invalid email format'),
+  check('phone').optional().isNumeric().withMessage('Phone must be a number'),
+  check('birthday').optional().isDate().withMessage('Invalid date format'),
   check('twitter')
     .optional()
     .isString()

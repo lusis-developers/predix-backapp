@@ -24,13 +24,11 @@ const usersSchema: Schema = new mongoose.Schema(
       type: Date
     },
 
-    redesSociales: {
-      twitter: {
-        type: String
-      },
-      instagram: {
-        type: String
-      }
+    twitter: {
+      type: String
+    },
+    instagram: {
+      type: String
     }
   },
   {
