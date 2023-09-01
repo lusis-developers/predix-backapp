@@ -7,6 +7,20 @@ import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
 /**
+ * Get plans array
+ * @param req
+ * @param res
+ */
+async function getUsers(_req: Request, res: Response) {
+  try {
+    const plans = await models.plans.find({});
+    res.send(plans);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get plans');
+  }
+}
+
+/**
  * Get a bet item from the database
  * @param req
  * @param res
@@ -87,4 +101,11 @@ async function deleteUser(req: Request, res: Response) {
   }
 }
 
-export { getUser, createUser, updateUser, deleteUser, uploadUserImage };
+export {
+  getUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser,
+  uploadUserImage
+};

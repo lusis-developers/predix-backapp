@@ -3,12 +3,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadUserImage = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = void 0;
+exports.uploadUserImage = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.getUsers = void 0;
 const express_validator_1 = require("express-validator");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
+/**
+ * Get plans array
+ * @param req
+ * @param res
+ */
+async function getUsers(_req, res) {
+    try {
+        const plans = await index_1.default.plans.find({});
+        res.send(plans);
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot get plans');
+    }
+}
+exports.getUsers = getUsers;
 /**
  * Get a bet item from the database
  * @param req
