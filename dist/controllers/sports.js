@@ -69,7 +69,7 @@ exports.createSport = createSport;
 async function updateSport(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
-        await index_1.default.plans.findByIdAndUpdate(id, body);
+        await index_1.default.sports.findByIdAndUpdate(id, body);
         res.send({
             message: 'Sport updated'
         });
@@ -87,7 +87,7 @@ exports.updateSport = updateSport;
 async function deleteSport(req, res) {
     try {
         await index_1.default.sports.findOneAndDelete({ _id: req.params.id });
-        res.send({ message: 'DELETED_SUCCESFULLY' });
+        res.send({ message: 'Sport deleted successfully' });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot delete sport');
