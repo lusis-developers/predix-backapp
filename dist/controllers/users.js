@@ -33,8 +33,10 @@ async function getUser(req, res) {
     try {
         const id = req.params.id;
         const user = await index_1.default.users.findById({ _id: id });
-        if (user) {
-            user.birthday = user.birthday.toISOString().split('T')[0];
+        // Formatear la fecha
+        if (user && user.birthday) {
+            const date = user.birthday.toISOString().split('T')[0];
+            user.birthday = date;
         }
         res.send({ data: user });
     }

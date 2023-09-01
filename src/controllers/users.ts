@@ -29,9 +29,13 @@ async function getUser(req: Request, res: Response) {
   try {
     const id = req.params.id;
     const user = await models.users.findById({ _id: id });
-    if (user) {
-      user.birthday = user.birthday.toISOString().split('T')[0];
+
+    // Formatear la fecha
+    if (user && user.birthday) {
+      const date = user.birthday.toISOString().split('T')[0];
+      user.birthday = date;
     }
+
     res.send({ data: user });
   } catch (error) {
     handleHttpError(res, 'Cannot get user');
