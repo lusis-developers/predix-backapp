@@ -7,14 +7,14 @@ import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
 /**
- * Get plans array
+ * Get users array
  * @param req
  * @param res
  */
 async function getUsers(_req: Request, res: Response) {
   try {
-    const plans = await models.users.find({});
-    res.send(plans);
+    const users = await models.users.find({});
+    res.send(users);
   } catch (error) {
     handleHttpError(res, 'Cannot get users');
   }
@@ -28,8 +28,11 @@ async function getUsers(_req: Request, res: Response) {
 async function getUser(req: Request, res: Response) {
   try {
     const id = req.params.id;
-    const data = await models.users.findById({ _id: id });
-    res.send({ data });
+    const user = await models.users.findById({ _id: id });
+    if (user) {
+      user.birthday = user.birthday.toISOString().split('T')[0];
+    }
+    res.send({ data: user });
   } catch (error) {
     handleHttpError(res, 'Cannot get user');
   }

@@ -10,14 +10,14 @@ const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
 /**
- * Get plans array
+ * Get users array
  * @param req
  * @param res
  */
 async function getUsers(_req, res) {
     try {
-        const plans = await index_1.default.users.find({});
-        res.send(plans);
+        const users = await index_1.default.users.find({});
+        res.send(users);
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get users');
@@ -32,8 +32,11 @@ exports.getUsers = getUsers;
 async function getUser(req, res) {
     try {
         const id = req.params.id;
-        const data = await index_1.default.users.findById({ _id: id });
-        res.send({ data });
+        const user = await index_1.default.users.findById({ _id: id });
+        if (user) {
+            user.birthday = user.birthday.toISOString().split('T')[0];
+        }
+        res.send({ data: user });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get user');
