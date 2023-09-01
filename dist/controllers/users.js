@@ -32,13 +32,8 @@ exports.getUsers = getUsers;
 async function getUser(req, res) {
     try {
         const id = req.params.id;
-        const user = await index_1.default.users.findById({ _id: id });
-        // Formatear la fecha
-        if (user && user.birthday) {
-            const date = user.birthday.toISOString().split('T')[0];
-            user.birthday = date;
-        }
-        res.send({ data: user });
+        const data = await index_1.default.users.findById({ _id: id });
+        res.send({ data });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get user');
