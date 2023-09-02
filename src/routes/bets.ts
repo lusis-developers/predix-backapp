@@ -8,6 +8,7 @@ import {
 } from '../validators/bets';
 import {
   getBet,
+  getBetsPendings,
   getBets,
   updateBet,
   deleteBet,
@@ -18,6 +19,8 @@ import {
 const router = express.Router();
 
 router.get('/bets', getBets);
+// TODO: get status bets
+router.get('/bets/pendings', getBetsPendings);
 
 // TODO: get specific plan
 router.get('/bets/:id', getBet);

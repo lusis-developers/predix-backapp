@@ -3,10 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBetStatus = exports.deleteBet = exports.updateBet = exports.createBet = exports.getBet = exports.getBets = void 0;
+exports.updateBetStatus = exports.deleteBet = exports.updateBet = exports.createBet = exports.getBet = exports.getBetsPendings = exports.getBets = void 0;
 const express_validator_1 = require("express-validator");
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
+const betEnum_1 = require("../enum/betEnum");
 async function getBets(_req, res) {
     try {
         const bets = await index_1.default.bets.find({});
@@ -17,6 +18,16 @@ async function getBets(_req, res) {
     }
 }
 exports.getBets = getBets;
+async function getBetsPendings(_req, res) {
+    try {
+        const pendingbets = await index_1.default.bets.find({ status: betEnum_1.BetEnum.PENDING });
+        res.send(pendingbets);
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot get Pending bets');
+    }
+}
+exports.getBetsPendings = getBetsPendings;
 async function getBet(req, res) {
     try {
         const id = req.params.id;

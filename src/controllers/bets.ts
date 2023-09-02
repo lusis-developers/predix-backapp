@@ -3,6 +3,7 @@ import { matchedData } from 'express-validator';
 
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
+import { BetEnum } from '../enum/betEnum';
 
 async function getBets(_req: Request, res: Response) {
   try {
@@ -10,6 +11,15 @@ async function getBets(_req: Request, res: Response) {
     res.send(bets);
   } catch (error) {
     handleHttpError(res, 'Cannot get bets');
+  }
+}
+
+async function getBetsPendings(_req: Request, res: Response) {
+  try {
+    const pendingbets = await models.bets.find({ status: BetEnum.PENDING });
+    res.send(pendingbets);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get Pending bets');
   }
 }
 
@@ -70,4 +80,12 @@ async function deleteBet(req: Request, res: Response) {
   }
 }
 
-export { getBets, getBet, createBet, updateBet, deleteBet, updateBetStatus };
+export {
+  getBets,
+  getBetsPendings,
+  getBet,
+  createBet,
+  updateBet,
+  deleteBet,
+  updateBetStatus
+};

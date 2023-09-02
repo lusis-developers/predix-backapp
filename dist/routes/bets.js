@@ -8,6 +8,8 @@ const bets_1 = require("../validators/bets");
 const bets_2 = require("../controllers/bets");
 const router = express_1.default.Router();
 router.get('/bets', bets_2.getBets);
+// TODO: get status bets
+router.get('/bets/pendings', bets_2.getBetsPendings);
 // TODO: get specific plan
 router.get('/bets/:id', bets_2.getBet);
 router.post('/bets', bets_1.betValidatorCreate, bets_2.createBet);
