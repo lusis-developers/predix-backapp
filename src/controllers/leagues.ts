@@ -6,11 +6,6 @@ import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
-/**
- * Get a list of leagues items from the database
- * @param req
- * @param res
- */
 async function getLeagues(_req: Request, res: Response) {
   try {
     const leagues = await models.leagues.find({});
@@ -20,11 +15,6 @@ async function getLeagues(_req: Request, res: Response) {
   }
 }
 
-/**
- * Upload a league image to the database
- * @param req
- * @param res
- */
 async function uploadLeagueImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -40,11 +30,6 @@ async function uploadLeagueImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Create a league item to the database
- * @param req
- * @param res
- */
 async function createLeague(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -55,11 +40,6 @@ async function createLeague(req: Request, res: Response) {
   }
 }
 
-/**
- * Update a league item from the database
- * @param req
- * @param res
- */
 async function updateLeague(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -72,11 +52,6 @@ async function updateLeague(req: Request, res: Response) {
   }
 }
 
-/**
- * Delete an league item from the database
- * @param req
- * @param res
- */
 async function deleteLeague(req: Request, res: Response) {
   try {
     await models.leagues.findOneAndDelete({ _id: req.params.id });

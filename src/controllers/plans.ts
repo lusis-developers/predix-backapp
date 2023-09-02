@@ -6,11 +6,6 @@ import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
-/**
- * Get plans array
- * @param req
- * @param res
- */
 async function getPlans(_req: Request, res: Response) {
   try {
     const plans = await models.plans.find({});
@@ -20,11 +15,6 @@ async function getPlans(_req: Request, res: Response) {
   }
 }
 
-/**
- * Upload image before creating plan item
- * @param req
- * @param res
- */
 async function uploadPlanImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -40,11 +30,6 @@ async function uploadPlanImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Create a new plan item in the database
- * @param req
- * @param res
- */
 async function createPlan(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -55,11 +40,6 @@ async function createPlan(req: Request, res: Response) {
   }
 }
 
-/**
- * Update an plan item in the database
- * @param req
- * @param res
- */
 async function updatePlan(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -72,11 +52,6 @@ async function updatePlan(req: Request, res: Response) {
   }
 }
 
-/**
- * Delete an plan item from the database
- * @param req
- * @param res
- */
 async function deletePlan(req: Request, res: Response) {
   try {
     const { id } = matchedData(req);

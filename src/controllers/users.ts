@@ -6,11 +6,6 @@ import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
-/**
- * Get users array
- * @param req
- * @param res
- */
 async function getUsers(_req: Request, res: Response) {
   try {
     const users = await models.users.find({});
@@ -20,11 +15,6 @@ async function getUsers(_req: Request, res: Response) {
   }
 }
 
-/**
- * Get a bet item from the database
- * @param req
- * @param res
- */
 async function getUser(req: Request, res: Response) {
   try {
     const id = req.params.id;
@@ -35,11 +25,6 @@ async function getUser(req: Request, res: Response) {
   }
 }
 
-/**
- * Upload a user image to the database
- * @param req
- * @param res
- */
 async function uploadUserImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -55,11 +40,6 @@ async function uploadUserImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Create a user item to the database
- * @param req
- * @param res
- */
 async function createUser(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -70,11 +50,6 @@ async function createUser(req: Request, res: Response) {
   }
 }
 
-/**
- * Update a user item from the database
- * @param req
- * @param res
- */
 async function updateUser(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -87,11 +62,6 @@ async function updateUser(req: Request, res: Response) {
   }
 }
 
-/**
- * Delete an user item from the database
- * @param req
- * @param res
- */
 async function deleteUser(req: Request, res: Response) {
   try {
     await models.users.findOneAndDelete({ _id: req.params.id });

@@ -5,11 +5,7 @@ import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
-/**
- * Obtain sport list from database
- * @param req
- * @param res
- */
+
 async function getSports(_req: Request, res: Response) {
   try {
     const sports = await models.sports.findAllData();
@@ -19,11 +15,6 @@ async function getSports(_req: Request, res: Response) {
   }
 }
 
-/**
- * Upload image before creating sport item
- * @param req
- * @param res
- */
 async function uploadSportImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -39,11 +30,6 @@ async function uploadSportImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Create a new sport item in the database
- * @param req
- * @param res
- */
 async function createSport(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -54,11 +40,6 @@ async function createSport(req: Request, res: Response) {
   }
 }
 
-/**
- * Update an sport item in the database
- * @param req
- * @param res
- */
 async function updateSport(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -71,11 +52,6 @@ async function updateSport(req: Request, res: Response) {
   }
 }
 
-/**
- * Delete an sport item from the database
- * @param req
- * @param res
- */
 async function deleteSport(req: Request, res: Response) {
   try {
     await models.sports.findOneAndDelete({ _id: req.params.id });
