@@ -28,12 +28,12 @@ router.post(
 );
 
 // TODO: get specific user
-router.get('/user/:id', getUser);
+router.get('/users/:id', getUser);
 
-router.post('/user', userValidatorCreate, createUser);
+router.post('/users', userValidatorCreate, createUser);
 
-router.put('/user/:id', userValidatorUpdate, updateUser);
+router.put('/users/:id', userValidatorUpdate, updateUser);
 
-router.delete('/user/:id', userValidatorDelete, deleteUser);
+router.delete('/users/:id', userValidatorDelete, deleteUser);
 
 export default router;
