@@ -31,7 +31,7 @@ Before start sever do compilation process
 Start the server locally
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
 Before push the code, please format your code

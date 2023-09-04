@@ -5,11 +5,7 @@ import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
-/**
- * Obtener lista de la base de datos
- * @param req
- * @param res
- */
+
 async function getSports(_req: Request, res: Response) {
   try {
     const sports = await models.sports.findAllData();
@@ -19,11 +15,6 @@ async function getSports(_req: Request, res: Response) {
   }
 }
 
-/**
- * Upload image before creating plan item
- * @param req
- * @param res
- */
 async function uploadSportImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -39,11 +30,6 @@ async function uploadSportImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Crear un nuevo elemento en la base de datos
- * @param req
- * @param res
- */
 async function createSport(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -54,15 +40,10 @@ async function createSport(req: Request, res: Response) {
   }
 }
 
-/**
- * Actualizar un elemento en la base de datos
- * @param req
- * @param res
- */
 async function updateSport(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
-    await models.plans.findByIdAndUpdate(id, body);
+    await models.sports.findByIdAndUpdate(id, body);
     res.send({
       message: 'Sport updated'
     });
@@ -71,15 +52,10 @@ async function updateSport(req: Request, res: Response) {
   }
 }
 
-/**
- * Eliminar un elemento de la base de datos
- * @param req
- * @param res
- */
 async function deleteSport(req: Request, res: Response) {
   try {
     await models.sports.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'DELETED_SUCCESFULLY' });
+    res.send({ message: 'Sport deleted successfully' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete sport');
   }

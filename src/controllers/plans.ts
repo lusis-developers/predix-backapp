@@ -6,11 +6,6 @@ import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import models from '../models/index';
 
-/**
- * Get plan array
- * @param req
- * @param res
- */
 async function getPlans(_req: Request, res: Response) {
   try {
     const plans = await models.plans.find({});
@@ -20,11 +15,6 @@ async function getPlans(_req: Request, res: Response) {
   }
 }
 
-/**
- * Upload image before creating plan item
- * @param req
- * @param res
- */
 async function uploadPlanImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -40,11 +30,6 @@ async function uploadPlanImage(req: Request, res: Response) {
   }
 }
 
-/**
- * Crear un nuevo elemento en la base de datos
- * @param req
- * @param res
- */
 async function createPlan(req: Request, res: Response) {
   const { body } = req;
   try {
@@ -55,11 +40,6 @@ async function createPlan(req: Request, res: Response) {
   }
 }
 
-/**
- * Actualizar un elemento en la base de datos
- * @param req
- * @param res
- */
 async function updatePlan(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
@@ -72,16 +52,11 @@ async function updatePlan(req: Request, res: Response) {
   }
 }
 
-/**
- * Eliminar un elemento de la base de datos
- * @param req
- * @param res
- */
 async function deletePlan(req: Request, res: Response) {
   try {
     const { id } = matchedData(req);
     await models.plans.findOneAndDelete({ _id: id });
-    res.send({ message: 'DELETED_SUCCESFULLY' });
+    res.send({ message: 'Plan deleted successfully' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete plan');
   }

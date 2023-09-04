@@ -70,7 +70,7 @@ async function deleteBet(req, res) {
     try {
         const { id } = (0, express_validator_1.matchedData)(req);
         await index_1.default.bets.findOneAndDelete({ _id: id });
-        res.send({ message: 'Bet deleted' });
+        res.send({ message: 'Bet deleted successfully' });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot delete bet');
