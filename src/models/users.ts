@@ -16,11 +16,11 @@ const usersSchema: Schema = new mongoose.Schema(
     },
 
     phone: {
-      type: Number,
+      type: String,
       unique: true
     },
 
-    birthday: {
+    birthdate: {
       type: Date
     },
 
