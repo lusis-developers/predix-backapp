@@ -16,10 +16,10 @@ const usersSchema = new mongoose_1.default.Schema({
         unique: true
     },
     phone: {
-        type: Number,
+        type: String,
         unique: true
     },
-    birthday: {
+    birthdate: {
         type: Date
     },
     twitter: {

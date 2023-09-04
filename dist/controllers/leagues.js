@@ -9,11 +9,6 @@ const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
-/**
- * Get a list of leagues items from the database
- * @param req
- * @param res
- */
 async function getLeagues(_req, res) {
     try {
         const leagues = await index_1.default.leagues.find({});
@@ -24,11 +19,6 @@ async function getLeagues(_req, res) {
     }
 }
 exports.getLeagues = getLeagues;
-/**
- * Upload a league image to the database
- * @param req
- * @param res
- */
 async function uploadLeagueImage(req, res) {
     try {
         const { file } = req;
@@ -45,11 +35,6 @@ async function uploadLeagueImage(req, res) {
     }
 }
 exports.uploadLeagueImage = uploadLeagueImage;
-/**
- * Create a league item to the database
- * @param req
- * @param res
- */
 async function createLeague(req, res) {
     const { body } = req;
     try {
@@ -61,11 +46,6 @@ async function createLeague(req, res) {
     }
 }
 exports.createLeague = createLeague;
-/**
- * Update a league item from the database
- * @param req
- * @param res
- */
 async function updateLeague(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -79,11 +59,6 @@ async function updateLeague(req, res) {
     }
 }
 exports.updateLeague = updateLeague;
-/**
- * Delete an league item from the database
- * @param req
- * @param res
- */
 async function deleteLeague(req, res) {
     try {
         await index_1.default.leagues.findOneAndDelete({ _id: req.params.id });

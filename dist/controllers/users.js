@@ -9,11 +9,6 @@ const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
-/**
- * Get users array
- * @param req
- * @param res
- */
 async function getUsers(_req, res) {
     try {
         const users = await index_1.default.users.find({});
@@ -24,11 +19,6 @@ async function getUsers(_req, res) {
     }
 }
 exports.getUsers = getUsers;
-/**
- * Get a bet item from the database
- * @param req
- * @param res
- */
 async function getUser(req, res) {
     try {
         const id = req.params.id;
@@ -40,11 +30,6 @@ async function getUser(req, res) {
     }
 }
 exports.getUser = getUser;
-/**
- * Upload a user image to the database
- * @param req
- * @param res
- */
 async function uploadUserImage(req, res) {
     try {
         const { file } = req;
@@ -61,11 +46,6 @@ async function uploadUserImage(req, res) {
     }
 }
 exports.uploadUserImage = uploadUserImage;
-/**
- * Create a user item to the database
- * @param req
- * @param res
- */
 async function createUser(req, res) {
     const { body } = req;
     try {
@@ -77,11 +57,6 @@ async function createUser(req, res) {
     }
 }
 exports.createUser = createUser;
-/**
- * Update a user item from the database
- * @param req
- * @param res
- */
 async function updateUser(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -95,11 +70,6 @@ async function updateUser(req, res) {
     }
 }
 exports.updateUser = updateUser;
-/**
- * Delete an user item from the database
- * @param req
- * @param res
- */
 async function deleteUser(req, res) {
     try {
         await index_1.default.users.findOneAndDelete({ _id: req.params.id });

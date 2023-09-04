@@ -9,11 +9,6 @@ const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
-/**
- * Get plans array
- * @param req
- * @param res
- */
 async function getPlans(_req, res) {
     try {
         const plans = await index_1.default.plans.find({});
@@ -24,11 +19,6 @@ async function getPlans(_req, res) {
     }
 }
 exports.getPlans = getPlans;
-/**
- * Upload image before creating plan item
- * @param req
- * @param res
- */
 async function uploadPlanImage(req, res) {
     try {
         const { file } = req;
@@ -45,11 +35,6 @@ async function uploadPlanImage(req, res) {
     }
 }
 exports.uploadPlanImage = uploadPlanImage;
-/**
- * Create a new plan item in the database
- * @param req
- * @param res
- */
 async function createPlan(req, res) {
     const { body } = req;
     try {
@@ -61,11 +46,6 @@ async function createPlan(req, res) {
     }
 }
 exports.createPlan = createPlan;
-/**
- * Update an plan item in the database
- * @param req
- * @param res
- */
 async function updatePlan(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -79,11 +59,6 @@ async function updatePlan(req, res) {
     }
 }
 exports.updatePlan = updatePlan;
-/**
- * Delete an plan item from the database
- * @param req
- * @param res
- */
 async function deletePlan(req, res) {
     try {
         const { id } = (0, express_validator_1.matchedData)(req);

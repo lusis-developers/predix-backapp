@@ -13,7 +13,7 @@ router.get('/users', users_2.getUsers);
 router.post('/UserImage', handleImage_1.default.single('userImage'), users_2.uploadUserImage);
 // TODO: get specific user
 router.get('/user/:id', users_2.getUser);
-router.post('/users', users_1.userValidatorCreate, users_2.createUser);
-router.put('/users/:id', users_1.userValidatorUpdate, users_2.updateUser);
-router.delete('/users/:id', users_1.userValidatorDelete, users_2.deleteUser);
+router.post('/user', users_1.userValidatorCreate, users_2.createUser);
+router.put('/user/:id', users_1.userValidatorUpdate, users_2.updateUser);
+router.delete('/user/:id', users_1.userValidatorDelete, users_2.deleteUser);
 exports.default = router;

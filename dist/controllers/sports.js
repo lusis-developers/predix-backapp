@@ -9,11 +9,6 @@ const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
-/**
- * Obtain sport list from database
- * @param req
- * @param res
- */
 async function getSports(_req, res) {
     try {
         const sports = await index_1.default.sports.findAllData();
@@ -24,11 +19,6 @@ async function getSports(_req, res) {
     }
 }
 exports.getSports = getSports;
-/**
- * Upload image before creating sport item
- * @param req
- * @param res
- */
 async function uploadSportImage(req, res) {
     try {
         const { file } = req;
@@ -45,11 +35,6 @@ async function uploadSportImage(req, res) {
     }
 }
 exports.uploadSportImage = uploadSportImage;
-/**
- * Create a new sport item in the database
- * @param req
- * @param res
- */
 async function createSport(req, res) {
     const { body } = req;
     try {
@@ -61,11 +46,6 @@ async function createSport(req, res) {
     }
 }
 exports.createSport = createSport;
-/**
- * Update an sport item in the database
- * @param req
- * @param res
- */
 async function updateSport(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
@@ -79,11 +59,6 @@ async function updateSport(req, res) {
     }
 }
 exports.updateSport = updateSport;
-/**
- * Delete an sport item from the database
- * @param req
- * @param res
- */
 async function deleteSport(req, res) {
     try {
         await index_1.default.sports.findOneAndDelete({ _id: req.params.id });
