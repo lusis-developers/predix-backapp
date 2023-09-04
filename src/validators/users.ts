@@ -23,9 +23,13 @@ const userValidatorCreate = [
   check('phone')
     .notEmpty()
     .withMessage('Phone is required')
-    .isNumeric()
+    .isString()
     .withMessage('Only number is allowed'),
-  check('birthday').notEmpty().isDate().withMessage('Date is required'),
+  check('birthdate')
+    .exists()
+    .notEmpty()
+    .isISO8601()
+    .withMessage('Date is required'),
   check('twitter')
     .optional()
     .isString()
@@ -53,7 +57,11 @@ const userValidatorUpdate = [
   check('userimage').optional().isURL().withMessage('Invalid image URL'),
   check('mail').optional().isEmail().withMessage('Invalid email format'),
   check('phone').optional().isNumeric().withMessage('Phone must be a number'),
-  check('birthday').optional().isDate().withMessage('Invalid date format'),
+  check('birthdate')
+    .exists()
+    .optional()
+    .isISO8601()
+    .withMessage('Invalid date format'),
   check('twitter')
     .optional()
     .isString()
