@@ -45,7 +45,7 @@ async function updateLeague(req: Request, res: Response) {
     const { id, ...body } = matchedData(req);
     await models.leagues.findByIdAndUpdate(id, body);
     res.send({
-      message: 'Plan updated'
+      message: 'League updated'
     });
   } catch (error) {
     handleHttpError(res, 'Cannot update league');
@@ -55,7 +55,7 @@ async function updateLeague(req: Request, res: Response) {
 async function deleteLeague(req: Request, res: Response) {
   try {
     await models.leagues.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'DELETED_SUCCESFULLY' });
+    res.send({ message: 'League deleted successfully' });
   } catch (error) {
     handleHttpError(res, 'Cannot delete league');
   }

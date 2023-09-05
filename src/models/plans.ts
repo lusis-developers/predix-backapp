@@ -1,11 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
-
-export interface Plans extends Document {
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-}
+import mongoose, { Schema } from 'mongoose';
 
 const plansSchema: Schema = new mongoose.Schema(
   {

@@ -8,6 +8,7 @@ const plans_1 = __importDefault(require("./plans"));
 const sports_1 = __importDefault(require("./sports"));
 const leagues_1 = __importDefault(require("./leagues"));
 const bets_1 = __importDefault(require("./bets"));
+const users_1 = __importDefault(require("./users"));
 function routerApi(app) {
     const router = express_1.default.Router();
     app.use('/api', router);
@@ -15,5 +16,6 @@ function routerApi(app) {
     router.use(sports_1.default);
     router.use(leagues_1.default);
     router.use(bets_1.default);
+    router.use(users_1.default);
 }
 exports.default = routerApi;

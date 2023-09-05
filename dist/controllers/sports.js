@@ -9,11 +9,6 @@ const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
 const index_1 = __importDefault(require("../models/index"));
-/**
- * Obtener lista de la base de datos
- * @param req
- * @param res
- */
 async function getSports(_req, res) {
     try {
         const sports = await index_1.default.sports.findAllData();
@@ -24,11 +19,6 @@ async function getSports(_req, res) {
     }
 }
 exports.getSports = getSports;
-/**
- * Upload image before creating plan item
- * @param req
- * @param res
- */
 async function uploadSportImage(req, res) {
     try {
         const { file } = req;
@@ -45,11 +35,6 @@ async function uploadSportImage(req, res) {
     }
 }
 exports.uploadSportImage = uploadSportImage;
-/**
- * Crear un nuevo elemento en la base de datos
- * @param req
- * @param res
- */
 async function createSport(req, res) {
     const { body } = req;
     try {
@@ -61,15 +46,10 @@ async function createSport(req, res) {
     }
 }
 exports.createSport = createSport;
-/**
- * Actualizar un elemento en la base de datos
- * @param req
- * @param res
- */
 async function updateSport(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
-        await index_1.default.plans.findByIdAndUpdate(id, body);
+        await index_1.default.sports.findByIdAndUpdate(id, body);
         res.send({
             message: 'Sport updated'
         });
@@ -79,15 +59,10 @@ async function updateSport(req, res) {
     }
 }
 exports.updateSport = updateSport;
-/**
- * Eliminar un elemento de la base de datos
- * @param req
- * @param res
- */
 async function deleteSport(req, res) {
     try {
         await index_1.default.sports.findOneAndDelete({ _id: req.params.id });
-        res.send({ message: 'DELETED_SUCCESFULLY' });
+        res.send({ message: 'Sport deleted successfully' });
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot delete sport');
