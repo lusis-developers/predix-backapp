@@ -16,22 +16,23 @@ import {
 
 const router = express.Router();
 
-// GET: Recibe todo lo que contiene el league
+// TODO: endpoint to get league list
 router.get('/leagues', getLeagues);
 
+// TODO: endpoint to upload image to GCP before createPlan on POST METHOD
 router.post(
   '/leagueImage',
   uploadMiddleware.single('leagueImage'),
   uploadLeagueImage
 );
 
-// POST: Postea el nuevo league
+// TODO: endpoint to create new league
 router.post('/league', leagueValidatorCreate, createLeague);
 
-// PUT: Actualiza un league creado
+// TODO: endpoint to update specific league
 router.put('/league/:id', leagueValidatorUpdate, updateLeague);
 
-// DELETE: Deletea un league existente
+// TODO: endpoint to delete specific league
 router.delete('/league/:id', leagueValidatorDelete, deleteLeague);
 
 export default router;

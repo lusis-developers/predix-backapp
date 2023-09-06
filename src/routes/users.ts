@@ -17,6 +17,7 @@ import {
 
 const router = express.Router();
 
+// TODO: endpoint to get users list
 router.get('/users', getUsers);
 
 // TODO: endpoint to upload image
@@ -30,10 +31,13 @@ router.post(
 // TODO: get specific user
 router.get('/users/:id', getUser);
 
+// TODO: endpoint to create new user
 router.post('/users', userValidatorCreate, createUser);
 
+// TODO: endpoint to update specific user
 router.put('/users/:id', userValidatorUpdate, updateUser);
 
+// TODO: endpoint to delete specific user
 router.delete('/users/:id', userValidatorDelete, deleteUser);
 
 export default router;
