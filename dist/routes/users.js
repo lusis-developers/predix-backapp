@@ -8,17 +8,12 @@ const handleImage_1 = __importDefault(require("../middlewares/handleImage"));
 const users_1 = require("../validators/users");
 const users_2 = require("../controllers/users");
 const router = express_1.default.Router();
-// TODO: endpoint to get users list
 router.get('/users', users_2.getUsers);
 // TODO: endpoint to upload image
 // to GCP before createPlan on POST METHOD
 router.post('/UserImage', handleImage_1.default.single('userImage'), users_2.uploadUserImage);
-// TODO: get specific user
 router.get('/users/:id', users_2.getUser);
-// TODO: endpoint to create new user
 router.post('/users', users_1.userValidatorCreate, users_2.createUser);
-// TODO: endpoint to update specific user
 router.put('/users/:id', users_1.userValidatorUpdate, users_2.updateUser);
-// TODO: endpoint to delete specific user
 router.delete('/users/:id', users_1.userValidatorDelete, users_2.deleteUser);
 exports.default = router;
