@@ -24,6 +24,13 @@ const betValidatorCreate = [
         .exists()
         .notEmpty()
         .withMessage('Description is required'),
+    (0, express_validator_1.check)('isfree')
+        .exists()
+        .withMessage('isFree is required')
+        .notEmpty()
+        .withMessage('isFree cant be empty')
+        .isBoolean()
+        .withMessage('isFree needs to be a boolean'),
     (0, express_validator_1.check)('status').exists().notEmpty().withMessage('Status is required.'),
     (req, res, next) => {
         return (0, handleValidator_1.default)(req, res, next);
@@ -48,6 +55,14 @@ const betValidatorUpdate = [
         .exists()
         .notEmpty()
         .withMessage('Description is required'),
+    (0, express_validator_1.check)('isfree')
+        .optional()
+        .exists()
+        .withMessage('isFree is required')
+        .notEmpty()
+        .withMessage('isFree cant be empty')
+        .isBoolean()
+        .withMessage('isFree needs to be a boolean'),
     (0, express_validator_1.check)('status').exists().notEmpty().withMessage('Status is required.'),
     (0, express_validator_1.check)('status').custom((value) => {
         if (!Object.values(betEnum_1.BetEnum).includes(value)) {

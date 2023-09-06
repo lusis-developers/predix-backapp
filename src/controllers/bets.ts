@@ -23,6 +23,15 @@ async function getBetsPendings(_req: Request, res: Response) {
   }
 }
 
+async function getBetsFree(_req: Request, res: Response) {
+  try {
+    const freebets = await models.bets.find({ isfree: true });
+    res.send(freebets);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get Free bets');
+  }
+}
+
 async function getBet(req: Request, res: Response) {
   try {
     const id = req.params.id;
@@ -36,8 +45,8 @@ async function getBet(req: Request, res: Response) {
 async function createBet(req: Request, res: Response) {
   const { body } = req;
   try {
-    const newleague = await models.bets.create(body);
-    res.send(newleague);
+    const newbet = await models.bets.create(body);
+    res.send(newbet);
   } catch (error) {
     handleHttpError(res, 'Cannot create bet');
   }
@@ -83,6 +92,7 @@ async function deleteBet(req: Request, res: Response) {
 export {
   getBets,
   getBetsPendings,
+  getBetsFree,
   getBet,
   createBet,
   updateBet,
