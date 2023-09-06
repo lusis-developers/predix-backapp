@@ -30,7 +30,7 @@ const betsSchema = new mongoose_1.default.Schema({
     description: {
         type: String
     },
-    isfree: {
+    isFree: {
         type: Boolean
     },
     status: {

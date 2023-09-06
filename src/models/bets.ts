@@ -27,7 +27,7 @@ const betsSchema: Schema = new mongoose.Schema(
     description: {
       type: String
     },
-    isfree: {
+    isFree: {
       type: Boolean
     },
     status: {

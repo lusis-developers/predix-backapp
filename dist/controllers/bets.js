@@ -30,7 +30,7 @@ async function getBetsPendings(_req, res) {
 exports.getBetsPendings = getBetsPendings;
 async function getBetsFree(_req, res) {
     try {
-        const freebets = await index_1.default.bets.find({ isfree: true });
+        const freebets = await index_1.default.bets.find({ isFree: true });
         res.send(freebets);
     }
     catch (error) {

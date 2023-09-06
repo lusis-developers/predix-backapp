@@ -11,7 +11,7 @@ router.get('/bets', bets_2.getBets);
 // TODO: get status bets
 router.get('/bets/pendings', bets_2.getBetsPendings);
 //TODO: get free bets
-router.get('/bets/isfree', bets_2.getBetsFree);
+router.get('/bets/is-free', bets_2.getBetsFree);
 // TODO: get specific plan
 router.get('/bets/:id', bets_2.getBet);
 router.post('/bets', bets_1.betValidatorCreate, bets_2.createBet);

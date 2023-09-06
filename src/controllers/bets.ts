@@ -25,7 +25,7 @@ async function getBetsPendings(_req: Request, res: Response) {
 
 async function getBetsFree(_req: Request, res: Response) {
   try {
-    const freebets = await models.bets.find({ isfree: true });
+    const freebets = await models.bets.find({ isFree: true });
     res.send(freebets);
   } catch (error) {
     handleHttpError(res, 'Cannot get Free bets');

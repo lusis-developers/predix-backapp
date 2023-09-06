@@ -23,7 +23,7 @@ router.get('/bets', getBets);
 // TODO: get status bets
 router.get('/bets/pendings', getBetsPendings);
 //TODO: get free bets
-router.get('/bets/isfree', getBetsFree);
+router.get('/bets/is-free', getBetsFree);
 
 // TODO: get specific plan
 router.get('/bets/:id', getBet);

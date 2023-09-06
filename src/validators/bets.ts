@@ -29,7 +29,7 @@ const betValidatorCreate = [
     .notEmpty()
     .withMessage('Description is required'),
 
-  check('isfree')
+  check('isFree')
     .exists()
     .withMessage('isFree is required')
     .notEmpty()
@@ -71,7 +71,7 @@ const betValidatorUpdate = [
     .notEmpty()
     .withMessage('Description is required'),
 
-  check('isfree')
+  check('isFree')
     .optional()
     .exists()
     .withMessage('isFree is required')
