@@ -8,6 +8,7 @@ const express_validator_1 = require("express-validator");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const imagesEnum_1 = require("../enum/imagesEnum");
+const handleImageUrl_1 = require("../utils/handleImageUrl");
 const index_1 = __importDefault(require("../models/index"));
 async function getSports(_req, res) {
     try {
@@ -22,7 +23,8 @@ exports.getSports = getSports;
 async function uploadSportImage(req, res) {
     try {
         const { file } = req;
-        const result = await (0, gcpImageUpload_1.default)(file, imagesEnum_1.ImagesEnum.SPORT);
+        const response = await (0, gcpImageUpload_1.default)(file, imagesEnum_1.ImagesEnum.SPORT);
+        const result = (0, handleImageUrl_1.addPrefixUrl)(response, imagesEnum_1.ImagesEnum.SPORT);
         const fileData = {
             url: result,
             filename: result.split('/')[2]
