@@ -16,8 +16,8 @@ async function getBets(_req: Request, res: Response) {
 
 async function getBetsPendings(_req: Request, res: Response) {
   try {
-    const pendingbets = await models.bets.find({ status: BetEnum.PENDING });
-    res.send(pendingbets);
+    const pendingBets = await models.bets.find({ status: BetEnum.PENDING });
+    res.send(pendingBets);
   } catch (error) {
     handleHttpError(res, 'Cannot get Pending bets');
   }
@@ -25,8 +25,8 @@ async function getBetsPendings(_req: Request, res: Response) {
 
 async function getBetsFree(_req: Request, res: Response) {
   try {
-    const freebets = await models.bets.find({ isFree: true });
-    res.send(freebets);
+    const freeBets = await models.bets.find({ isFree: true });
+    res.send(freeBets);
   } catch (error) {
     handleHttpError(res, 'Cannot get Free bets');
   }
@@ -45,8 +45,8 @@ async function getBet(req: Request, res: Response) {
 async function createBet(req: Request, res: Response) {
   const { body } = req;
   try {
-    const newbet = await models.bets.create(body);
-    res.send(newbet);
+    const newBet = await models.bets.create(body);
+    res.send(newBet);
   } catch (error) {
     handleHttpError(res, 'Cannot create bet');
   }

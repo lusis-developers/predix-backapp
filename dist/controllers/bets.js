@@ -20,8 +20,8 @@ async function getBets(_req, res) {
 exports.getBets = getBets;
 async function getBetsPendings(_req, res) {
     try {
-        const pendingbets = await index_1.default.bets.find({ status: betEnum_1.BetEnum.PENDING });
-        res.send(pendingbets);
+        const pendingBets = await index_1.default.bets.find({ status: betEnum_1.BetEnum.PENDING });
+        res.send(pendingBets);
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get Pending bets');
@@ -30,8 +30,8 @@ async function getBetsPendings(_req, res) {
 exports.getBetsPendings = getBetsPendings;
 async function getBetsFree(_req, res) {
     try {
-        const freebets = await index_1.default.bets.find({ isFree: true });
-        res.send(freebets);
+        const freeBets = await index_1.default.bets.find({ isFree: true });
+        res.send(freeBets);
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get Free bets');
@@ -52,8 +52,8 @@ exports.getBet = getBet;
 async function createBet(req, res) {
     const { body } = req;
     try {
-        const newbet = await index_1.default.bets.create(body);
-        res.send(newbet);
+        const newBet = await index_1.default.bets.create(body);
+        res.send(newBet);
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot create bet');
