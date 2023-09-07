@@ -18,7 +18,7 @@ const router = express.Router();
 
 router.get('/leagues', getLeagues);
 
-// TODO: endpoint to upload image to GCP before createPlan on POST METHOD
+// TODO: endpoint to upload image to GCP before create league on POST METHOD
 router.post(
   '/leagueImage',
   uploadMiddleware.single('leagueImage'),

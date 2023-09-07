@@ -10,7 +10,7 @@ const users_2 = require("../controllers/users");
 const router = express_1.default.Router();
 router.get('/users', users_2.getUsers);
 // TODO: endpoint to upload image
-// to GCP before createPlan on POST METHOD
+// to GCP before create user on POST METHOD
 router.post('/UserImage', handleImage_1.default.single('userImage'), users_2.uploadUserImage);
 router.get('/users/:id', users_2.getUser);
 router.post('/users', users_1.userValidatorCreate, users_2.createUser);

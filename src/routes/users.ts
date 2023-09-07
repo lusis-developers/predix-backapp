@@ -20,7 +20,7 @@ const router = express.Router();
 router.get('/users', getUsers);
 
 // TODO: endpoint to upload image
-// to GCP before createPlan on POST METHOD
+// to GCP before create user on POST METHOD
 router.post(
   '/UserImage',
   uploadMiddleware.single('userImage'),
