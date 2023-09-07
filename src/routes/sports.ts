@@ -16,23 +16,19 @@ import {
 
 const router = express.Router();
 
-// GET: Recibe todo lo que contiene el Sport
 router.get('/sports', getSports);
 
-// TODO: endpoint to upload image to GCP before createPlan on POST METHOD
+// TODO: endpoint to upload image to GCP before create sports on POST METHOD
 router.post(
   '/sportImage',
   uploadMiddleware.single('sportImage'),
   uploadSportImage
 );
 
-// POST: Postea el nuevo Sport
 router.post('/sport', sportValidatorCreate, createSport);
 
-// PUT: Actualiza un sport creado
 router.put('/sport/:id', sportValidatorUpdate, updateSport);
 
-// DELETE: Deletea un bet existente
 router.delete('/sport/:id', sportValidatorDelete, deleteSport);
 
 export default router;

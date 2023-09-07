@@ -27,6 +27,9 @@ const betsSchema: Schema = new mongoose.Schema(
     description: {
       type: String
     },
+    isFree: {
+      type: Boolean
+    },
     status: {
       type: String,
       enum: Object.values(BetEnum),

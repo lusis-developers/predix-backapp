@@ -29,6 +29,14 @@ const betValidatorCreate = [
     .notEmpty()
     .withMessage('Description is required'),
 
+  check('isFree')
+    .exists()
+    .withMessage('isFree is required')
+    .notEmpty()
+    .withMessage('isFree cant be empty')
+    .isBoolean()
+    .withMessage('isFree needs to be a boolean'),
+
   check('status').exists().notEmpty().withMessage('Status is required.'),
 
   (req: Request, res: Response, next: NextFunction) => {
@@ -62,6 +70,15 @@ const betValidatorUpdate = [
     .exists()
     .notEmpty()
     .withMessage('Description is required'),
+
+  check('isFree')
+    .optional()
+    .exists()
+    .withMessage('isFree is required')
+    .notEmpty()
+    .withMessage('isFree cant be empty')
+    .isBoolean()
+    .withMessage('isFree needs to be a boolean'),
 
   check('status').exists().notEmpty().withMessage('Status is required.'),
 
