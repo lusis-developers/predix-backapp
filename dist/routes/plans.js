@@ -11,7 +11,7 @@ const router = express_1.default.Router();
 router.get('/plans', plans_2.getPlans);
 // TODO: endpoint to upload image to GCP before createPlan on POST METHOD
 router.post('/planImage', handleImage_1.default.single('planImage'), plans_2.uploadPlanImage);
-router.post('/plan', plans_1.planValidatorCreate, plans_2.createPlan);
-router.put('/plan/:id', plans_1.planValidatorUpdate, plans_2.updatePlan);
-router.delete('/plan/:id', plans_1.planValidatorDelete, plans_2.deletePlan);
+router.post('/plans', plans_1.planValidatorCreate, plans_2.createPlan);
+router.put('/plans/:id', plans_1.planValidatorUpdate, plans_2.updatePlan);
+router.delete('/plans/:id', plans_1.planValidatorDelete, plans_2.deletePlan);
 exports.default = router;

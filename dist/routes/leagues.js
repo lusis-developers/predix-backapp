@@ -11,7 +11,7 @@ const router = express_1.default.Router();
 router.get('/leagues', leagues_1.getLeagues);
 // TODO: endpoint to upload image to GCP before create league on POST METHOD
 router.post('/leagueImage', handleImage_1.default.single('leagueImage'), leagues_1.uploadLeagueImage);
-router.post('/league', leagues_2.leagueValidatorCreate, leagues_1.createLeague);
-router.put('/league/:id', leagues_2.leagueValidatorUpdate, leagues_1.updateLeague);
-router.delete('/league/:id', leagues_2.leagueValidatorDelete, leagues_1.deleteLeague);
+router.post('/leagues', leagues_2.leagueValidatorCreate, leagues_1.createLeague);
+router.put('/leagues/:id', leagues_2.leagueValidatorUpdate, leagues_1.updateLeague);
+router.delete('/leagues/:id', leagues_2.leagueValidatorDelete, leagues_1.deleteLeague);
 exports.default = router;

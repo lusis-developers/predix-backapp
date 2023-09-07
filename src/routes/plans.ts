@@ -25,10 +25,10 @@ router.post(
   uploadPlanImage
 );
 
-router.post('/plan', planValidatorCreate, createPlan);
+router.post('/plans', planValidatorCreate, createPlan);
 
-router.put('/plan/:id', planValidatorUpdate, updatePlan);
+router.put('/plans/:id', planValidatorUpdate, updatePlan);
 
-router.delete('/plan/:id', planValidatorDelete, deletePlan);
+router.delete('/plans/:id', planValidatorDelete, deletePlan);
 
 export default router;

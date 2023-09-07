@@ -11,7 +11,7 @@ const router = express_1.default.Router();
 router.get('/sports', sports_1.getSports);
 // TODO: endpoint to upload image to GCP before create sports on POST METHOD
 router.post('/sportImage', handleImage_1.default.single('sportImage'), sports_1.uploadSportImage);
-router.post('/sport', sports_2.sportValidatorCreate, sports_1.createSport);
-router.put('/sport/:id', sports_2.sportValidatorUpdate, sports_1.updateSport);
-router.delete('/sport/:id', sports_2.sportValidatorDelete, sports_1.deleteSport);
+router.post('/sports', sports_2.sportValidatorCreate, sports_1.createSport);
+router.put('/sports/:id', sports_2.sportValidatorUpdate, sports_1.updateSport);
+router.delete('/sports/:id', sports_2.sportValidatorDelete, sports_1.deleteSport);
 exports.default = router;

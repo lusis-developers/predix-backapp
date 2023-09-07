@@ -25,10 +25,10 @@ router.post(
   uploadSportImage
 );
 
-router.post('/sport', sportValidatorCreate, createSport);
+router.post('/sports', sportValidatorCreate, createSport);
 
-router.put('/sport/:id', sportValidatorUpdate, updateSport);
+router.put('/sports/:id', sportValidatorUpdate, updateSport);
 
-router.delete('/sport/:id', sportValidatorDelete, deleteSport);
+router.delete('/sports/:id', sportValidatorDelete, deleteSport);
 
 export default router;

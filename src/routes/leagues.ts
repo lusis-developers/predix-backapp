@@ -25,10 +25,10 @@ router.post(
   uploadLeagueImage
 );
 
-router.post('/league', leagueValidatorCreate, createLeague);
+router.post('/leagues', leagueValidatorCreate, createLeague);
 
-router.put('/league/:id', leagueValidatorUpdate, updateLeague);
+router.put('/leagues/:id', leagueValidatorUpdate, updateLeague);
 
-router.delete('/league/:id', leagueValidatorDelete, deleteLeague);
+router.delete('/leagues/:id', leagueValidatorDelete, deleteLeague);
 
 export default router;
