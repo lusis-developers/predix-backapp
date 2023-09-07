@@ -9,6 +9,7 @@ import {
 import {
   getBet,
   getBetsPendings,
+  getBetsFree,
   getBets,
   updateBet,
   deleteBet,
@@ -19,10 +20,13 @@ import {
 const router = express.Router();
 
 router.get('/bets', getBets);
+
 // TODO: get status bets
 router.get('/bets/pendings', getBetsPendings);
 
-// TODO: get specific plan
+//TODO: get free bets
+router.get('/bets/is-free', getBetsFree);
+
 router.get('/bets/:id', getBet);
 
 router.post('/bets', betValidatorCreate, createBet);
