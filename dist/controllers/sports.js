@@ -50,7 +50,8 @@ async function createSport(req, res) {
 exports.createSport = createSport;
 async function updateSport(req, res) {
     try {
-        const { id, ...body } = (0, express_validator_1.matchedData)(req);
+        const { ...body } = (0, express_validator_1.matchedData)(req);
+        const id = req.params.id;
         await index_1.default.sports.findByIdAndUpdate(id, body);
         res.send({
             message: 'Sport updated'

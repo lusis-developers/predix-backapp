@@ -44,7 +44,8 @@ async function createSport(req: Request, res: Response) {
 
 async function updateSport(req: Request, res: Response) {
   try {
-    const { id, ...body } = matchedData(req);
+    const { ...body } = matchedData(req);
+    const id = req.params.id;
     await models.sports.findByIdAndUpdate(id, body);
     res.send({
       message: 'Sport updated'
