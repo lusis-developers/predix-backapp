@@ -27,6 +27,7 @@ const leagueValidatorCreate = [
 ];
 
 const leagueValidatorUpdate = [
+  check('id').exists().notEmpty().isMongoId(),
   check('name')
     .notEmpty()
     .isString()

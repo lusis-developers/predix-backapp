@@ -23,6 +23,7 @@ const sportValidatorCreate = [
 ];
 
 const sportValidatorUpdate = [
+  check('id').exists().notEmpty().isMongoId(),
   check('name')
     .notEmpty()
     .isString()
