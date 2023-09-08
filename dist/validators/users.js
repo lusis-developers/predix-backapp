@@ -51,6 +51,7 @@ const userValidatorCreate = [
 ];
 exports.userValidatorCreate = userValidatorCreate;
 const userValidatorUpdate = [
+    (0, express_validator_1.check)('id').exists().notEmpty().isMongoId(),
     (0, express_validator_1.check)('name')
         .optional()
         .isString()

@@ -55,6 +55,7 @@ const userValidatorCreate = [
 ];
 
 const userValidatorUpdate = [
+  check('id').exists().notEmpty().isMongoId(),
   check('name')
     .optional()
     .isString()
