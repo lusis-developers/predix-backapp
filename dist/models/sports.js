@@ -23,7 +23,7 @@ sportsSchema.statics.findAllData = function () {
                 from: 'leagues',
                 localField: '_id',
                 foreignField: 'sport',
-                as: 'LeaguesDetails'
+                as: 'leaguesDetails'
             }
         }
     ]);
