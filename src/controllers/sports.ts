@@ -16,6 +16,16 @@ async function getSports(_req: Request, res: Response) {
   }
 }
 
+async function getSport(req: Request, res: Response) {
+  try {
+    const { id } = matchedData(req);
+    const sport = await models.sports.findOneWithLeagues(id);
+    res.send(sport);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get sports');
+  }
+}
+
 async function uploadSportImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -64,4 +74,11 @@ async function deleteSport(req: Request, res: Response) {
   }
 }
 
-export { getSports, createSport, updateSport, deleteSport, uploadSportImage };
+export {
+  getSports,
+  createSport,
+  updateSport,
+  deleteSport,
+  uploadSportImage,
+  getSport
+};

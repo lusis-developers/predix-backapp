@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sportValidatorDelete = exports.sportValidatorUpdate = exports.sportValidatorCreate = void 0;
+exports.sportValidatorDetail = exports.sportValidatorDelete = exports.sportValidatorUpdate = exports.sportValidatorCreate = void 0;
 const express_validator_1 = require("express-validator");
 const handleValidator_1 = __importDefault(require("../utils/handleValidator"));
 const sportValidatorCreate = [
@@ -40,6 +40,13 @@ const sportValidatorUpdate = [
     }
 ];
 exports.sportValidatorUpdate = sportValidatorUpdate;
+const sportValidatorDetail = [
+    (0, express_validator_1.check)('id').exists().notEmpty().isMongoId(),
+    (req, res, next) => {
+        return (0, handleValidator_1.default)(req, res, next);
+    }
+];
+exports.sportValidatorDetail = sportValidatorDetail;
 const sportValidatorDelete = [
     (0, express_validator_1.check)('id').exists().notEmpty().isMongoId(),
     (req, res, next) => {

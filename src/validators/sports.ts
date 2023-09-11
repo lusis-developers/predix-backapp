@@ -41,6 +41,14 @@ const sportValidatorUpdate = [
   }
 ];
 
+const sportValidatorDetail = [
+  check('id').exists().notEmpty().isMongoId(),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next);
+  }
+];
+
 const sportValidatorDelete = [
   check('id').exists().notEmpty().isMongoId(),
 
@@ -49,4 +57,9 @@ const sportValidatorDelete = [
   }
 ];
 
-export { sportValidatorCreate, sportValidatorUpdate, sportValidatorDelete };
+export {
+  sportValidatorCreate,
+  sportValidatorUpdate,
+  sportValidatorDelete,
+  sportValidatorDetail
+};

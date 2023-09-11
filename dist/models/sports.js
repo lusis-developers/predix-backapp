@@ -17,7 +17,7 @@ const sportsSchema = new mongoose_1.default.Schema({
     versionKey: false
 });
 sportsSchema.statics.findAllData = function () {
-    const joinData = this.aggregate([
+    return this.aggregate([
         {
             $lookup: {
                 from: 'leagues',
@@ -27,6 +27,21 @@ sportsSchema.statics.findAllData = function () {
             }
         }
     ]);
-    return joinData;
+};
+// Agrega un método personalizado para buscar un solo deporte con sus ligas relacionadas
+sportsSchema.statics.findOneWithLeagues = function (sportId) {
+    return this.aggregate([
+        {
+            $match: { _id: new mongoose_1.default.Types.ObjectId(sportId) } // Convierte el ID en un ObjectId
+        },
+        {
+            $lookup: {
+                from: 'leagues',
+                localField: '_id',
+                foreignField: 'sport',
+                as: 'leaguesDetails'
+            }
+        }
+    ]);
 };
 exports.default = mongoose_1.default.model('sports', sportsSchema);

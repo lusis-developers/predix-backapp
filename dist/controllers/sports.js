@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadSportImage = exports.deleteSport = exports.updateSport = exports.createSport = exports.getSports = void 0;
+exports.getSport = exports.uploadSportImage = exports.deleteSport = exports.updateSport = exports.createSport = exports.getSports = void 0;
 const express_validator_1 = require("express-validator");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
@@ -20,6 +20,17 @@ async function getSports(_req, res) {
     }
 }
 exports.getSports = getSports;
+async function getSport(req, res) {
+    try {
+        const { id } = (0, express_validator_1.matchedData)(req);
+        const sport = await index_1.default.sports.findOneWithLeagues(id);
+        res.send(sport);
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot get sports');
+    }
+}
+exports.getSport = getSport;
 async function uploadSportImage(req, res) {
     try {
         const { file } = req;

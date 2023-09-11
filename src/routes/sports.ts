@@ -6,17 +6,21 @@ import {
   createSport,
   updateSport,
   deleteSport,
-  uploadSportImage
+  uploadSportImage,
+  getSport
 } from '../controllers/sports';
 import {
   sportValidatorCreate,
   sportValidatorDelete,
-  sportValidatorUpdate
+  sportValidatorUpdate,
+  sportValidatorDetail
 } from '../validators/sports';
 
 const router = express.Router();
 
 router.get('/sports', getSports);
+
+router.get('/sports/:id', sportValidatorDetail, getSport);
 
 // TODO: endpoint to upload image to GCP before create sports on POST METHOD
 router.post(
