@@ -3,16 +3,18 @@ import mongoose, { Schema } from 'mongoose';
 const usersSchema: Schema = new mongoose.Schema(
   {
     name: {
-      type: String
-    },
-
-    userimage: {
-      type: String
-    },
-
-    mail: {
       type: String,
-      unique: true
+      require: true
+    },
+
+    userImage: {
+      type: String
+    },
+
+    email: {
+      type: String,
+      unique: true,
+      require: true
     },
 
     phone: {
@@ -21,14 +23,17 @@ const usersSchema: Schema = new mongoose.Schema(
     },
 
     birthdate: {
-      type: Date
+      type: Date,
+      require: true
     },
 
     twitter: {
-      type: String
+      type: String,
+      default: null
     },
     instagram: {
-      type: String
+      type: String,
+      default: null
     }
   },
   {
