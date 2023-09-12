@@ -12,10 +12,22 @@ const authValidatorRegister = [
 
   check('password')
     .not()
-    .isIn(['password', '123456', 'qwerty'])
+    .isIn([
+      'password',
+      'qwertyuio',
+      'qwertyui',
+      'qwertyuiop',
+      '12345678',
+      '123456789',
+      '1234567890',
+      '1234567890-',
+      '1234567890-='
+    ])
     .withMessage('Do not use a common word as the password')
     .isLength({ min: 8 })
-    .withMessage('Min Lenght 8 characters')
+    .withMessage('Min Length 8 characters')
+    .matches(/\W/)
+    .withMessage('Password must contain at least one symbol')
     .notEmpty()
     .withMessage('Password is required')
     .isString()
