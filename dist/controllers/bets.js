@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBetStatus = exports.deleteBet = exports.updateBet = exports.createBet = exports.getBet = exports.getBetsFree = exports.getBetsPendings = exports.getBets = void 0;
+exports.getBetsPremiumPending = exports.getBetsFreePending = exports.updateBetStatus = exports.deleteBet = exports.updateBet = exports.createBet = exports.getBet = exports.getBetsFree = exports.getBetsPendings = exports.getBets = void 0;
 const express_validator_1 = require("express-validator");
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
@@ -28,6 +28,32 @@ async function getBetsPendings(_req, res) {
     }
 }
 exports.getBetsPendings = getBetsPendings;
+async function getBetsFreePending(_req, res) {
+    try {
+        const freePendingBets = await index_1.default.bets.find({
+            isFree: true,
+            status: betEnum_1.BetEnum.PENDING
+        });
+        res.send(freePendingBets);
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot get pending and free bets');
+    }
+}
+exports.getBetsFreePending = getBetsFreePending;
+async function getBetsPremiumPending(_req, res) {
+    try {
+        const freePendingBets = await index_1.default.bets.find({
+            isFree: false,
+            status: betEnum_1.BetEnum.PENDING
+        });
+        res.send(freePendingBets);
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot get pending and free bets');
+    }
+}
+exports.getBetsPremiumPending = getBetsPremiumPending;
 async function getBetsFree(_req, res) {
     try {
         const freeBets = await index_1.default.bets.find({ isFree: true });
