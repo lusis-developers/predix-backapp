@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const usersSchema = new mongoose_1.default.Schema({
     name: {
-        type: String,
-        require: true
+        type: String
     },
     userImage: {
         type: String
@@ -15,6 +14,10 @@ const usersSchema = new mongoose_1.default.Schema({
     email: {
         type: String,
         unique: true,
+        require: true
+    },
+    password: {
+        type: String,
         require: true
     },
     phone: {

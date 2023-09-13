@@ -6,32 +6,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const usersSchema = new mongoose_1.default.Schema({
     name: {
-        type: String,
-        require: true
-    },
-    userImage: {
         type: String
     },
-    email: {
+    userimage: {
+        type: String
+    },
+    mail: {
         type: String,
-        unique: true,
-        require: true
+        unique: true
     },
     phone: {
         type: String,
         unique: true
     },
     birthdate: {
-        type: Date,
-        require: true
+        type: Date
     },
     twitter: {
-        type: String,
-        default: null
+        type: String
     },
     instagram: {
-        type: String,
-        default: null
+        type: String
     }
 }, {
     timestamps: true,

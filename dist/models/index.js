@@ -12,6 +12,7 @@ const leagueImages_1 = __importDefault(require("./leagueImages"));
 const bets_1 = __importDefault(require("./bets"));
 const users_1 = __importDefault(require("./users"));
 const userImages_1 = __importDefault(require("./userImages"));
+const auth_1 = __importDefault(require("./auth"));
 const models = {
     plans: plans_1.default,
     sports: sports_1.default,
@@ -21,6 +22,7 @@ const models = {
     leagueImages: leagueImages_1.default,
     bets: bets_1.default,
     users: users_1.default,
-    userImages: userImages_1.default
+    userImages: userImages_1.default,
+    auth: auth_1.default
 };
 exports.default = models;
