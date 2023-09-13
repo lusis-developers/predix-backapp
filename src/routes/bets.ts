@@ -14,7 +14,9 @@ import {
   updateBet,
   deleteBet,
   createBet,
-  updateBetStatus
+  updateBetStatus,
+  getBetsFreePending,
+  getBetsPremiumPending
 } from '../controllers/bets';
 
 const router = express.Router();
@@ -26,6 +28,10 @@ router.get('/bets/pendings', getBetsPendings);
 
 //TODO: get free bets
 router.get('/bets/is-free', getBetsFree);
+
+router.get('/bets/is-free/pendings', getBetsFreePending);
+
+router.get('/bets/premium/pendings', getBetsPremiumPending);
 
 router.get('/bets/:id', getBet);
 

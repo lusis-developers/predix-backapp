@@ -23,6 +23,30 @@ async function getBetsPendings(_req: Request, res: Response) {
   }
 }
 
+async function getBetsFreePending(_req: Request, res: Response) {
+  try {
+    const freePendingBets = await models.bets.find({
+      isFree: true,
+      status: BetEnum.PENDING
+    });
+    res.send(freePendingBets);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get pending and free bets');
+  }
+}
+
+async function getBetsPremiumPending(_req: Request, res: Response) {
+  try {
+    const freePendingBets = await models.bets.find({
+      isFree: false,
+      status: BetEnum.PENDING
+    });
+    res.send(freePendingBets);
+  } catch (error) {
+    handleHttpError(res, 'Cannot get pending and free bets');
+  }
+}
+
 async function getBetsFree(_req: Request, res: Response) {
   try {
     const freeBets = await models.bets.find({ isFree: true });
@@ -97,5 +121,7 @@ export {
   createBet,
   updateBet,
   deleteBet,
-  updateBetStatus
+  updateBetStatus,
+  getBetsFreePending,
+  getBetsPremiumPending
 };
