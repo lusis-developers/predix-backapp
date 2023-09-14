@@ -3,12 +3,6 @@ export type UserLoginToken = {
   role: string[];
 };
 
-export type UserAuth = {
-  _id: string;
-  role?: string;
-  password?: string;
-};
-
 export type UserType = {
   _id: string;
   name: string | null;

@@ -4,8 +4,8 @@ import { matchedData } from 'express-validator';
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
 import { encrypt, compare } from '../middlewares/handleJwt';
-import tokenSign from '../utils/handleJwt';
 import { UserType } from '../types/AuthTypes';
+import tokenSign from '../utils/handleJwt';
 
 async function createAuthRegisterController(req: Request, res: Response) {
   try {
@@ -27,7 +27,6 @@ async function createAuthRegisterController(req: Request, res: Response) {
     };
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, 'Cannot create auth');
   }
 }
