@@ -5,6 +5,7 @@ import Leagues from './leagues';
 import Bets from './bets';
 import Users from './users';
 import Auth from './auth';
+import Suscription from './Suscription';
 
 function routerApi(app: Application) {
   const router = express.Router();
@@ -15,6 +16,7 @@ function routerApi(app: Application) {
   router.use(Bets);
   router.use(Users);
   router.use(Auth);
+  router.use(Suscription);
 }
 
 export default routerApi;

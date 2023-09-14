@@ -65,7 +65,9 @@ async function authLoginController(req: Request, res: Response) {
       role: userData?.role,
       birthdate: userData?.birthdate,
       twitter: userData?.twitter,
-      instagram: userData?.instagram
+      instagram: userData?.instagram,
+      susbcriptionStatus: userData?.subscriptionStatus,
+      subscriptionExpirationDate: userData?.subscriptionExpirationDate
     };
 
     res.send({ data });

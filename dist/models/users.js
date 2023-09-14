@@ -40,6 +40,14 @@ const usersSchema = new mongoose_1.default.Schema({
         type: String,
         require: true,
         select: false
+    },
+    subscriptionStatus: {
+        type: Boolean,
+        default: false
+    },
+    subscriptionExpirationDate: {
+        type: Date,
+        default: null
     }
 }, {
     timestamps: true,

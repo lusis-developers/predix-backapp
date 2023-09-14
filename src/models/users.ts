@@ -45,6 +45,16 @@ const usersSchema: Schema = new mongoose.Schema(
       type: String,
       require: true,
       select: false
+    },
+
+    subscriptionStatus: {
+      type: Boolean,
+      default: false
+    },
+
+    subscriptionExpirationDate: {
+      type: Date,
+      default: null
     }
   },
   {
