@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
 
+import { UserLoginToken } from '../types/AuthTypes';
+
 const JWT_SECRET: string | undefined = process.env.JWT_SECRET;
 
-async function tokenSign(user: { _id: string; role: string }) {
+async function tokenSign(user: UserLoginToken) {
   if (!JWT_SECRET) {
     throw new Error('JWT_SECRET is not set');
   }
@@ -10,7 +12,7 @@ async function tokenSign(user: { _id: string; role: string }) {
   const sign = await jwt.sign(
     {
       _id: user._id,
-      role: user.role
+      role: user.role[0]
     },
     JWT_SECRET,
     {

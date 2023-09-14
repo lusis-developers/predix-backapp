@@ -11,7 +11,7 @@ async function tokenSign(user) {
     }
     const sign = await jsonwebtoken_1.default.sign({
         _id: user._id,
-        role: user.role
+        role: user.role[0]
     }, JWT_SECRET, {
         expiresIn: '2h'
     });

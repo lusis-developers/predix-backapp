@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authValidatorRegister = void 0;
+exports.authValidatorlogin = exports.authValidatorRegister = void 0;
 const express_validator_1 = require("express-validator");
 const handleValidator_1 = __importDefault(require("../utils/handleValidator"));
 const authValidatorRegister = [
@@ -44,3 +44,11 @@ const authValidatorRegister = [
     }
 ];
 exports.authValidatorRegister = authValidatorRegister;
+const authValidatorlogin = [
+    (0, express_validator_1.check)('email').exists().notEmpty().isEmail(),
+    (0, express_validator_1.check)('password').exists().notEmpty().isLength({ min: 8 }),
+    (req, res, next) => {
+        return (0, handleValidator_1.default)(req, res, next);
+    }
+];
+exports.authValidatorlogin = authValidatorlogin;

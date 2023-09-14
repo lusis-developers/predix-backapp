@@ -7,10 +7,14 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const usersSchema = new mongoose_1.default.Schema({
     name: {
         type: String,
-        require: true
+        default: null
     },
     userImage: {
         type: String
+    },
+    role: {
+        type: ['user', 'admin'],
+        default: 'admin'
     },
     email: {
         type: String,
@@ -18,8 +22,7 @@ const usersSchema = new mongoose_1.default.Schema({
         require: true
     },
     phone: {
-        type: String,
-        unique: true
+        type: String
     },
     birthdate: {
         type: Date,
@@ -32,6 +35,11 @@ const usersSchema = new mongoose_1.default.Schema({
     instagram: {
         type: String,
         default: null
+    },
+    password: {
+        type: String,
+        require: true,
+        select: false
     }
 }, {
     timestamps: true,

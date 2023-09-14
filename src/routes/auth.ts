@@ -1,10 +1,19 @@
 import express from 'express';
 
-import { authValidatorRegister } from '../validators/auth';
-import { createAuthRegister } from '../controllers/auth';
+import { authValidatorRegister, authValidatorlogin } from '../validators/auth';
+import {
+  createAuthRegisterController,
+  authLoginController
+} from '../controllers/auth';
 
 const router = express.Router();
 
-router.post('/auth/register', authValidatorRegister, createAuthRegister);
+router.post(
+  '/auth/register',
+  authValidatorRegister,
+  createAuthRegisterController
+);
+
+router.post('/auth/login', authValidatorlogin, authLoginController);
 
 export default router;

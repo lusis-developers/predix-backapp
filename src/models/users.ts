@@ -4,11 +4,16 @@ const usersSchema: Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true
+      default: null
     },
 
     userImage: {
       type: String
+    },
+
+    role: {
+      type: ['user', 'admin'],
+      default: 'admin'
     },
 
     email: {
@@ -18,8 +23,7 @@ const usersSchema: Schema = new mongoose.Schema(
     },
 
     phone: {
-      type: String,
-      unique: true
+      type: String
     },
 
     birthdate: {
@@ -31,9 +35,16 @@ const usersSchema: Schema = new mongoose.Schema(
       type: String,
       default: null
     },
+
     instagram: {
       type: String,
       default: null
+    },
+
+    password: {
+      type: String,
+      require: true,
+      select: false
     }
   },
   {
