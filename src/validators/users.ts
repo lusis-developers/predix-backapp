@@ -11,13 +11,13 @@ const userValidatorCreate = [
     .isLength({ max: 20 })
     .withMessage('Max Length 20 characters'),
 
-  check('userimage')
+  check('userImage')
     .notEmpty()
     .withMessage('Image is required')
     .isURL()
     .withMessage('Invalid image URL'),
 
-  check('mail')
+  check('email')
     .notEmpty()
     .withMessage('Mail is required')
     .isEmail()
@@ -62,9 +62,9 @@ const userValidatorUpdate = [
     .isLength({ max: 20 })
     .withMessage('Max Length 20 characters'),
 
-  check('userimage').optional().isURL().withMessage('Invalid image URL'),
+  check('userImage').optional().isURL().withMessage('Invalid image URL'),
 
-  check('mail').optional().isEmail().withMessage('Invalid email format'),
+  check('email').optional().isEmail().withMessage('Invalid email format'),
 
   check('phone').optional().isNumeric().withMessage('Phone must be a number'),
 

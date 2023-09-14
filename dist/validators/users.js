@@ -13,12 +13,12 @@ const userValidatorCreate = [
         .withMessage('Name is required')
         .isLength({ max: 20 })
         .withMessage('Max Length 20 characters'),
-    (0, express_validator_1.check)('userimage')
+    (0, express_validator_1.check)('userImage')
         .notEmpty()
         .withMessage('Image is required')
         .isURL()
         .withMessage('Invalid image URL'),
-    (0, express_validator_1.check)('mail')
+    (0, express_validator_1.check)('email')
         .notEmpty()
         .withMessage('Mail is required')
         .isEmail()
@@ -57,8 +57,8 @@ const userValidatorUpdate = [
         .withMessage('Name must be a string')
         .isLength({ max: 20 })
         .withMessage('Max Length 20 characters'),
-    (0, express_validator_1.check)('userimage').optional().isURL().withMessage('Invalid image URL'),
-    (0, express_validator_1.check)('mail').optional().isEmail().withMessage('Invalid email format'),
+    (0, express_validator_1.check)('userImage').optional().isURL().withMessage('Invalid image URL'),
+    (0, express_validator_1.check)('email').optional().isEmail().withMessage('Invalid email format'),
     (0, express_validator_1.check)('phone').optional().isNumeric().withMessage('Phone must be a number'),
     (0, express_validator_1.check)('birthdate')
         .exists()

@@ -3,32 +3,58 @@ import mongoose, { Schema } from 'mongoose';
 const usersSchema: Schema = new mongoose.Schema(
   {
     name: {
-      type: String
-    },
-
-    userimage: {
-      type: String
-    },
-
-    mail: {
       type: String,
-      unique: true
+      default: null
+    },
+
+    userImage: {
+      type: String
+    },
+
+    role: {
+      type: ['user', 'admin'],
+      default: 'admin'
+    },
+
+    email: {
+      type: String,
+      unique: true,
+      require: true
     },
 
     phone: {
-      type: String,
-      unique: true
+      type: String
     },
 
     birthdate: {
-      type: Date
+      type: Date,
+      require: true
     },
 
     twitter: {
-      type: String
+      type: String,
+      default: null
     },
+
     instagram: {
-      type: String
+      type: String,
+      default: null
+    },
+
+    password: {
+      type: String,
+      require: true,
+      select: false
+    },
+
+    subscriptionStatus: {
+      type: Boolean,
+      default: false
+    },
+
+    subscriptionExpirationDate: {
+      type: Date,
+      default: null
     }
   },
   {
