@@ -5,7 +5,7 @@ import Leagues from './leagues';
 import Bets from './bets';
 import Users from './users';
 import Auth from './auth';
-import Suscription from './Suscription';
+import Suscription from './subscription';
 
 function routerApi(app: Application) {
   const router = express.Router();
