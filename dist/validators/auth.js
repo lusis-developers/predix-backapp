@@ -13,19 +13,8 @@ const authValidatorRegister = [
         .isEmail()
         .withMessage('Invalid email format'),
     (0, express_validator_1.check)('password')
-        .not()
-        .isIn([
-        'password',
-        'qwertyuio',
-        'qwertyui',
-        'qwertyuiop',
-        '12345678',
-        '123456789',
-        '1234567890',
-        '1234567890-',
-        '1234567890-='
-    ])
-        .withMessage('Do not use a common word as the password')
+        .notEmpty()
+        .withMessage('No password found')
         .isLength({ min: 8 })
         .withMessage('Min Length 8 characters')
         .matches(/\W/)
