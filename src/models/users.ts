@@ -7,8 +7,14 @@ const usersSchema: Schema = new mongoose.Schema(
       default: null
     },
 
+    lastname: {
+      type: String,
+      default: null
+    },
+
     userImage: {
-      type: String
+      type: String,
+      default: null
     },
 
     role: {
@@ -19,7 +25,7 @@ const usersSchema: Schema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
-      require: true
+      required: true
     },
 
     phone: {
@@ -28,7 +34,7 @@ const usersSchema: Schema = new mongoose.Schema(
 
     birthdate: {
       type: Date,
-      require: true
+      required: true
     },
 
     twitter: {
@@ -43,7 +49,7 @@ const usersSchema: Schema = new mongoose.Schema(
 
     password: {
       type: String,
-      require: true,
+      required: true,
       select: false
     },
 

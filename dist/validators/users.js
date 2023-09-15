@@ -11,8 +11,14 @@ const userValidatorCreate = [
         .notEmpty()
         .isString()
         .withMessage('Name is required')
-        .isLength({ max: 20 })
-        .withMessage('Max Length 20 characters'),
+        .isLength({ max: 30 })
+        .withMessage('Max Length 30 characters'),
+    (0, express_validator_1.check)('lastname')
+        .notEmpty()
+        .isString()
+        .withMessage('LastName is required')
+        .isLength({ max: 30 })
+        .withMessage('Max Length 30 characters'),
     (0, express_validator_1.check)('userImage')
         .notEmpty()
         .withMessage('Image is required')

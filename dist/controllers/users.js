@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadUserImage = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.getUsers = void 0;
+exports.uploadUserImage = exports.updateUser = exports.getUsers = void 0;
 const express_validator_1 = require("express-validator");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
@@ -20,17 +20,6 @@ async function getUsers(_req, res) {
     }
 }
 exports.getUsers = getUsers;
-async function getUser(req, res) {
-    try {
-        const id = req.params.id;
-        const data = await index_1.default.users.findById({ _id: id });
-        res.send({ data });
-    }
-    catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot get user');
-    }
-}
-exports.getUser = getUser;
 async function uploadUserImage(req, res) {
     try {
         const { file } = req;
@@ -48,20 +37,10 @@ async function uploadUserImage(req, res) {
     }
 }
 exports.uploadUserImage = uploadUserImage;
-async function createUser(req, res) {
-    const { body } = req;
-    try {
-        const newuser = await index_1.default.users.create(body);
-        res.send(newuser);
-    }
-    catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot create users');
-    }
-}
-exports.createUser = createUser;
 async function updateUser(req, res) {
     try {
-        const { id, ...body } = (0, express_validator_1.matchedData)(req);
+        const id = req.params.id;
+        const body = (0, express_validator_1.matchedData)(req);
         await index_1.default.users.findByIdAndUpdate(id, body);
         res.send({
             message: 'User updated'
@@ -72,13 +51,3 @@ async function updateUser(req, res) {
     }
 }
 exports.updateUser = updateUser;
-async function deleteUser(req, res) {
-    try {
-        await index_1.default.users.findOneAndDelete({ _id: req.params.id });
-        res.send({ message: 'User deleted successfully' });
-    }
-    catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot delete user');
-    }
-}
-exports.deleteUser = deleteUser;

@@ -8,8 +8,15 @@ const userValidatorCreate = [
     .notEmpty()
     .isString()
     .withMessage('Name is required')
-    .isLength({ max: 20 })
-    .withMessage('Max Length 20 characters'),
+    .isLength({ max: 30 })
+    .withMessage('Max Length 30 characters'),
+
+  check('lastname')
+    .notEmpty()
+    .isString()
+    .withMessage('LastName is required')
+    .isLength({ max: 30 })
+    .withMessage('Max Length 30 characters'),
 
   check('userImage')
     .notEmpty()
