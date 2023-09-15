@@ -1,19 +1,8 @@
 import express from 'express';
 
 import uploadMiddleware from '../middlewares/handleImage';
-import {
-  userValidatorCreate,
-  userValidatorDelete,
-  userValidatorUpdate
-} from '../validators/users';
-import {
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser,
-  createUser,
-  uploadUserImage
-} from '../controllers/users';
+import { userValidatorUpdate } from '../validators/users';
+import { getUsers, updateUser, uploadUserImage } from '../controllers/users';
 
 const router = express.Router();
 
@@ -27,12 +16,6 @@ router.post(
   uploadUserImage
 );
 
-router.get('/users/:id', getUser);
-
-router.post('/users', userValidatorCreate, createUser);
-
-router.put('/users/:id', userValidatorUpdate, updateUser);
-
-router.delete('/users/:id', userValidatorDelete, deleteUser);
+router.patch('/users/:id', userValidatorUpdate, updateUser);
 
 export default router;

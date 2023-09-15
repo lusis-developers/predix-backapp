@@ -16,16 +16,6 @@ async function getUsers(_req: Request, res: Response) {
   }
 }
 
-async function getUser(req: Request, res: Response) {
-  try {
-    const id = req.params.id;
-    const data = await models.users.findById({ _id: id });
-    res.send({ data });
-  } catch (error) {
-    handleHttpError(res, 'Cannot get user');
-  }
-}
-
 async function uploadUserImage(req: Request, res: Response) {
   try {
     const { file } = req;
@@ -42,19 +32,10 @@ async function uploadUserImage(req: Request, res: Response) {
   }
 }
 
-async function createUser(req: Request, res: Response) {
-  const { body } = req;
-  try {
-    const newuser = await models.users.create(body);
-    res.send(newuser);
-  } catch (error) {
-    handleHttpError(res, 'Cannot create users');
-  }
-}
-
 async function updateUser(req: Request, res: Response) {
   try {
-    const { id, ...body } = matchedData(req);
+    const id = req.params.id;
+    const body = matchedData(req);
     await models.users.findByIdAndUpdate(id, body);
     res.send({
       message: 'User updated'
@@ -64,20 +45,4 @@ async function updateUser(req: Request, res: Response) {
   }
 }
 
-async function deleteUser(req: Request, res: Response) {
-  try {
-    await models.users.findOneAndDelete({ _id: req.params.id });
-    res.send({ message: 'User deleted successfully' });
-  } catch (error) {
-    handleHttpError(res, 'Cannot delete user');
-  }
-}
-
-export {
-  getUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser,
-  uploadUserImage
-};
+export { getUsers, updateUser, uploadUserImage };

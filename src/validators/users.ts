@@ -3,57 +3,6 @@ import { check } from 'express-validator';
 
 import validateResults from '../utils/handleValidator';
 
-const userValidatorCreate = [
-  check('name')
-    .notEmpty()
-    .isString()
-    .withMessage('Name is required')
-    .isLength({ max: 20 })
-    .withMessage('Max Length 20 characters'),
-
-  check('userImage')
-    .notEmpty()
-    .withMessage('Image is required')
-    .isURL()
-    .withMessage('Invalid image URL'),
-
-  check('email')
-    .notEmpty()
-    .withMessage('Mail is required')
-    .isEmail()
-    .withMessage('Invalid email format'),
-
-  check('phone')
-    .notEmpty()
-    .withMessage('Phone is required')
-    .isString()
-    .withMessage('Only number is allowed'),
-
-  check('birthdate')
-    .exists()
-    .notEmpty()
-    .isISO8601()
-    .withMessage('Date is required'),
-
-  check('twitter')
-    .optional()
-    .isString()
-    .withMessage('Invalid twitter handle')
-    .isLength({ max: 20 })
-    .withMessage('Max Length 20 characters'),
-
-  check('instagram')
-    .optional()
-    .isString()
-    .withMessage('Invalid instagram handle')
-    .isLength({ max: 20 })
-    .withMessage('Max Length 20 characters'),
-
-  (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next);
-  }
-];
-
 const userValidatorUpdate = [
   check('name')
     .optional()
@@ -61,6 +10,13 @@ const userValidatorUpdate = [
     .withMessage('Name must be a string')
     .isLength({ max: 20 })
     .withMessage('Max Length 20 characters'),
+
+  check('lastname')
+    .optional()
+    .isString()
+    .withMessage('LastName is required')
+    .isLength({ max: 30 })
+    .withMessage('Max Length 30 characters'),
 
   check('userImage').optional().isURL().withMessage('Invalid image URL'),
 
@@ -93,12 +49,4 @@ const userValidatorUpdate = [
   }
 ];
 
-const userValidatorDelete = [
-  check('id').exists().notEmpty().isMongoId(),
-
-  (req: Request, res: Response, next: NextFunction) => {
-    return validateResults(req, res, next);
-  }
-];
-
-export { userValidatorCreate, userValidatorUpdate, userValidatorDelete };
+export { userValidatorUpdate };
