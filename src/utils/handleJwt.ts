@@ -5,6 +5,8 @@ import { UserLoginToken } from '../types/AuthTypes';
 const JWT_SECRET: string | undefined = process.env.JWT_SECRET;
 
 async function tokenSign(user: UserLoginToken) {
+  const expiresIn = user.role[0] === 'user' ? '365d' : '7d';
+
   if (!JWT_SECRET) {
     throw new Error('JWT_SECRET is not set');
   }
@@ -16,7 +18,7 @@ async function tokenSign(user: UserLoginToken) {
     },
     JWT_SECRET,
     {
-      expiresIn: '2h'
+      expiresIn: expiresIn
     }
   );
 
