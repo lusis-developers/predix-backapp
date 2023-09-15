@@ -9,8 +9,13 @@ const usersSchema = new mongoose_1.default.Schema({
         type: String,
         default: null
     },
+    lastname: {
+        type: String,
+        default: null
+    },
     userImage: {
-        type: String
+        type: String,
+        default: null
     },
     role: {
         type: ['user', 'admin'],
@@ -19,14 +24,14 @@ const usersSchema = new mongoose_1.default.Schema({
     email: {
         type: String,
         unique: true,
-        require: true
+        required: true
     },
     phone: {
         type: String
     },
     birthdate: {
         type: Date,
-        require: true
+        required: true
     },
     twitter: {
         type: String,
@@ -38,7 +43,7 @@ const usersSchema = new mongoose_1.default.Schema({
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         select: false
     },
     subscriptionStatus: {
