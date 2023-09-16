@@ -18,4 +18,6 @@ router.post(
 
 router.patch('/users/:id', userValidatorUpdate, updateUser);
 
+router.get('/users', getUsers);
+
 export default router;

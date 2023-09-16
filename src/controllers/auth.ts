@@ -5,7 +5,7 @@ import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
 import { encrypt, compare } from '../middlewares/handleJwt';
 import { UserType } from '../types/AuthTypes';
-import tokenSign from '../utils/handleJwt';
+import { tokenSign } from '../utils/handleJwt';
 
 async function createAuthRegisterController(req: Request, res: Response) {
   try {

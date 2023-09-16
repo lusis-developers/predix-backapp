@@ -8,7 +8,7 @@ const express_validator_1 = require("express-validator");
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
 const handleJwt_1 = require("../middlewares/handleJwt");
-const handleJwt_2 = __importDefault(require("../utils/handleJwt"));
+const handleJwt_2 = require("../utils/handleJwt");
 async function createAuthRegisterController(req, res) {
     try {
         const { body } = req;
@@ -18,7 +18,7 @@ async function createAuthRegisterController(req, res) {
         newAuth.set('password', undefined, { strict: false });
         const { role, _id } = newAuth;
         const data = {
-            token: await (0, handleJwt_2.default)({
+            token: await (0, handleJwt_2.tokenSign)({
                 role: newAuth.role,
                 _id: newAuth.id
             }),
@@ -52,7 +52,7 @@ async function authLoginController(req, res) {
         }
         user.set('password', undefined, { strict: false });
         const data = {
-            token: await (0, handleJwt_2.default)({
+            token: await (0, handleJwt_2.tokenSign)({
                 _id: user._id,
                 role: userData === null || userData === void 0 ? void 0 : userData.role
             }),

@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { matchedData } from 'express-validator';
 
+import { ImagesEnum } from '../enum/imagesEnum';
 import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
-import { ImagesEnum } from '../enum/imagesEnum';
 import { addPrefixUrl } from '../utils/handleImageUrl';
+import { getUserIdFromToken } from '../utils/handleJwt';
 import models from '../models/index';
 
 async function getUsers(_req: Request, res: Response) {
@@ -45,4 +46,32 @@ async function updateUser(req: Request, res: Response) {
   }
 }
 
-export { getUsers, updateUser, uploadUserImage };
+async function getUser(req: Request, res: Response) {
+  try {
+    const token = req.body.token;
+    const id = getUserIdFromToken(token);
+    const user = await models.users.findOne({ id: id });
+
+    if (!user) {
+      handleHttpError(res, 'Usuario no existe');
+      return;
+    }
+
+    const data = {
+      name: user?.name,
+      id: user?._id,
+      role: user?.role,
+      birthdate: user?.birthdate,
+      twitter: user?.twitter,
+      instagram: user?.instagram,
+      susbcriptionStatus: user?.subscriptionStatus,
+      subscriptionExpirationDate: user?.subscriptionExpirationDate
+    };
+
+    res.send({ data });
+  } catch (error) {
+    handleHttpError(res, 'Cannot login');
+  }
+}
+
+export { getUsers, updateUser, uploadUserImage, getUser };

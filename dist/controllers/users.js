@@ -3,12 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadUserImage = exports.updateUser = exports.getUsers = void 0;
+exports.getUser = exports.uploadUserImage = exports.updateUser = exports.getUsers = void 0;
 const express_validator_1 = require("express-validator");
+const imagesEnum_1 = require("../enum/imagesEnum");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
-const imagesEnum_1 = require("../enum/imagesEnum");
 const handleImageUrl_1 = require("../utils/handleImageUrl");
+const handleJwt_1 = require("../utils/handleJwt");
 const index_1 = __importDefault(require("../models/index"));
 async function getUsers(_req, res) {
     try {
@@ -51,3 +52,29 @@ async function updateUser(req, res) {
     }
 }
 exports.updateUser = updateUser;
+async function getUser(req, res) {
+    try {
+        const token = req.body.token;
+        const id = (0, handleJwt_1.getUserIdFromToken)(token);
+        const user = await index_1.default.users.findOne({ id: id });
+        if (!user) {
+            (0, handleErrors_1.default)(res, 'Usuario no existe');
+            return;
+        }
+        const data = {
+            name: user === null || user === void 0 ? void 0 : user.name,
+            id: user === null || user === void 0 ? void 0 : user._id,
+            role: user === null || user === void 0 ? void 0 : user.role,
+            birthdate: user === null || user === void 0 ? void 0 : user.birthdate,
+            twitter: user === null || user === void 0 ? void 0 : user.twitter,
+            instagram: user === null || user === void 0 ? void 0 : user.instagram,
+            susbcriptionStatus: user === null || user === void 0 ? void 0 : user.subscriptionStatus,
+            subscriptionExpirationDate: user === null || user === void 0 ? void 0 : user.subscriptionExpirationDate
+        };
+        res.send({ data });
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'Cannot login');
+    }
+}
+exports.getUser = getUser;
