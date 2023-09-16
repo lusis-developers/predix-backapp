@@ -3,6 +3,7 @@ import express from 'express';
 import uploadMiddleware from '../middlewares/handleImage';
 import { userValidatorUpdate } from '../validators/users';
 import { getUsers, updateUser, uploadUserImage } from '../controllers/users';
+import { authenticateToken } from '../middlewares/HandleBearer';
 
 const router = express.Router();
 
@@ -18,6 +19,6 @@ router.post(
 
 router.patch('/users/:id', userValidatorUpdate, updateUser);
 
-router.get('/users/profile', getUsers);
+router.get('/users/profile', authenticateToken, getUsers);
 
 export default router;
