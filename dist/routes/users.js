@@ -13,5 +13,5 @@ router.get('/users', users_2.getUsers);
 // to GCP before create user on POST METHOD
 router.post('/UserImage', handleImage_1.default.single('userImage'), users_2.uploadUserImage);
 router.patch('/users/:id', users_1.userValidatorUpdate, users_2.updateUser);
-router.get('/users', users_2.getUsers);
+router.get('/users/profile', users_2.getUsers);
 exports.default = router;
