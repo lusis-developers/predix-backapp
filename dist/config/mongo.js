@@ -12,9 +12,10 @@ async function dbConnect() {
             DB_URI = process.env.DB_URI_DEVELOPMENT;
         }
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
-            console.log(process.env.DB_URI_PRODUCTION);
             DB_URI = process.env.DB_URI_PRODUCTION;
         }
+        console.log(process.env.DB_URI_PRODUCTION);
+        console.log('estamos en funcion', process.env.NODE_ENV);
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }
