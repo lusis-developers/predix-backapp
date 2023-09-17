@@ -12,6 +12,8 @@ async function getPlans(_req: Request, res: Response) {
     const plans = await models.plans.find({});
     res.send(plans);
   } catch (error) {
+    console.log(error);
+    console.error(error);
     handleHttpError(res, 'Cannot get plans');
   }
 }

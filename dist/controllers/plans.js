@@ -16,6 +16,8 @@ async function getPlans(_req, res) {
         res.send(plans);
     }
     catch (error) {
+        console.log(error);
+        console.error(error);
         (0, handleErrors_1.default)(res, 'Cannot get plans');
     }
 }
