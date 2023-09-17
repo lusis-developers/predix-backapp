@@ -2,7 +2,11 @@ import mongoose from 'mongoose';
 
 async function dbConnect(): Promise<void> {
   try {
-    const DB_URI = process.env.DB_URI;
+    let DB_URI = process.env.DB_URI;
+
+    if (process.env.NODE_ENV === 'production') {
+      DB_URI = process.env.DB_URI_PRODUCTION;
+    }
 
     if (!DB_URI) {
       throw new Error('No mongodb URI');
