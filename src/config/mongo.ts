@@ -11,6 +11,7 @@ async function dbConnect(): Promise<void> {
     }
 
     if (process.env.NODE_ENV === Environment_Variables.PRODUCTION) {
+      console.log(process.env.DB_URI_PRODUCTION);
       DB_URI = process.env.DB_URI_PRODUCTION;
     }
 
@@ -21,12 +22,9 @@ async function dbConnect(): Promise<void> {
     await mongoose.connect(DB_URI);
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
-    console.log(
-      '*** ERROR DE CONEXION ***',
-      error,
-      process.env.DB_URI,
-      process.env.NODE_ENV
-    );
+    console.log('*** ERROR DE CONEXION ***', error);
+    console.log('DB-URI variable', process.env.DB_URI);
+    console.log('*** NODE_ENV ***', process.env.NODE_ENV);
   }
 }
 
