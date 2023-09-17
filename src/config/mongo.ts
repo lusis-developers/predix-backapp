@@ -14,9 +14,6 @@ async function dbConnect(): Promise<void> {
       DB_URI = process.env.DB_URI_PRODUCTION;
     }
 
-    console.log(process.env.DB_URI);
-    console.log(process.env.NODE_ENV);
-
     if (!DB_URI) {
       throw new Error('No mongodb URI');
     }
@@ -24,6 +21,9 @@ async function dbConnect(): Promise<void> {
     await mongoose.connect(DB_URI);
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
+    console.log(error);
+    console.log(process.env.DB_URI);
+    console.log(process.env.NODE_ENV);
     console.log('*** ERROR DE CONEXION ***');
   }
 }
