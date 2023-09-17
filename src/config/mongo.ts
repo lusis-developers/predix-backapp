@@ -18,6 +18,8 @@ async function dbConnect(): Promise<void> {
       throw new Error('No mongodb URI');
     }
 
+    console.log(DB_URI);
+
     await mongoose.connect(DB_URI);
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
