@@ -16,6 +16,7 @@ async function dbConnect() {
         }
         console.log(process.env.DB_URI_PRODUCTION);
         console.log('estamos en funcion', process.env.NODE_ENV);
+        console.log('db uri en funcion', DB_URI);
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }
