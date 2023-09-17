@@ -4,9 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const EnvironmentVariables_1 = require("../enum/EnvironmentVariables");
 async function dbConnect() {
     try {
-        const DB_URI = process.env.DB_URI;
+        let DB_URI = process.env.DB_URI;
+        if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.DEVELOPMENT) {
+            DB_URI = process.env.DB_URI_DEVELOPMENT;
+        }
+        if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
+            DB_URI = process.env.DB_URI_PRODUCTION;
+        }
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }
@@ -14,7 +21,7 @@ async function dbConnect() {
         console.log('*** CONEXION CORRECTA ***');
     }
     catch (error) {
-        console.log('*** ERROR DE CONEXION ***');
+        console.log('*** ERROR DE CONEXION ***', error, process.env.DB_URI, process.env.NODE_ENV);
     }
 }
 exports.default = dbConnect;
