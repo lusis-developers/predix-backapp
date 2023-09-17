@@ -28,6 +28,7 @@ async function createAuthRegisterController(req, res) {
         res.send({ data });
     }
     catch (error) {
+        console.error(error);
         (0, handleErrors_1.default)(res, 'Cannot create auth');
     }
 }
