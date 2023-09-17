@@ -34,8 +34,8 @@ const routes_1 = __importDefault(require("./routes"));
 dotenv.config();
 const whiteList = [
     'http://localhost:5173',
-    'http://127.0.0.1:5173'
-    // TODO: add app app domain
+    'http://127.0.0.1:5173',
+    'https://predix.ec'
     // TODO: add app sandbox domain
 ];
 const app = (0, express_1.default)();
