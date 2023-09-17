@@ -69,6 +69,7 @@ async function authLoginController(req, res) {
         res.send({ data });
     }
     catch (error) {
+        console.log(error);
         (0, handleErrors_1.default)(res, 'Cannot login');
     }
 }
