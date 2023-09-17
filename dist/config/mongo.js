@@ -7,16 +7,13 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const EnvironmentVariables_1 = require("../enum/EnvironmentVariables");
 async function dbConnect() {
     try {
-        let DB_URI = process.env.DB_URI;
+        let DB_URI = process.env.MONGODB_URI;
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.DEVELOPMENT) {
-            DB_URI = process.env.DB_URI_DEVELOPMENT;
+            DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
         }
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
-            DB_URI = process.env.DB_URI_PRODUCTION;
+            DB_URI = process.env.MONGODB_URI;
         }
-        console.log(process.env.DB_URI_PRODUCTION);
-        console.log('estamos en funcion', process.env.NODE_ENV);
-        console.log('db uri en funcion', DB_URI);
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }
@@ -25,8 +22,6 @@ async function dbConnect() {
     }
     catch (error) {
         console.log('*** ERROR DE CONEXION ***', error);
-        console.log('DB-URI variable', process.env.DB_URI);
-        console.log('*** NODE_ENV ***', process.env.NODE_ENV);
     }
 }
 exports.default = dbConnect;
