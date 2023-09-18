@@ -34,7 +34,6 @@ exports.getSport = getSport;
 async function uploadSportImage(req, res) {
     try {
         const { file } = req;
-        console.log(file);
         const response = await (0, gcpImageUpload_1.default)(file, imagesEnum_1.ImagesEnum.SPORT);
         console.log(response);
         const result = (0, handleImageUrl_1.addPrefixUrl)(response, imagesEnum_1.ImagesEnum.SPORT);
