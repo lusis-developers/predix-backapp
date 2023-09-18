@@ -22,14 +22,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const storage_1 = require("@google-cloud/storage");
 const url_1 = require("url");
 const dotenv = __importStar(require("dotenv"));
-const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 dotenv.config();
 const storage = new storage_1.Storage({
     projectId: process.env.PROJECT_ID,
@@ -54,7 +50,7 @@ async function gcpImageUpload(file, location) {
         const publicUrl = await new Promise((resolve, reject) => {
             blobStream
                 .on('error', (error) => {
-                (0, handleErrors_1.default)(error, 'Error uploading file to Google Cloud Storage');
+                console.log(error);
                 reject('Error happened on image upload');
             })
                 .on('finish', () => {

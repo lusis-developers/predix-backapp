@@ -39,10 +39,7 @@ async function gcpImageUpload(
     const publicUrl: string = await new Promise((resolve, reject) => {
       blobStream
         .on('error', (error: Response) => {
-          handleHttpError(
-            error,
-            'Error uploading file to Google Cloud Storage'
-          );
+          console.log(error);
           reject('Error happened on image upload');
         })
         .on('finish', () => {
