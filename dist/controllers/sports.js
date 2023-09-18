@@ -47,7 +47,7 @@ async function uploadSportImage(req, res) {
     }
     catch (error) {
         console.log(error);
-        // handleHttpError(res, 'Error uploading file');
+        (0, handleErrors_1.default)(res, 'Error uploading file', 403);
     }
 }
 exports.uploadSportImage = uploadSportImage;

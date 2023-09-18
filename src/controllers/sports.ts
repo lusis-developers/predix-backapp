@@ -41,7 +41,7 @@ async function uploadSportImage(req: Request, res: Response) {
     res.send({ data });
   } catch (error) {
     console.log(error);
-    // handleHttpError(res, 'Error uploading file');
+    handleHttpError(res, 'Error uploading file', 403);
   }
 }
 
