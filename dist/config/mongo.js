@@ -17,7 +17,6 @@ async function dbConnect() {
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }
-        console.log(DB_URI);
         await mongoose_1.default.connect(DB_URI);
         console.log('*** CONEXION CORRECTA ***');
     }

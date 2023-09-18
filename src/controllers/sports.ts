@@ -38,6 +38,7 @@ async function uploadSportImage(req: Request, res: Response) {
     const data = await models.sportImages.create(fileData);
     res.send({ data });
   } catch (error) {
+    console.log(error);
     handleHttpError(res, 'Error uploading file');
   }
 }
