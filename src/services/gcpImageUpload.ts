@@ -3,7 +3,6 @@ import { Storage } from '@google-cloud/storage';
 import { format } from 'url';
 import * as dotenv from 'dotenv';
 
-import handleHttpError from '../utils/handleErrors';
 import { ImagesEnum } from '../enum/imagesEnum';
 import { ImageFile } from '../types/File';
 
@@ -13,7 +12,7 @@ const storage = new Storage({
   projectId: process.env.PROJECT_ID,
   credentials: {
     client_email: process.env.CLIENT_EMAIL,
-    private_key: process.env.PRIVATE_KEY
+    private_key: process.env.PRIVATE_KEY?.split(String.raw`\n`).join('\n')
   }
 });
 

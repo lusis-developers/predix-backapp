@@ -22,6 +22,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const storage_1 = require("@google-cloud/storage");
 const url_1 = require("url");
@@ -31,7 +32,7 @@ const storage = new storage_1.Storage({
     projectId: process.env.PROJECT_ID,
     credentials: {
         client_email: process.env.CLIENT_EMAIL,
-        private_key: process.env.PRIVATE_KEY
+        private_key: (_a = process.env.PRIVATE_KEY) === null || _a === void 0 ? void 0 : _a.split(String.raw `\n`).join('\n')
     }
 });
 const bucketName = 'predix-images';
