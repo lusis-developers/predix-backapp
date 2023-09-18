@@ -65,6 +65,7 @@ async function gcpImageUpload(file, location) {
         return publicUrl;
     }
     catch (error) {
+        console.log(error);
         return 'Cannot upload image';
     }
 }
