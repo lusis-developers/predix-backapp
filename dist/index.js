@@ -31,22 +31,25 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv = __importStar(require("dotenv"));
 const mongo_1 = __importDefault(require("./config/mongo"));
 const routes_1 = __importDefault(require("./routes"));
-dotenv.config();
-const whiteList = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://predix.ec'
-    // TODO: add app sandbox domain
-];
-const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: whiteList }));
-app.use(express_1.default.json());
-const port = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
-(0, routes_1.default)(app);
-app.get('/', (_req, res) => {
-    res.send('Predix is online');
-});
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
-(0, mongo_1.default)();
+async function main() {
+    await (0, mongo_1.default)();
+    dotenv.config();
+    const whiteList = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'https://predix.ec'
+        // TODO: add app sandbox domain
+    ];
+    const app = (0, express_1.default)();
+    app.use((0, cors_1.default)({ origin: whiteList }));
+    app.use(express_1.default.json());
+    const port = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
+    (0, routes_1.default)(app);
+    app.get('/', (_req, res) => {
+        res.send('Predix is online');
+    });
+    app.listen(port, () => {
+        console.log(`Server is running at http://localhost:${port}`);
+    });
+}
+main();
