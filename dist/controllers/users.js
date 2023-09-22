@@ -54,7 +54,6 @@ exports.updateUser = updateUser;
 async function getUser(req, res) {
     try {
         const id = req.body.id;
-        console.log(id);
         const user = await index_1.default.users.findById(id);
         if (!user) {
             (0, handleErrors_1.default)(res, 'Usuario no existe');

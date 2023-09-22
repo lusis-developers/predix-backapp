@@ -48,7 +48,6 @@ async function updateUser(req: Request, res: Response) {
 async function getUser(req: Request, res: Response) {
   try {
     const id = req.body.id;
-    console.log(id);
     const user = await models.users.findById(id);
 
     if (!user) {
