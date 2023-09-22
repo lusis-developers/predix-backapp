@@ -58,15 +58,15 @@ async function authLoginController(req, res) {
                 _id: user._id,
                 role: userData === null || userData === void 0 ? void 0 : userData.role
             }),
-            name: user === null || user === void 0 ? void 0 : user.name,
-            id: user === null || user === void 0 ? void 0 : user._id,
-            role: user === null || user === void 0 ? void 0 : user.role,
-            email: user.email,
-            birthdate: user === null || user === void 0 ? void 0 : user.birthdate,
-            twitter: user === null || user === void 0 ? void 0 : user.twitter,
-            instagram: user === null || user === void 0 ? void 0 : user.instagram,
-            susbcriptionStatus: user === null || user === void 0 ? void 0 : user.subscriptionStatus,
-            subscriptionExpirationDate: user === null || user === void 0 ? void 0 : user.subscriptionExpirationDate
+            name: userData === null || userData === void 0 ? void 0 : userData.name,
+            id: userData === null || userData === void 0 ? void 0 : userData._id,
+            role: userData === null || userData === void 0 ? void 0 : userData.role,
+            email: userData === null || userData === void 0 ? void 0 : userData.email,
+            birthdate: userData === null || userData === void 0 ? void 0 : userData.birthdate,
+            twitter: userData === null || userData === void 0 ? void 0 : userData.twitter,
+            instagram: userData === null || userData === void 0 ? void 0 : userData.instagram,
+            susbcriptionStatus: userData === null || userData === void 0 ? void 0 : userData.subscriptionStatus,
+            subscriptionExpirationDate: userData === null || userData === void 0 ? void 0 : userData.subscriptionExpirationDate
         };
         res.send({ data });
     }

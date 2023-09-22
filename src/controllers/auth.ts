@@ -62,15 +62,15 @@ async function authLoginController(req: Request, res: Response) {
         _id: user._id as string,
         role: userData?.role as string[]
       }),
-      name: user?.name,
-      id: user?._id,
-      role: user?.role,
-      email: user.email,
-      birthdate: user?.birthdate,
-      twitter: user?.twitter,
-      instagram: user?.instagram,
-      susbcriptionStatus: user?.subscriptionStatus,
-      subscriptionExpirationDate: user?.subscriptionExpirationDate
+      name: userData?.name,
+      id: userData?._id,
+      role: userData?.role,
+      email: userData?.email,
+      birthdate: userData?.birthdate,
+      twitter: userData?.twitter,
+      instagram: userData?.instagram,
+      susbcriptionStatus: userData?.subscriptionStatus,
+      subscriptionExpirationDate: userData?.subscriptionExpirationDate
     };
 
     res.send({ data });
