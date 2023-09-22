@@ -52,6 +52,7 @@ async function authLoginController(req: Request, res: Response) {
 
     if (!checkPassword) {
       handleHttpError(res, 'Password no valido');
+      return;
     }
 
     user.set('password', undefined, { strict: false });
@@ -73,7 +74,6 @@ async function authLoginController(req: Request, res: Response) {
 
     res.send({ data });
   } catch (error) {
-    console.log(error);
     handleHttpError(res, 'Cannot login');
   }
 }

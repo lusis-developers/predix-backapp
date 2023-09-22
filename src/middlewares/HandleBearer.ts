@@ -26,7 +26,7 @@ export function authenticateToken(
 
   try {
     const decodedToken = jwt.verify(token, JWT_SECRET) as { _id: string };
-    req.id = decodedToken._id; // Add id to request
+    req.body.id = decodedToken._id; // Add id to request
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });

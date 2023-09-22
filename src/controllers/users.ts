@@ -5,7 +5,6 @@ import { ImagesEnum } from '../enum/imagesEnum';
 import gcpImageUpload from '../services/gcpImageUpload';
 import handleHttpError from '../utils/handleErrors';
 import { addPrefixUrl } from '../utils/handleImageUrl';
-import { getUserIdFromToken } from '../utils/handleJwt';
 import models from '../models/index';
 
 async function getUsers(_req: Request, res: Response) {
@@ -48,9 +47,9 @@ async function updateUser(req: Request, res: Response) {
 
 async function getUser(req: Request, res: Response) {
   try {
-    const token = req.body.token;
-    const id = getUserIdFromToken(token);
-    const user = await models.users.findOne({ id: id });
+    const id = req.body.id;
+    console.log(id);
+    const user = await models.users.findById(id);
 
     if (!user) {
       handleHttpError(res, 'Usuario no existe');
@@ -61,6 +60,7 @@ async function getUser(req: Request, res: Response) {
       name: user?.name,
       id: user?._id,
       role: user?.role,
+      email: user.email,
       birthdate: user?.birthdate,
       twitter: user?.twitter,
       instagram: user?.instagram,

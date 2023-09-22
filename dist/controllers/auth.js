@@ -50,6 +50,7 @@ async function authLoginController(req, res) {
         const checkPassword = await (0, handleJwt_1.compare)(password, hashPassword);
         if (!checkPassword) {
             (0, handleErrors_1.default)(res, 'Password no valido');
+            return;
         }
         user.set('password', undefined, { strict: false });
         const data = {
@@ -69,7 +70,6 @@ async function authLoginController(req, res) {
         res.send({ data });
     }
     catch (error) {
-        console.log(error);
         (0, handleErrors_1.default)(res, 'Cannot login');
     }
 }

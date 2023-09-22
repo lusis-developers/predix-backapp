@@ -17,7 +17,7 @@ function authenticateToken(req, res, next) {
     }
     try {
         const decodedToken = jsonwebtoken_1.default.verify(token, JWT_SECRET);
-        req.id = decodedToken._id; // Add id to request
+        req.body.id = decodedToken._id; // Add id to request
         next();
     }
     catch (error) {

@@ -9,7 +9,6 @@ const imagesEnum_1 = require("../enum/imagesEnum");
 const gcpImageUpload_1 = __importDefault(require("../services/gcpImageUpload"));
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const handleImageUrl_1 = require("../utils/handleImageUrl");
-const handleJwt_1 = require("../utils/handleJwt");
 const index_1 = __importDefault(require("../models/index"));
 async function getUsers(_req, res) {
     try {
@@ -54,9 +53,9 @@ async function updateUser(req, res) {
 exports.updateUser = updateUser;
 async function getUser(req, res) {
     try {
-        const token = req.body.token;
-        const id = (0, handleJwt_1.getUserIdFromToken)(token);
-        const user = await index_1.default.users.findOne({ id: id });
+        const id = req.body.id;
+        console.log(id);
+        const user = await index_1.default.users.findById(id);
         if (!user) {
             (0, handleErrors_1.default)(res, 'Usuario no existe');
             return;
@@ -65,6 +64,7 @@ async function getUser(req, res) {
             name: user === null || user === void 0 ? void 0 : user.name,
             id: user === null || user === void 0 ? void 0 : user._id,
             role: user === null || user === void 0 ? void 0 : user.role,
+            email: user.email,
             birthdate: user === null || user === void 0 ? void 0 : user.birthdate,
             twitter: user === null || user === void 0 ? void 0 : user.twitter,
             instagram: user === null || user === void 0 ? void 0 : user.instagram,
