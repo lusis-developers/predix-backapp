@@ -17,6 +17,9 @@ const plansSchema = new mongoose_1.default.Schema({
     },
     image: {
         type: String
+    },
+    durationInWeeks: {
+        type: Number
     }
 }, {
     timestamps: true,

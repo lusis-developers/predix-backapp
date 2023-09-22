@@ -17,6 +17,10 @@ const plansSchema: Schema = new mongoose.Schema(
 
     image: {
       type: String
+    },
+
+    durationInWeeks: {
+      type: Number
     }
   },
   {

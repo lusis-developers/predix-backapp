@@ -8,15 +8,17 @@ const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
 async function updateSubscription(req, res) {
     try {
-        const id = req.params.id;
-        const subscriptionId = req.body.id;
-        await index_1.default.plans.findById(subscriptionId);
-        await index_1.default.users.findByIdAndUpdate(id, {
-            $set: {
-                subscriptionStatus: true,
-                subscriptionExpirationDate: new Date().toISOString()
-            }
-        });
+        const userId = req.body.id;
+        const planId = req.body.planId;
+        const plan = await index_1.default.plans.findById(planId);
+        console.log(userId);
+        console.log(plan);
+        // await models.users.findByIdAndUpdate(id, {
+        //   $set: {
+        //     subscriptionStatus: true,
+        //     subscriptionExpirationDate: new Date().toISOString()
+        //   }
+        // });
         res.send({ message: 'Subscribe Successfully' });
     }
     catch (error) {

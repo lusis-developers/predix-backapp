@@ -5,14 +5,19 @@ import models from '../models/index';
 
 async function updateSubscription(req: Request, res: Response) {
   try {
-    const id = req.params.id;
+    const userId = req.body.id;
+    const planId = req.body.planId!;
 
-    await models.users.findByIdAndUpdate(id, {
-      $set: {
-        subscriptionStatus: true,
-        subscriptionExpirationDate: new Date().toISOString()
-      }
-    });
+    const plan = await models.plans.findById(planId);
+
+    console.log(userId);
+    console.log(plan);
+    // await models.users.findByIdAndUpdate(id, {
+    //   $set: {
+    //     subscriptionStatus: true,
+    //     subscriptionExpirationDate: new Date().toISOString()
+    //   }
+    // });
 
     res.send({ message: 'Subscribe Successfully' });
   } catch (error) {
