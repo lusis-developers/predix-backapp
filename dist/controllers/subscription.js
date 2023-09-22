@@ -11,14 +11,20 @@ async function updateSubscription(req, res) {
         const userId = req.body.id;
         const planId = req.body.planId;
         const plan = await index_1.default.plans.findById(planId);
-        console.log(userId);
-        console.log(plan);
-        // await models.users.findByIdAndUpdate(id, {
-        //   $set: {
-        //     subscriptionStatus: true,
-        //     subscriptionExpirationDate: new Date().toISOString()
-        //   }
-        // });
+        if (!plan) {
+            return (0, handleErrors_1.default)(res, 'Plan not found');
+        }
+        // TODO: calculating expiration date taking current date as reference and the number of weeks on plans
+        const currentDate = new Date();
+        const expirationDate = new Date(currentDate);
+        const daysToAdd = 7 * plan.durationInWeeks;
+        expirationDate.setDate(currentDate.getDate() + daysToAdd);
+        await index_1.default.users.findByIdAndUpdate(userId, {
+            $set: {
+                subscriptionStatus: true,
+                subscriptionExpirationDate: expirationDate.toISOString()
+            }
+        });
         res.send({ message: 'Subscribe Successfully' });
     }
     catch (error) {
