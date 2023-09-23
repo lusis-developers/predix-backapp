@@ -61,6 +61,8 @@ async function getUser(req, res) {
         }
         const data = {
             name: user === null || user === void 0 ? void 0 : user.name,
+            lastname: user === null || user === void 0 ? void 0 : user.lastname,
+            userImage: user === null || user === void 0 ? void 0 : user.userImage,
             id: user === null || user === void 0 ? void 0 : user._id,
             role: user === null || user === void 0 ? void 0 : user.role,
             email: user.email,

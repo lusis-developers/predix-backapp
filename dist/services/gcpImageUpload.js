@@ -43,7 +43,6 @@ async function gcpImageUpload(file, location) {
         const string = file.originalname.split('.').shift();
         const name = string === null || string === void 0 ? void 0 : string.replace(/\s/g, '_');
         const filename = `file-${Date.now()}-${name}.${ext}`;
-        console.log(filename);
         const blob = bucket.file(location + filename);
         const blobStream = blob.createWriteStream({
             resumable: false

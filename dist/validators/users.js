@@ -20,25 +20,7 @@ const userValidatorUpdate = [
         .isLength({ max: 30 })
         .withMessage('Max Length 30 characters'),
     (0, express_validator_1.check)('userImage').optional().isURL().withMessage('Invalid image URL'),
-    (0, express_validator_1.check)('email').optional().isEmail().withMessage('Invalid email format'),
     (0, express_validator_1.check)('phone').optional().isNumeric().withMessage('Phone must be a number'),
-    (0, express_validator_1.check)('birthdate')
-        .exists()
-        .optional()
-        .isISO8601()
-        .withMessage('Invalid date format'),
-    (0, express_validator_1.check)('twitter')
-        .optional()
-        .isString()
-        .withMessage('Invalid twitter handle')
-        .isLength({ max: 20 })
-        .withMessage('Max Length 20 characters'),
-    (0, express_validator_1.check)('instagram')
-        .optional()
-        .isString()
-        .withMessage('Invalid instagram handle')
-        .isLength({ max: 20 })
-        .withMessage('Max Length 20 characters'),
     (req, res, next) => {
         return (0, handleValidator_1.default)(req, res, next);
     }

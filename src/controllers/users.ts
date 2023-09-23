@@ -57,6 +57,8 @@ async function getUser(req: Request, res: Response) {
 
     const data = {
       name: user?.name,
+      lastname: user?.lastname,
+      userImage: user?.userImage,
       id: user?._id,
       role: user?.role,
       email: user.email,

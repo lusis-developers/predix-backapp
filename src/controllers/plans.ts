@@ -13,7 +13,6 @@ async function getPlans(_req: Request, res: Response) {
     res.send(plans);
   } catch (error) {
     console.log(error);
-    console.error(error);
     handleHttpError(res, 'Cannot get plans');
   }
 }

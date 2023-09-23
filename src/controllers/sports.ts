@@ -30,7 +30,6 @@ async function uploadSportImage(req: Request, res: Response) {
   try {
     const { file } = req;
     const response = await gcpImageUpload(file!, ImagesEnum.SPORT);
-    console.log(response);
     const result = addPrefixUrl(response, ImagesEnum.SPORT);
     const fileData = {
       url: result,
