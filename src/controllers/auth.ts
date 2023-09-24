@@ -28,7 +28,7 @@ async function createAuthRegisterController(req: Request, res: Response) {
     res.send({ data });
   } catch (error) {
     console.error(error);
-    handleHttpError(res, 'Cannot create auth');
+    handleHttpError(res, 'Cannot create user', 401);
   }
 }
 
@@ -43,7 +43,7 @@ async function authLoginController(req: Request, res: Response) {
     });
 
     if (!user) {
-      handleHttpError(res, 'Usuario no existe');
+      handleHttpError(res, 'User or password are not valid', 401);
       return;
     }
 
@@ -51,7 +51,7 @@ async function authLoginController(req: Request, res: Response) {
     const checkPassword = await compare(password, hashPassword);
 
     if (!checkPassword) {
-      handleHttpError(res, 'Password no valido');
+      handleHttpError(res, 'User or password are not valid', 401);
       return;
     }
 
@@ -75,7 +75,7 @@ async function authLoginController(req: Request, res: Response) {
 
     res.send({ data });
   } catch (error) {
-    handleHttpError(res, 'Cannot login');
+    handleHttpError(res, 'Cannot auth user', 401);
   }
 }
 

@@ -29,7 +29,7 @@ async function createAuthRegisterController(req, res) {
     }
     catch (error) {
         console.error(error);
-        (0, handleErrors_1.default)(res, 'Cannot create auth');
+        (0, handleErrors_1.default)(res, 'Cannot create user', 401);
     }
 }
 exports.createAuthRegisterController = createAuthRegisterController;
@@ -43,13 +43,13 @@ async function authLoginController(req, res) {
             email: email
         });
         if (!user) {
-            (0, handleErrors_1.default)(res, 'Usuario no existe');
+            (0, handleErrors_1.default)(res, 'User or password are not valid', 401);
             return;
         }
         const hashPassword = user.password;
         const checkPassword = await (0, handleJwt_1.compare)(password, hashPassword);
         if (!checkPassword) {
-            (0, handleErrors_1.default)(res, 'Password no valido');
+            (0, handleErrors_1.default)(res, 'User or password are not valid', 401);
             return;
         }
         user.set('password', undefined, { strict: false });
@@ -71,7 +71,7 @@ async function authLoginController(req, res) {
         res.send({ data });
     }
     catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot login');
+        (0, handleErrors_1.default)(res, 'Cannot auth user', 401);
     }
 }
 exports.authLoginController = authLoginController;
