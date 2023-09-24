@@ -35,7 +35,7 @@ async function updateSubscription(req, res) {
 exports.updateSubscription = updateSubscription;
 async function removeSubscription(req, res) {
     try {
-        const id = req.params.id;
+        const id = req.body.id;
         await index_1.default.users.findByIdAndUpdate(id, {
             $set: {
                 subscriptionStatus: false,
