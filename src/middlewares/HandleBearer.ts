@@ -29,6 +29,7 @@ export function authenticateToken(
     req.body.id = decodedToken._id; // Add id to request
     next();
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ message: 'Invalid token' });
   }
 }

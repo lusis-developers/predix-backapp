@@ -28,7 +28,8 @@ async function updateSubscription(req, res) {
         res.send({ message: 'Subscribe Successfully' });
     }
     catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot suscribe');
+        console.log(error);
+        (0, handleErrors_1.default)(res, 'Cannot suscribe', 404);
     }
 }
 exports.updateSubscription = updateSubscription;
