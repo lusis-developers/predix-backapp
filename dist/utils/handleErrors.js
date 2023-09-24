@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function handleHttpError(res, message = 'Oops, somethins happened', code = 403) {
+function handleHttpError(res, message = 'Oops, something happened', code = 403) {
     res.status(code);
-    res.send({ error: message });
+    res.send({ message: message });
 }
 exports.default = handleHttpError;

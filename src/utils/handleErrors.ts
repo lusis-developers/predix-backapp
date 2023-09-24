@@ -2,11 +2,11 @@ import { Response } from 'express';
 
 function handleHttpError(
   res: Response,
-  message = 'Oops, somethins happened',
+  message = 'Oops, something happened',
   code = 403
 ): void {
   res.status(code);
-  res.send({ error: message });
+  res.send({ message: message });
 }
 
 export default handleHttpError;
