@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { matchedData } from 'express-validator';
+import jwt from 'jsonwebtoken';
 
 import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
@@ -8,7 +9,10 @@ import { UserType } from '../types/AuthTypes';
 import { tokenSign } from '../utils/handleJwt';
 import { sendEmail } from '../services/sendGrid';
 import { generateEmailVerificationTemplate } from '../emails/EmailVerification';
-// import { generatePasswordRecoveryTemplate } from '../emails/PasswordRecovery';
+import { generatePasswordRecoveryTemplate } from '../emails/PasswordRecovery';
+import { generatePasswordRecoveryNotificationTemplate } from '../emails/PasswordRecoveryNotification';
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 async function createAuthRegisterController(req: Request, res: Response) {
   try {
@@ -30,11 +34,11 @@ async function createAuthRegisterController(req: Request, res: Response) {
       _id
     };
 
-    const token = `https://predix.ec/${data.token}`;
+    const link = `https://predix.ec/email-verified/${data.token}`;
 
-    const verificationBody = generateEmailVerificationTemplate(token);
+    const verificationBody = generateEmailVerificationTemplate(link);
 
-    sendEmail(email, 'VERIFICATION EMAIL', verificationBody);
+    sendEmail(email, 'EMAIL DE VERIFICACIÓN', verificationBody);
     res.send({ data });
   } catch (error) {
     console.error(error);
@@ -91,7 +95,15 @@ async function authLoginController(req: Request, res: Response) {
 
 async function emailVerificationController(req: Request, res: Response) {
   try {
-    const id = req.body.id;
+    const decodedToken = jwt.verify(req.body.id, JWT_SECRET!) as
+      | { _id: string }
+      | undefined;
+
+    if (!decodedToken?._id) {
+      handleHttpError(res, 'CANNOT GET ID', 402);
+    }
+
+    const id = decodedToken?._id;
 
     const user = await models.users.findById(id);
 
@@ -112,8 +124,81 @@ async function emailVerificationController(req: Request, res: Response) {
   }
 }
 
+async function passwordRecoveryRequestController(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    const email = req.body.email;
+    const user = await models.users.findOne({ email: email });
+
+    if (!user) {
+      handleHttpError(res, 'User do not exist', 402);
+      return;
+    }
+
+    const token = await tokenSign({
+      role: user.role,
+      _id: user.id
+    });
+
+    const link = `https://predix.ec/recover-password/${token}`;
+
+    const bodyEmail = generatePasswordRecoveryTemplate(link);
+
+    sendEmail(user.email, 'REESTABLECER CONTRASEÑA', bodyEmail);
+    res.send({ message: 'Request recover password' });
+  } catch (error) {
+    console.error(error);
+    handleHttpError(res, 'Cannot create user', 401);
+  }
+}
+
+async function updatePasswordAndNotify(
+  req: Request,
+  res: Response
+): Promise<void> {
+  try {
+    const decodedToken = jwt.verify(req.body.id, JWT_SECRET!) as
+      | { _id: string }
+      | undefined;
+
+    if (!decodedToken?._id) {
+      handleHttpError(res, 'CANNOT GET ID', 402);
+    }
+
+    const id = decodedToken?._id;
+
+    const password = req.body.password;
+    const user = await models.users.findById(id);
+
+    if (!user) {
+      handleHttpError(res, 'User do not exist', 402);
+      return;
+    }
+
+    const encryptedPassword = await encrypt(password);
+
+    await models.users.findByIdAndUpdate(id, {
+      $set: {
+        password: encryptedPassword
+      }
+    });
+
+    const bodyEmail = generatePasswordRecoveryNotificationTemplate();
+
+    sendEmail(user.email, 'CONTRASEÑA REESTABLECIDA', bodyEmail);
+    res.send({ message: 'Password successfully updated' });
+  } catch (error) {
+    console.error(error);
+    handleHttpError(res, 'Cannot update password', 401);
+  }
+}
+
 export {
   createAuthRegisterController,
   authLoginController,
-  emailVerificationController
+  emailVerificationController,
+  updatePasswordAndNotify,
+  passwordRecoveryRequestController
 };

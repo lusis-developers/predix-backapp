@@ -45,4 +45,34 @@ const authValidatorlogin = [
   }
 ];
 
-export { authValidatorRegister, authValidatorlogin };
+const authRecoverPasswordRequest = [
+  check('email').exists().notEmpty().isEmail(),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next);
+  }
+];
+
+const authUpdatePassword = [
+  check('password').exists().notEmpty().isLength({ min: 8 }),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next);
+  }
+];
+
+const authEmailVerificationValidator = [
+  check('id').exists().notEmpty(),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    return validateResults(req, res, next);
+  }
+];
+
+export {
+  authValidatorRegister,
+  authValidatorlogin,
+  authRecoverPasswordRequest,
+  authUpdatePassword,
+  authEmailVerificationValidator
+};

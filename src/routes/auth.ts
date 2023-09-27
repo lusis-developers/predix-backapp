@@ -1,11 +1,18 @@
 import express from 'express';
 
-import { authValidatorRegister, authValidatorlogin } from '../validators/auth';
-import { authenticateToken } from '../middlewares/HandleBearer';
+import {
+  authRecoverPasswordRequest,
+  authValidatorRegister,
+  authValidatorlogin,
+  authUpdatePassword,
+  authEmailVerificationValidator
+} from '../validators/auth';
 import {
   createAuthRegisterController,
   authLoginController,
-  emailVerificationController
+  emailVerificationController,
+  passwordRecoveryRequestController,
+  updatePasswordAndNotify
 } from '../controllers/auth';
 
 const router = express.Router();
@@ -18,10 +25,26 @@ router.post(
 
 router.post('/auth/login', authValidatorlogin, authLoginController);
 
+// TODO: verify email
 router.patch(
   '/auth/email-verification',
-  authenticateToken,
+  authEmailVerificationValidator,
   emailVerificationController
+);
+
+// TODO: set password recovery request
+router.post(
+  '/auth/password-recovery-request',
+  authRecoverPasswordRequest,
+  passwordRecoveryRequestController
+);
+
+// TODO: update password
+router.patch(
+  '/auth/password-recovery',
+  authUpdatePassword,
+  authEmailVerificationValidator,
+  updatePasswordAndNotify
 );
 
 export default router;

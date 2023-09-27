@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authValidatorlogin = exports.authValidatorRegister = void 0;
+exports.authEmailVerificationValidator = exports.authUpdatePassword = exports.authRecoverPasswordRequest = exports.authValidatorlogin = exports.authValidatorRegister = void 0;
 const express_validator_1 = require("express-validator");
 const handleValidator_1 = __importDefault(require("../utils/handleValidator"));
 const authValidatorRegister = [
@@ -42,3 +42,24 @@ const authValidatorlogin = [
     }
 ];
 exports.authValidatorlogin = authValidatorlogin;
+const authRecoverPasswordRequest = [
+    (0, express_validator_1.check)('email').exists().notEmpty().isEmail(),
+    (req, res, next) => {
+        return (0, handleValidator_1.default)(req, res, next);
+    }
+];
+exports.authRecoverPasswordRequest = authRecoverPasswordRequest;
+const authUpdatePassword = [
+    (0, express_validator_1.check)('password').exists().notEmpty().isLength({ min: 8 }),
+    (req, res, next) => {
+        return (0, handleValidator_1.default)(req, res, next);
+    }
+];
+exports.authUpdatePassword = authUpdatePassword;
+const authEmailVerificationValidator = [
+    (0, express_validator_1.check)('id').exists().notEmpty(),
+    (req, res, next) => {
+        return (0, handleValidator_1.default)(req, res, next);
+    }
+];
+exports.authEmailVerificationValidator = authEmailVerificationValidator;

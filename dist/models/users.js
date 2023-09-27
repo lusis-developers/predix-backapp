@@ -14,7 +14,7 @@ const usersSchema = new mongoose_1.default.Schema({
         default: null
     },
     emailVerified: {
-        type: String,
+        type: Boolean,
         default: false
     },
     userImage: {
