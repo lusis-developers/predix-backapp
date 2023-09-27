@@ -76,7 +76,8 @@ async function authLoginController(req, res) {
             twitter: userData === null || userData === void 0 ? void 0 : userData.twitter,
             instagram: userData === null || userData === void 0 ? void 0 : userData.instagram,
             susbcriptionStatus: userData === null || userData === void 0 ? void 0 : userData.subscriptionStatus,
-            subscriptionExpirationDate: userData === null || userData === void 0 ? void 0 : userData.subscriptionExpirationDate
+            subscriptionExpirationDate: userData === null || userData === void 0 ? void 0 : userData.subscriptionExpirationDate,
+            emailVerified: userData === null || userData === void 0 ? void 0 : userData.emailVerified
         };
         res.send({ data });
     }

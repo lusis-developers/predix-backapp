@@ -84,7 +84,8 @@ async function authLoginController(req: Request, res: Response) {
       twitter: userData?.twitter,
       instagram: userData?.instagram,
       susbcriptionStatus: userData?.subscriptionStatus,
-      subscriptionExpirationDate: userData?.subscriptionExpirationDate
+      subscriptionExpirationDate: userData?.subscriptionExpirationDate,
+      emailVerified: userData?.emailVerified
     };
 
     res.send({ data });

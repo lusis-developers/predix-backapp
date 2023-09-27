@@ -13,4 +13,5 @@ export type UserType = {
   instagram: string | null;
   subscriptionStatus: boolean;
   subscriptionExpirationDate: string | null;
+  emailVerified: boolean;
 };
