@@ -10,7 +10,7 @@ export async function sendEmail(
   body: string
 ): Promise<void> {
   const messageData: EmailMessage = {
-    to: 'lualreye@gmail.com',
+    to: email,
     from: 'lreyes@nabux.ec',
     subject: subject,
     html: body

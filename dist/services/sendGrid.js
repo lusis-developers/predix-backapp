@@ -8,7 +8,7 @@ const mail_1 = __importDefault(require("@sendgrid/mail"));
 mail_1.default.setApiKey(process.env.SENDGRID_API_KEY);
 async function sendEmail(email, subject, body) {
     const messageData = {
-        to: 'lualreye@gmail.com',
+        to: email,
         from: 'lreyes@nabux.ec',
         subject: subject,
         html: body

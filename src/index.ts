@@ -5,6 +5,7 @@ import { Application } from 'express';
 
 import dbConnect from './config/mongo';
 import routerApi from './routes';
+import { sendVerification } from './scripts/EmailVerification';
 
 async function main() {
   await dbConnect();
@@ -27,6 +28,8 @@ async function main() {
   const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
   routerApi(app);
+
+  sendVerification();
 
   app.get('/', (_req, res) => {
     res.send('Predix is online');
