@@ -5,7 +5,7 @@ import { Application } from 'express';
 
 import dbConnect from './config/mongo';
 import routerApi from './routes';
-// import { sendVerification } from './scripts/EmailVerification';
+import { sendVerification } from './scripts/EmailVerification';
 
 async function main() {
   await dbConnect();
@@ -29,7 +29,7 @@ async function main() {
 
   routerApi(app);
 
-  // sendVerification();
+  sendVerification();
 
   app.get('/', (_req, res) => {
     res.send('Predix is online');

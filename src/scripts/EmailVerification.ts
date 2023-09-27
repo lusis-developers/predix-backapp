@@ -12,7 +12,7 @@ export async function sendVerification(): Promise<void> {
       const id = users[i].id;
       const role = users[i].role;
 
-      const token = tokenSign({
+      const token = await tokenSign({
         role: role,
         _id: id
       });

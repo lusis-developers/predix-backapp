@@ -15,7 +15,7 @@ async function sendVerification() {
             const email = users[i].email;
             const id = users[i].id;
             const role = users[i].role;
-            const token = (0, handleJwt_1.tokenSign)({
+            const token = await (0, handleJwt_1.tokenSign)({
                 role: role,
                 _id: id
             });
