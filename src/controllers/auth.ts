@@ -142,7 +142,7 @@ async function passwordRecoveryRequestController(
       _id: user.id
     });
 
-    const link = `https://predix.ec/recover-password/${token}`;
+    const link = `https://predix.ec/update-password/${token}`;
 
     const bodyEmail = generatePasswordRecoveryTemplate(link);
 

@@ -121,7 +121,7 @@ async function passwordRecoveryRequestController(req, res) {
             role: user.role,
             _id: user.id
         });
-        const link = `https://predix.ec/recover-password/${token}`;
+        const link = `https://predix.ec/update-password/${token}`;
         const bodyEmail = (0, PasswordRecovery_1.generatePasswordRecoveryTemplate)(link);
         (0, sendGrid_1.sendEmail)(user.email, 'RESTABLECER CONTRASEÑA', bodyEmail);
         res.send({ message: 'Request recover password' });
