@@ -89,4 +89,31 @@ async function authLoginController(req: Request, res: Response) {
   }
 }
 
-export { createAuthRegisterController, authLoginController };
+async function emailVerificationController(req: Request, res: Response) {
+  try {
+    const id = req.body.id;
+
+    const user = await models.users.findById(id);
+
+    if (!user) {
+      handleHttpError(res, 'User do not exist', 402);
+      return;
+    }
+
+    await models.users.findByIdAndUpdate(id, {
+      $set: {
+        emailVerified: true
+      }
+    });
+
+    res.send({ message: 'User verified' });
+  } catch (error) {
+    handleHttpError(res, 'Cannot verify user', 401);
+  }
+}
+
+export {
+  createAuthRegisterController,
+  authLoginController,
+  emailVerificationController
+};
