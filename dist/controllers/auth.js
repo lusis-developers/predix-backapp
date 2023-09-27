@@ -9,9 +9,12 @@ const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
 const handleJwt_1 = require("../middlewares/handleJwt");
 const handleJwt_2 = require("../utils/handleJwt");
+const sendGrid_1 = require("../services/sendGrid");
+const EmailVerification_1 = require("../emails/EmailVerification");
 async function createAuthRegisterController(req, res) {
     try {
         const { body } = req;
+        const email = body.email;
         const encryptedPassword = await (0, handleJwt_1.encrypt)(body.password);
         const userData = { ...body, password: encryptedPassword };
         const newAuth = await index_1.default.users.create(userData);
@@ -25,6 +28,9 @@ async function createAuthRegisterController(req, res) {
             role,
             _id
         };
+        const token = `https://predix.ec/${data.token}`;
+        const verificationBody = (0, EmailVerification_1.generateEmailVerificationTemplate)(token);
+        (0, sendGrid_1.sendEmail)(email, 'VERIFICATION EMAIL', verificationBody);
         res.send({ data });
     }
     catch (error) {

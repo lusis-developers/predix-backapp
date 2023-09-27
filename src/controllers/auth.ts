@@ -6,10 +6,13 @@ import models from '../models/index';
 import { encrypt, compare } from '../middlewares/handleJwt';
 import { UserType } from '../types/AuthTypes';
 import { tokenSign } from '../utils/handleJwt';
+import { sendEmail } from '../services/sendGrid';
+import { generateEmailVerificationTemplate } from '../emails/EmailVerification';
 
 async function createAuthRegisterController(req: Request, res: Response) {
   try {
     const { body } = req;
+    const email = body.email;
     const encryptedPassword = await encrypt(body.password);
     const userData = { ...body, password: encryptedPassword };
     const newAuth = await models.users.create(userData);
@@ -25,6 +28,12 @@ async function createAuthRegisterController(req: Request, res: Response) {
       role,
       _id
     };
+
+    const token = `https://predix.ec/${data.token}`;
+
+    const verificationBody = generateEmailVerificationTemplate(token);
+
+    sendEmail(email, 'VERIFICATION EMAIL', verificationBody);
     res.send({ data });
   } catch (error) {
     console.error(error);

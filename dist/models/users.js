@@ -13,6 +13,10 @@ const usersSchema = new mongoose_1.default.Schema({
         type: String,
         default: null
     },
+    emailVerified: {
+        type: String,
+        default: false
+    },
     userImage: {
         type: String,
         default: null
