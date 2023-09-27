@@ -31,7 +31,7 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv = __importStar(require("dotenv"));
 const mongo_1 = __importDefault(require("./config/mongo"));
 const routes_1 = __importDefault(require("./routes"));
-const EmailVerification_1 = require("./scripts/EmailVerification");
+// import { sendVerification } from './scripts/EmailVerification';
 async function main() {
     await (0, mongo_1.default)();
     dotenv.config();
@@ -46,7 +46,7 @@ async function main() {
     app.use(express_1.default.json());
     const port = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
     (0, routes_1.default)(app);
-    (0, EmailVerification_1.sendVerification)();
+    // sendVerification();
     app.get('/', (_req, res) => {
         res.send('Predix is online');
     });
