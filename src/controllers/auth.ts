@@ -8,6 +8,7 @@ import { UserType } from '../types/AuthTypes';
 import { tokenSign } from '../utils/handleJwt';
 import { sendEmail } from '../services/sendGrid';
 import { generateEmailVerificationTemplate } from '../emails/EmailVerification';
+// import { generatePasswordRecoveryTemplate } from '../emails/PasswordRecovery';
 
 async function createAuthRegisterController(req: Request, res: Response) {
   try {

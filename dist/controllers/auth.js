@@ -11,6 +11,7 @@ const handleJwt_1 = require("../middlewares/handleJwt");
 const handleJwt_2 = require("../utils/handleJwt");
 const sendGrid_1 = require("../services/sendGrid");
 const EmailVerification_1 = require("../emails/EmailVerification");
+// import { generatePasswordRecoveryTemplate } from '../emails/PasswordRecovery';
 async function createAuthRegisterController(req, res) {
     try {
         const { body } = req;
