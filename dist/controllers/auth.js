@@ -123,7 +123,7 @@ async function passwordRecoveryRequestController(req, res) {
         });
         const link = `https://predix.ec/recover-password/${token}`;
         const bodyEmail = (0, PasswordRecovery_1.generatePasswordRecoveryTemplate)(link);
-        (0, sendGrid_1.sendEmail)(user.email, 'REESTABLECER CONTRASEÑA', bodyEmail);
+        (0, sendGrid_1.sendEmail)(user.email, 'RESTABLECER CONTRASEÑA', bodyEmail);
         res.send({ message: 'Request recover password' });
     }
     catch (error) {
@@ -152,7 +152,7 @@ async function updatePasswordAndNotify(req, res) {
             }
         });
         const bodyEmail = (0, PasswordRecoveryNotification_1.generatePasswordRecoveryNotificationTemplate)();
-        (0, sendGrid_1.sendEmail)(user.email, 'CONTRASEÑA REESTABLECIDA', bodyEmail);
+        (0, sendGrid_1.sendEmail)(user.email, 'CONTRASEÑA RESTABLECIDA', bodyEmail);
         res.send({ message: 'Password successfully updated' });
     }
     catch (error) {

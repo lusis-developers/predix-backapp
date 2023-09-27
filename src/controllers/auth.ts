@@ -146,7 +146,7 @@ async function passwordRecoveryRequestController(
 
     const bodyEmail = generatePasswordRecoveryTemplate(link);
 
-    sendEmail(user.email, 'REESTABLECER CONTRASEÑA', bodyEmail);
+    sendEmail(user.email, 'RESTABLECER CONTRASEÑA', bodyEmail);
     res.send({ message: 'Request recover password' });
   } catch (error) {
     console.error(error);
@@ -187,7 +187,7 @@ async function updatePasswordAndNotify(
 
     const bodyEmail = generatePasswordRecoveryNotificationTemplate();
 
-    sendEmail(user.email, 'CONTRASEÑA REESTABLECIDA', bodyEmail);
+    sendEmail(user.email, 'CONTRASEÑA RESTABLECIDA', bodyEmail);
     res.send({ message: 'Password successfully updated' });
   } catch (error) {
     console.error(error);
