@@ -70,7 +70,8 @@ async function getUser(req, res) {
             twitter: user === null || user === void 0 ? void 0 : user.twitter,
             instagram: user === null || user === void 0 ? void 0 : user.instagram,
             susbcriptionStatus: user === null || user === void 0 ? void 0 : user.subscriptionStatus,
-            subscriptionExpirationDate: user === null || user === void 0 ? void 0 : user.subscriptionExpirationDate
+            subscriptionExpirationDate: user === null || user === void 0 ? void 0 : user.subscriptionExpirationDate,
+            emailVerified: user.emailVerified
         };
         res.send({ data });
     }
