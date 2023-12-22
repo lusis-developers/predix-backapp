@@ -3,7 +3,7 @@ import { tokenSign } from '../utils/handleJwt';
 import { generateEmailVerificationTemplate } from '../emails/EmailVerification';
 import { sendEmail } from '../services/sendGrid';
 
-export async function sendVerification(): Promise<void> {
+export async function sendMassiveVerificationEmail(): Promise<void> {
   try {
     const users = await models.users.find();
 
@@ -22,6 +22,6 @@ export async function sendVerification(): Promise<void> {
       sendEmail(email, 'EMAIL DE VERIFICACIÓN', verificationBody);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

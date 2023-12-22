@@ -6,10 +6,12 @@ import Bets from './bets';
 import Users from './users';
 import Auth from './auth';
 import Suscription from './subscription';
+import Example from './example';
 
 function routerApi(app: Application) {
   const router = express.Router();
   app.use('/api', router);
+  router.use(Example);
   router.use(Plans);
   router.use(Sports);
   router.use(Leagues);
