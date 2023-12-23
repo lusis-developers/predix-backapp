@@ -16,11 +16,15 @@ async function getBets(req, res) {
         page = parseInt(page) || 1;
         if (limit <= 0 || page <= 0) {
             (0, handleErrors_1.default)(res, 'Invalid pagination parameters', 400);
+            return;
         }
         const skip = (page - 1) * limit;
         const bets = await index_1.default.bets.find({}).limit(limit).skip(skip);
         const total = await index_1.default.bets.countDocuments({});
-        const data = { bets, total, limit, page };
+        const totalPages = Math.ceil(total / limit);
+        const hasNext = page < totalPages;
+        const hasPrevious = page > 1;
+        const data = { bets, total, limit, page, hasNext, hasPrevious };
         res.send(data);
     }
     catch (error) {

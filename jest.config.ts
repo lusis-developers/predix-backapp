@@ -5,7 +5,7 @@ export default {
   transform: {
     '^.+\\.ts$': 'ts-jest'
   },
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     'src/**/*.{ts,js}',
     '!**/node_modules/**',

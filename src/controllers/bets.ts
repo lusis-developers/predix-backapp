@@ -15,15 +15,19 @@ async function getBets(req: Request, res: Response) {
 
     if (limit <= 0 || page <= 0) {
       handleHttpError(res, 'Invalid pagination parameters', 400);
+      return;
     }
 
     const skip = (page - 1) * limit;
 
     const bets = await models.bets.find({}).limit(limit).skip(skip);
-
     const total = await models.bets.countDocuments({});
 
-    const data = { bets, total, limit, page };
+    const totalPages = Math.ceil(total / limit);
+    const hasNext = page < totalPages;
+    const hasPrevious = page > 1;
+
+    const data = { bets, total, limit, page, hasNext, hasPrevious };
 
     res.send(data);
   } catch (error) {
