@@ -1,3 +1,4 @@
+coverage/
 node_modules
 .env
 # dist should be ingnored due to the compilation process, as node_modules
