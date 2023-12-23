@@ -7,11 +7,14 @@ import { BetEnum } from '../enum/betEnum';
 
 async function getBets(req: Request, res: Response) {
   try {
-    const limit = parseInt(req.query.limit as string) || 10;
-    const page = parseInt(req.query.page as string) || 1;
+    const maxLimit = 100;
+    let { limit = 10, page = 1 } = req.query;
 
-    if (isNaN(limit) || limit <= 0 || isNaN(page) || page <= 0) {
-      handleHttpError(res, 'Invalid paginatio parameters', 400);
+    limit = Math.min(maxLimit, parseInt(limit as string) || 10);
+    page = parseInt(page as string) || 1;
+
+    if (limit <= 0 || page <= 0) {
+      handleHttpError(res, 'Invalid pagination parameters', 400);
     }
 
     const skip = (page - 1) * limit;
