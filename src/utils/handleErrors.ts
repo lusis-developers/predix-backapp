@@ -2,8 +2,8 @@ import { Response } from 'express';
 
 function handleHttpError(
   res: Response,
-  message = 'Oops, something happened',
-  code = 403
+  message: string = 'Oops, something happened',
+  code: number = 500
 ): void {
   res.status(code);
   res.send({ message: message });
