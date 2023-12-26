@@ -1,17 +1,23 @@
-import supertest from 'supertest';
+import { Application } from 'express';
+import request from 'supertest';
+import mongoose from 'mongoose';
 
 import createApp from '../../app';
-// import bets from '../../routes/bets';
+import dbConnect from '../../config/mongo';
 
 describe('GET /api/bets', () => {
-  let api;
+  let app: Application;
+
+  beforeAll(async () => {
+    await dbConnect(); // Establece la conexión a la base de datos para pruebas
+  });
+
   beforeEach(() => {
-    const app = createApp();
-    api = supertest(app);
+    app = createApp();
   });
 
   it('should return default paginated bets when no query parameters', async () => {
-    const response = await api
+    const response = await request(app)
       .get('/api/bets')
       .expect('Content-Type', /json/)
       .expect(200);
@@ -24,7 +30,7 @@ describe('GET /api/bets', () => {
   }, 20000);
 
   it('should handle valid pagination parameters', async () => {
-    const response = await api
+    const response = await request(app)
       .get('/api/bets?limit=5&page=2')
       .expect('Content-Type', /json/)
       .expect(200);
@@ -34,9 +40,13 @@ describe('GET /api/bets', () => {
   }, 20000);
 
   it('should return error for invalid pagination parameters', async () => {
-    await api
+    await request(app)
       .get('/api/bets?limit=-1&page=abc')
       .expect('Content-Type', /json/)
       .expect(400);
   }, 20000);
+
+  afterAll(async () => {
+    await mongoose.disconnect(); // Desconecta de la base de datos después de las pruebas
+  });
 });

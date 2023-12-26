@@ -4,16 +4,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("../../app"));
-// import bets from '../../routes/bets';
+const mongo_1 = __importDefault(require("../../config/mongo"));
 describe('GET /api/bets', () => {
-    let api;
+    let app;
+    beforeAll(async () => {
+        await (0, mongo_1.default)(); // Establece la conexión a la base de datos para pruebas
+    });
     beforeEach(() => {
-        const app = (0, app_1.default)();
-        api = (0, supertest_1.default)(app);
+        app = (0, app_1.default)();
     });
     it('should return default paginated bets when no query parameters', async () => {
-        const response = await api
+        const response = await (0, supertest_1.default)(app)
             .get('/api/bets')
             .expect('Content-Type', /json/)
             .expect(200);
@@ -24,7 +27,7 @@ describe('GET /api/bets', () => {
         expect(response.body).toHaveProperty('page', 1);
     }, 20000);
     it('should handle valid pagination parameters', async () => {
-        const response = await api
+        const response = await (0, supertest_1.default)(app)
             .get('/api/bets?limit=5&page=2')
             .expect('Content-Type', /json/)
             .expect(200);
@@ -32,9 +35,12 @@ describe('GET /api/bets', () => {
         expect(response.body).toHaveProperty('page', 2);
     }, 20000);
     it('should return error for invalid pagination parameters', async () => {
-        await api
+        await (0, supertest_1.default)(app)
             .get('/api/bets?limit=-1&page=abc')
             .expect('Content-Type', /json/)
             .expect(400);
     }, 20000);
+    afterAll(async () => {
+        await mongoose_1.default.disconnect(); // Desconecta de la base de datos después de las pruebas
+    });
 });
