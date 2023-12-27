@@ -10,7 +10,7 @@ const mongo_1 = __importDefault(require("../../../config/mongo"));
 describe('PATCH /bets/:id', () => {
     let app;
     const betId = '658728515ce1200d553447c3';
-    const invalidBetId = '0000fc00f000b00ea1700b00';
+    const invalidBetId = '0000fc00f000b00ea170';
     beforeAll(async () => {
         await (0, mongo_1.default)();
     });
@@ -34,7 +34,7 @@ describe('PATCH /bets/:id', () => {
     it('Should return invalid Id', async () => {
         await (0, supertest_1.default)(app)
             .patch(`/api/bets/${invalidBetId}`)
-            .send({ status: 'newStatus' })
+            .send({ status: 'win' })
             .expect(400);
     });
     afterAll(async () => {

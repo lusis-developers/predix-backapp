@@ -126,7 +126,7 @@ async function updateBetStatus(req, res) {
         });
     }
     catch (error) {
-        (0, handleErrors_1.default)(res, 'Cannot Update Bet Status', 400);
+        (0, handleErrors_1.default)(res, 'Cannot Update Bet Status');
     }
 }
 exports.updateBetStatus = updateBetStatus;

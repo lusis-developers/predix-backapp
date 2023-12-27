@@ -8,7 +8,7 @@ import dbConnect from '../../../config/mongo';
 describe('PATCH /bets/:id', () => {
   let app: Application;
   const betId: string = '658728515ce1200d553447c3';
-  const invalidBetId: string = '0000fc00f000b00ea1700b00';
+  const invalidBetId: string = '0000fc00f000b00ea170';
 
   beforeAll(async () => {
     await dbConnect();
@@ -39,7 +39,7 @@ describe('PATCH /bets/:id', () => {
   it('Should return invalid Id', async () => {
     await request(app)
       .patch(`/api/bets/${invalidBetId}`)
-      .send({ status: 'newStatus' })
+      .send({ status: 'win' })
       .expect(400);
   });
 

@@ -124,7 +124,7 @@ async function updateBetStatus(req: Request, res: Response) {
       message: 'Bet Status Updated'
     });
   } catch (error) {
-    handleHttpError(res, 'Cannot Update Bet Status', 400);
+    handleHttpError(res, 'Cannot Update Bet Status');
   }
 }
 
