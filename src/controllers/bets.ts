@@ -112,7 +112,11 @@ async function updateBet(req: Request, res: Response) {
 async function updateBetStatus(req: Request, res: Response) {
   try {
     const { id, ...body } = matchedData(req);
-    const status = body.status;
+    const status = body.status as BetEnum;
+
+    if (!Object.values(BetEnum).includes(status)) {
+      return handleHttpError(res, 'Invalid bet status', 400);
+    }
 
     await models.bets.findByIdAndUpdate(id, { $set: { status: status } });
 
@@ -120,7 +124,7 @@ async function updateBetStatus(req: Request, res: Response) {
       message: 'Bet Status Updated'
     });
   } catch (error) {
-    handleHttpError(res, 'Cannot Update Bet Status');
+    handleHttpError(res, 'Cannot Update Bet Status', 400);
   }
 }
 
