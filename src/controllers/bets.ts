@@ -20,7 +20,12 @@ async function getBets(req: Request, res: Response) {
 
     const skip = (page - 1) * limit;
 
-    const bets = await models.bets.find({}).limit(limit).skip(skip);
+    // const bets = await models.bets.find({}).limit(limit).skip(skip);
+    const bets = await models.bets
+      .find({})
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .skip(skip);
     const total = await models.bets.countDocuments({});
 
     const totalPages = Math.ceil(total / limit);
