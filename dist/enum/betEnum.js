@@ -6,4 +6,5 @@ var BetEnum;
     BetEnum["PENDING"] = "pending";
     BetEnum["WIN"] = "win";
     BetEnum["LOST"] = "lost";
+    BetEnum["PUSH"] = "push";
 })(BetEnum || (exports.BetEnum = BetEnum = {}));

@@ -1,5 +1,6 @@
 export enum BetEnum {
   PENDING = 'pending',
   WIN = 'win',
-  LOST = 'lost'
+  LOST = 'lost',
+  PUSH = 'push'
 }
