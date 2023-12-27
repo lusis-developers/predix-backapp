@@ -122,6 +122,9 @@ async function updateBetStatus(req, res) {
     try {
         const { id, ...body } = (0, express_validator_1.matchedData)(req);
         const status = body.status;
+        if (!Object.values(betEnum_1.BetEnum).includes(status)) {
+            return (0, handleErrors_1.default)(res, 'Invalid bet status', 400);
+        }
         await index_1.default.bets.findByIdAndUpdate(id, { $set: { status: status } });
         res.send({
             message: 'Bet Status Updated'

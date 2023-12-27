@@ -2,8 +2,8 @@ import { Application } from 'express';
 import request from 'supertest';
 import mongoose from 'mongoose';
 
-import createApp from '../../app';
-import dbConnect from '../../config/mongo';
+import createApp from '../../../app';
+import dbConnect from '../../../config/mongo';
 
 describe('GET /api/bets', () => {
   let app: Application;
