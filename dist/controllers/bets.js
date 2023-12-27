@@ -19,7 +19,12 @@ async function getBets(req, res) {
             return;
         }
         const skip = (page - 1) * limit;
-        const bets = await index_1.default.bets.find({}).limit(limit).skip(skip);
+        // const bets = await models.bets.find({}).limit(limit).skip(skip);
+        const bets = await index_1.default.bets
+            .find({})
+            .sort({ createdAt: -1 })
+            .limit(limit)
+            .skip(skip);
         const total = await index_1.default.bets.countDocuments({});
         const totalPages = Math.ceil(total / limit);
         const hasNext = page < totalPages;
