@@ -8,10 +8,24 @@ const express_validator_1 = require("express-validator");
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
 const betEnum_1 = require("../enum/betEnum");
-async function getBets(_req, res) {
+async function getBets(req, res) {
     try {
-        const bets = await index_1.default.bets.find({});
-        res.send(bets);
+        const maxLimit = 100;
+        let { limit = 10, page = 1 } = req.query;
+        limit = Math.min(maxLimit, parseInt(limit) || 10);
+        page = parseInt(page) || 1;
+        if (limit <= 0 || page <= 0) {
+            (0, handleErrors_1.default)(res, 'Invalid pagination parameters', 400);
+            return;
+        }
+        const skip = (page - 1) * limit;
+        const bets = await index_1.default.bets.find({}).limit(limit).skip(skip);
+        const total = await index_1.default.bets.countDocuments({});
+        const totalPages = Math.ceil(total / limit);
+        const hasNext = page < totalPages;
+        const hasPrevious = page > 1;
+        const data = { bets, total, limit, page, hasNext, hasPrevious };
+        res.send(data);
     }
     catch (error) {
         (0, handleErrors_1.default)(res, 'Cannot get bets');

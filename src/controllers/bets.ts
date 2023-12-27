@@ -5,10 +5,31 @@ import handleHttpError from '../utils/handleErrors';
 import models from '../models/index';
 import { BetEnum } from '../enum/betEnum';
 
-async function getBets(_req: Request, res: Response) {
+async function getBets(req: Request, res: Response) {
   try {
-    const bets = await models.bets.find({});
-    res.send(bets);
+    const maxLimit = 100;
+    let { limit = 10, page = 1 } = req.query;
+
+    limit = Math.min(maxLimit, parseInt(limit as string) || 10);
+    page = parseInt(page as string) || 1;
+
+    if (limit <= 0 || page <= 0) {
+      handleHttpError(res, 'Invalid pagination parameters', 400);
+      return;
+    }
+
+    const skip = (page - 1) * limit;
+
+    const bets = await models.bets.find({}).limit(limit).skip(skip);
+    const total = await models.bets.countDocuments({});
+
+    const totalPages = Math.ceil(total / limit);
+    const hasNext = page < totalPages;
+    const hasPrevious = page > 1;
+
+    const data = { bets, total, limit, page, hasNext, hasPrevious };
+
+    res.send(data);
   } catch (error) {
     handleHttpError(res, 'Cannot get bets');
   }
