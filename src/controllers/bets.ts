@@ -19,7 +19,6 @@ async function getBets(req: Request, res: Response) {
     }
 
     const skip = (page - 1) * limit;
-
     const bets = await models.bets
       .find({})
       .sort({ createdAt: -1 })
