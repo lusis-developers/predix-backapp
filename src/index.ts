@@ -13,6 +13,7 @@ async function main() {
   const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
 
   app.get('/', (_req, res) => {
+    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === 'development') {
       res.send('Predix Sandbox is online');
     }
