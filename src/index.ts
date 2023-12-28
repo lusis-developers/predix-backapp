@@ -1,12 +1,12 @@
 import * as dotenv from 'dotenv';
 
-import dbConnect from './config/mongo';
-import createApp from './app';
+import dbConnect from '../src/config/mongo';
+import createApp from '../src/app';
 
 async function main() {
-  await dbConnect();
-
   dotenv.config();
+
+  await dbConnect();
 
   const app = createApp();
 

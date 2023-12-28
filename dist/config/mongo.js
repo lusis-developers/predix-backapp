@@ -8,10 +8,10 @@ const EnvironmentVariables_1 = require("../enum/EnvironmentVariables");
 async function dbConnect() {
     try {
         let DB_URI = process.env.MONGODB_URI;
-        if (process.env.RUN_MODE === EnvironmentVariables_1.Environment_Variables.DEVELOPMENT) {
+        if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.DEVELOPMENT) {
             DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
         }
-        if (process.env.RUN_MODE === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
+        if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
             DB_URI = process.env.MONGODB_URI;
         }
         if (!DB_URI) {
@@ -21,7 +21,7 @@ async function dbConnect() {
         console.log('*** CONEXION CORRECTA ***');
     }
     catch (error) {
-        console.log(process.env.RUN_MODE);
+        console.log(process.env.NODE_ENV);
         console.log('*** ERROR DE CONEXION ***', error);
     }
 }

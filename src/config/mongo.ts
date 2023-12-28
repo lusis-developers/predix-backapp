@@ -6,11 +6,11 @@ async function dbConnect(): Promise<void> {
   try {
     let DB_URI = process.env.MONGODB_URI;
 
-    if (process.env.RUN_MODE === Environment_Variables.DEVELOPMENT) {
+    if (process.env.NODE_ENV === Environment_Variables.DEVELOPMENT) {
       DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
     }
 
-    if (process.env.RUN_MODE === Environment_Variables.PRODUCTION) {
+    if (process.env.NODE_ENV === Environment_Variables.PRODUCTION) {
       DB_URI = process.env.MONGODB_URI;
     }
 
@@ -21,7 +21,7 @@ async function dbConnect(): Promise<void> {
     await mongoose.connect(DB_URI);
     console.log('*** CONEXION CORRECTA ***');
   } catch (error) {
-    console.log(process.env.RUN_MODE);
+    console.log(process.env.NODE_ENV);
     console.log('*** ERROR DE CONEXION ***', error);
   }
 }
