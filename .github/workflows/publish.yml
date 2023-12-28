@@ -25,8 +25,8 @@ jobs:
           elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
             IMAGE_TAG=develop
           fi
-          docker build . --tag ghcr.io/lusis-developers/predix-backapp:latest
-          docker push ghcr.io/lusis-developers/predix-backapp:latest
+          docker build . --tag ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
+          docker push ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
 
   deploy:
     needs: create-docker-image
@@ -66,7 +66,7 @@ jobs:
             fi
 
             echo "Logging into Docker registry..."
-            docker login ghcr.io -u lusis-developers -p ${{secrets.TOKEN_BACKAPP_VIDEOBOX}}
+            docker login ghcr.io -u lusis-developers -p ${{secrets.TOKEN_BACKAPP_PREDIX}}
 
             echo "Pulling the Docker image..."
             docker pull ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
@@ -74,26 +74,20 @@ jobs:
             echo "Running the Docker container..."
 
             docker run -d \
-              --name myapp \
+              --name $CONTAINER_NAME \
               -p $PORT:8080 \
               --restart always \
-              -e PORT='${{ secrets.PORT }}' \
+              -e PORT=${{ secrets.PORT }} \
               -e MONGODB_URI='${{ secrets.MONGODB_URI }}' \
               -e MONGODB_URI_DEVELOPMENT='${{ secrets.MONGODB_URI_DEVELOPMENT }}' \
               -e NODE_ENV='$NODE_ENV' \
               -e TYPE='${{ secrets.TYPE }}' \
               -e PROJECT_ID='${{ secrets.PROJECT_ID }}' \
-              -e PRIVATE_ID_KEY='${{ secrets.PRIVATE_ID_KEY }}' \
               -e PRIVATE_KEY='${{ secrets.PRIVATE_KEY }}' \
               -e CLIENT_EMAIL='${{ secrets.CLIENT_EMAIL }}' \
               -e CLIENT_ID='${{ secrets.CLIENT_ID }}' \
-              -e AUTH_URI='${{ secrets.AUTH_URI }}' \
-              -e TOKEN_URI='${{ secrets.TOKEN_URI }}' \
-              -e AUTH_PROVIDER_X59_CERT_URL='${{ secrets.AUTH_PROVIDER_X59_CERT_URL }}' \
-              -e CLIENT_X59_CERT_URL='${{ secrets.CLIENT_X59_CERT_URL }}' \
-              -e UNIVERSE_DOMAIN='${{ secrets.UNIVERSE_DOMAIN }}' \
               -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
               -e SENDGRID_API_KEY='${{ secrets.SENDGRID_API_KEY }}' \
-              ghcr.io/yeyodev1/videobox-backapp:latest
+              ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
             echo "done..."
           EOF
