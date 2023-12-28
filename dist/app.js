@@ -12,7 +12,8 @@ function createApp() {
     const whiteList = [
         'http://localhost:5173',
         'http://127.0.0.1:5173',
-        'https://predix.ec'
+        'https://predix.ec',
+        'https://sandbox-predix.netlify.app'
     ];
     app.use((0, cors_1.default)({ origin: whiteList }));
     app.use(express_1.default.json());
