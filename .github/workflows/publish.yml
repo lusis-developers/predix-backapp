@@ -79,7 +79,6 @@ jobs:
               --name $CONTAINER_NAME \
               -p $PORT:8080 \
               --restart always \
-              -e PORT=${{ secrets.PORT }} \
               -e MONGODB_URI=${{ secrets.MONGODB_URI }} \
               -e MONGODB_URI_DEVELOPMENT=${{ secrets.MONGODB_URI_DEVELOPMENT }} \
               -e NODE_ENV=$NODE_ENV \
