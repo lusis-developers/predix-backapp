@@ -33,7 +33,7 @@ jobs:
   deploy:
     needs: create-docker-image
     runs-on: ubuntu-20.04
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads.develop'
+    if: ${{ github.ref }} == 'refs/heads/main' || ${{ github.ref }} == 'refs/heads.develop'
     steps:
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
