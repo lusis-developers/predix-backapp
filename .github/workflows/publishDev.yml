@@ -54,7 +54,6 @@ jobs:
             docker pull ghcr.io/lusis-developers/predix-backapp:latest
 
             echo "Running the Docker container..."
-            echo ${{ secrets.MONGODB_URI_DEVELOPMENT }}
             docker run -d \
               --name myapp-dev \
               -p 8081:3000 \
