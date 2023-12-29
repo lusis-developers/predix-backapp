@@ -20,8 +20,8 @@ jobs:
 
       - name: Build Predix backapp image
         run: |
-          docker build . --tag ghcr.io/lusis-developer/predix-backapp:latest
-          docker push ghcr.io/lusis-developer/predix-backapp:latest
+          docker build . --tag ghcr.io/lusis-developers/predix-backapp:latest
+          docker push ghcr.io/lusis-developers/predix-backapp:latest
 
   deploy:
     needs: create-docker-image
@@ -48,10 +48,10 @@ jobs:
             fi
 
             echo "Logging into Docker registry..."
-            docker login ghcr.io -u lusis-developer -p ${{secrets.TOKEN_BACKAPP_PREDIX}}
+            docker login ghcr.io -u lusis-developers -p ${{secrets.TOKEN_BACKAPP_PREDIX}}
 
             echo "Pulling the latest Docker image..."
-            docker pull ghcr.io/lusis-developer/predix-backapp:latest
+            docker pull ghcr.io/lusis-developers/predix-backapp:latest
 
             echo "Running the Docker container..."
 
