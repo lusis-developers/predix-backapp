@@ -16,6 +16,9 @@ COPY . .
 # Compilar el código TypeScript (si es necesario)
 RUN npm run build
 
+# Listar archivos en el dist
+RUN ls -l dist/
+
 # Exponer el puerto en el que se ejecuta la aplicación
 EXPOSE 8081
 
