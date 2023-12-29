@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendVerification = void 0;
+exports.sendMassiveVerificationEmail = void 0;
 const index_1 = __importDefault(require("../models/index"));
 const handleJwt_1 = require("../utils/handleJwt");
 const EmailVerification_1 = require("../emails/EmailVerification");
 const sendGrid_1 = require("../services/sendGrid");
-async function sendVerification() {
+async function sendMassiveVerificationEmail() {
     try {
         const users = await index_1.default.users.find();
         for (let i = 0; i < users.length; i++) {
@@ -25,7 +25,7 @@ async function sendVerification() {
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
-exports.sendVerification = sendVerification;
+exports.sendMassiveVerificationEmail = sendMassiveVerificationEmail;

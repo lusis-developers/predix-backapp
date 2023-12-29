@@ -4,13 +4,13 @@ import dbConnect from './config/mongo';
 import createApp from './app';
 
 async function main() {
-  await dbConnect();
-
   dotenv.config();
+
+  await dbConnect();
 
   const app = createApp();
 
-  const port: number | string = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
+  const port: number | string = process.env.PORT || 3000;
 
   app.get('/', (_req, res) => {
     res.send('Predix is online');
