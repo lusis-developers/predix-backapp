@@ -48,7 +48,7 @@ jobs:
           NODE_ENV: ${{ steps.set_vars.outputs.NODE_ENV }}
           PORT: ${{ steps.set_vars.outputs.PORT }}
         run: |
-          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << EOF
+          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST -p 5219 << EOF
             echo "Starting SSH script"
             echo "Image tag: $IMAGE_TAG"
             echo "Container name: $CONTAINER_NAME"
