@@ -11,6 +11,9 @@ async function dbConnect() {
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.DEVELOPMENT) {
             DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
         }
+        if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.LOCAL) {
+            DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
+        }
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
             DB_URI = process.env.MONGODB_URI;
         }

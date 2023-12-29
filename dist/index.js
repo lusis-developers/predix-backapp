@@ -29,11 +29,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 const mongo_1 = __importDefault(require("../src/config/mongo"));
 const app_1 = __importDefault(require("../src/app"));
+const ports_1 = __importDefault(require("./config/ports"));
 async function main() {
     dotenv.config();
     await (0, mongo_1.default)();
     const app = (0, app_1.default)();
-    const port = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
+    const port = process.env.NODE_ENV && ports_1.default[process.env.NODE_ENV]
+        ? ports_1.default[process.env.NODE_ENV].port
+        : 3000;
     app.get('/', (_req, res) => {
         res.send('Predix is online');
     });

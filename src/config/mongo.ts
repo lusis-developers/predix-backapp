@@ -10,6 +10,10 @@ async function dbConnect(): Promise<void> {
       DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
     }
 
+    if (process.env.NODE_ENV === Environment_Variables.LOCAL) {
+      DB_URI = process.env.MONGODB_URI_DEVELOPMENT;
+    }
+
     if (process.env.NODE_ENV === Environment_Variables.PRODUCTION) {
       DB_URI = process.env.MONGODB_URI;
     }

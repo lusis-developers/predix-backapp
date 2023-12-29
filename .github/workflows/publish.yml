@@ -40,6 +40,8 @@ jobs:
         run: |
           echo "IMAGE_TAG=${{ github.ref == 'refs/heads/main' && 'latest' || 'develop' }}" >> $GITHUB_ENV
           echo "CONTAINER_NAME=${{ github.ref == 'refs/heads/main' && 'myapp-prod' || 'myapp-dev' }}" >> $GITHUB_ENV
+          echo "NODE_ENV=${{ github.ref == 'refs/heads/main' && 'production' || 'development' }}" >> $GITHUB_ENV
+          echo "PORT=${{ github.ref == 'refs/heads/main' && '8080' || '8081' }}" >> $GITHUB_ENV
 
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
@@ -54,6 +56,8 @@ jobs:
             echo "Starting SSH script"
             echo "Image tag: $IMAGE_TAG"
             echo "Container name: $CONTAINER_NAME"
+            echo "Node environment: $NODE_ENV"
+            echo "Port: $PORT"
 
             echo "Checking if container $CONTAINER_NAME exists..."
             if docker inspect $CONTAINER_NAME &> /dev/null; then
