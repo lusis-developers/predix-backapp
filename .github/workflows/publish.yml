@@ -44,7 +44,7 @@ jobs:
           SSH_USER: ${{ secrets.VPS_USER }}
           SSH_PASSWORD: ${{ secrets.VPS_PASSWORD }}
         run: |
-          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST -p5793 << EOF
+          sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST -p5219 << EOF
             echo "Starting SSH script"
             if [ "${{ github.ref }}" == "refs/heads/main" ]; then
               CONTAINER_NAME="myapp-prod"
