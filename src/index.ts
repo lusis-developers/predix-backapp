@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 
-import dbConnect from '../src/config/mongo';
-import createApp from '../src/app';
+import dbConnect from './config/mongo';
 import portConfig from './config/ports';
+import createApp from './app';
 
 async function main() {
   dotenv.config();

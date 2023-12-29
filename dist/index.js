@@ -27,9 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
-const mongo_1 = __importDefault(require("../src/config/mongo"));
-const app_1 = __importDefault(require("../src/app"));
+const mongo_1 = __importDefault(require("./config/mongo"));
 const ports_1 = __importDefault(require("./config/ports"));
+const app_1 = __importDefault(require("./app"));
 async function main() {
     dotenv.config();
     await (0, mongo_1.default)();
