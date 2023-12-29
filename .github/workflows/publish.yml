@@ -71,6 +71,8 @@ jobs:
             docker login ghcr.io -u lusis-developers -p ${{secrets.TOKEN_BACKAPP_PREDIX}}
 
             echo "Pulling the Docker image..."
+            echo "Image tag: $IMAGE_TAG"
+            echo "Container name: $CONTAINER_NAME"
             docker pull ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
 
             echo "Running the Docker container..."
@@ -79,7 +81,7 @@ jobs:
               --name $CONTAINER_NAME \
               -p $PORT:8080 \
               --restart always \
-              -e PORT=${{ secrets.PORT }} \
+              -e PORT='${{ secrets.PORT }}' \
               -e MONGODB_URI='${{ secrets.MONGODB_URI }}' \
               -e MONGODB_URI_DEVELOPMENT='${{ secrets.MONGODB_URI_DEVELOPMENT }}' \
               -e NODE_ENV='$NODE_ENV' \
