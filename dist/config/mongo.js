@@ -17,6 +17,8 @@ async function dbConnect() {
         if (process.env.NODE_ENV === EnvironmentVariables_1.Environment_Variables.PRODUCTION) {
             DB_URI = process.env.MONGODB_URI;
         }
+        console.log(DB_URI);
+        console.log(process.env.MONGODB_URI_DEVELOPMENT);
         if (!DB_URI) {
             throw new Error('No mongodb URI');
         }

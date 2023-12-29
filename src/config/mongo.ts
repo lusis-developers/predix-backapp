@@ -18,6 +18,9 @@ async function dbConnect(): Promise<void> {
       DB_URI = process.env.MONGODB_URI;
     }
 
+    console.log(DB_URI);
+    console.log(process.env.MONGODB_URI_DEVELOPMENT);
+
     if (!DB_URI) {
       throw new Error('No mongodb URI');
     }
