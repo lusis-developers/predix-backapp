@@ -43,21 +43,11 @@ jobs:
           SSH_HOST: ${{ secrets.VPS_HOST }}
           SSH_USER: ${{ secrets.VPS_USER }}
           SSH_PASSWORD: ${{ secrets.VPS_PASSWORD }}
+          IMAGE_TAG: ${{ steps.set_vars.outputs.IMAGE_TAG }}
+          CONTAINER_NAME: ${{ steps.set_vars.outputs.CONTAINER_NAME }}
         run: |
           sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST -p5219 << EOF
             echo "Starting SSH script"
-            if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-              CONTAINER_NAME="myapp-prod"
-              IMAGE_TAG="latest"
-              PORT=8080
-              NODE_ENV="production"
-            elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-              CONTAINER_NAME="myapp-dev"
-              IMAGE_TAG="develop"
-              PORT=8081
-              NODE_ENV="dev"
-            fi
-
             echo "Checking if container $CONTAINER_NAME exists..."
             if docker inspect $CONTAINER_NAME &> /dev/null; then
               echo "Container $CONTAINER_NAME exists, stopping and removing..."
