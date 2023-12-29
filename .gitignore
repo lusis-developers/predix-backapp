@@ -6,4 +6,5 @@ node_modules
 
 predix-key.json
 
-# dist/
+dist/
+dist
