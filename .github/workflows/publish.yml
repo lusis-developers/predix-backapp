@@ -81,16 +81,16 @@ jobs:
               -p $PORT:8080 \
               --restart always \
               -e PORT=$PORT \
-              -e MONGODB_URI=${{ secrets.MONGODB_URI }} \
-              -e MONGODB_URI_DEVELOPMENT=${{ secrets.MONGODB_URI_DEVELOPMENT }} \
+              -e MONGODB_URI='${{ secrets.MONGODB_URI }}' \
+              -e MONGODB_URI_DEVELOPMENT='${{ secrets.MONGODB_URI_DEVELOPMENT }}' \
               -e NODE_ENV=$NODE_ENV \
-              -e TYPE=${{ secrets.TYPE }} \
-              -e PROJECT_ID=${{ secrets.PROJECT_ID }} \
-              -e PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} \
-              -e CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }} \
-              -e CLIENT_ID=${{ secrets.CLIENT_ID }} \
-              -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
-              -e SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }} \
+              -e TYPE='${{ secrets.TYPE }}' \
+              -e PROJECT_ID='${{ secrets.PROJECT_ID }}' \
+              -e PRIVATE_KEY='${{ secrets.PRIVATE_KEY }}' \
+              -e CLIENT_EMAIL='${{ secrets.CLIENT_EMAIL }}' \
+              -e CLIENT_ID='${{ secrets.CLIENT_ID }}' \
+              -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
+              -e SENDGRID_API_KEY='${{ secrets.SENDGRID_API_KEY }}' \
               ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
             echo "done..."
           EOF
