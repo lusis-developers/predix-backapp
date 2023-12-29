@@ -74,6 +74,7 @@ jobs:
             echo "Pulling the Docker image..."
             docker pull ghcr.io/lusis-developers/predix-backapp:$IMAGE_TAG
 
+            echo "Running the Docker container with image tag: $IMAGE_TAG and container name: $CONTAINER_NAME on port: $PORT"
             echo "Running the Docker container..."
             docker run -d \
               --name $CONTAINER_NAME \
