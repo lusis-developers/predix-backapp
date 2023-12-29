@@ -67,6 +67,6 @@ jobs:
               -e CLIENT_EMAIL='${{ secrets.CLIENT_EMAIL }}' \
               -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
               -e SENDGRID_API_KEY='${{ secrets.SENDGRID_API_KEY }}' \
-              ghcr.io/yeyodev1/videobox-backapp:latest
+              ghcr.io/lusis-developers/predix-backapp:latest
             echo "done..."
           EOF
