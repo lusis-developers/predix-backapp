@@ -25,10 +25,11 @@ describe('POST api/sports', () => {
       .send({ name: 'TestSportName', image: 'http://fakeimage.com' })
       .expect(200);
 
-    sportId = response.body.newSport._id;
+    sportId = response.body._id;
+    expect(response.body).toBeTruthy();
   });
 
-  it('should response invalid request, already exist sport and then delete it sucessfully ', async () => {
+  it('should response invalid request', async () => {
     const response = await request(app)
       .post('/api/sports')
       .send({
@@ -38,6 +39,10 @@ describe('POST api/sports', () => {
       .expect(409);
 
     expect(response.body.message).toBe('Cannot create sport');
+  });
+
+  it('DELETE api/sports/:id', async () => {
+    await request(app).delete(`/api/sports/${sportId}`).expect(200);
   });
 
   it('invalid sport name lenght', async () => {
@@ -76,12 +81,24 @@ describe('POST api/sports', () => {
     expect(response.body).toHaveProperty('errors');
   });
 
-  it('invalid sport name string', async () => {
+  it('invalid sport image', async () => {
     const response = await request(app)
       .post('/api/sports')
       .send({
-        name: 1234,
-        image: 'http://fakebalonmanolimage.com'
+        name: 'TestSportName',
+        image: 1234
+      })
+      .expect(400);
+
+    expect(response.body).toHaveProperty('errors');
+  });
+
+  it('invalid empty sport image', async () => {
+    const response = await request(app)
+      .post('/api/sports')
+      .send({
+        name: 'TestSportName',
+        image: ''
       })
       .expect(400);
 
