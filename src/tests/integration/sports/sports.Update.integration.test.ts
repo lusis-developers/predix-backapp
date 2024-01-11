@@ -9,6 +9,7 @@ import models from '../../../models/index';
 describe('UPDATE api/sports/:id', () => {
   let app: Application;
   let sportId: string;
+  let invalidSportsId: string;
 
   beforeAll(async () => {
     await dbConnect();
@@ -36,6 +37,17 @@ describe('UPDATE api/sports/:id', () => {
       .expect(200);
 
     expect(response.body.message).toBe('Sport updated');
+  });
+
+  it('Should return invalid Id', async () => {
+    invalidSportsId = '0000fc00f000b00ea170';
+    await request(app)
+      .patch(`/api/sports/${invalidSportsId}`)
+      .send({
+        name: 'TestSportNameChanged',
+        image: 'http://fakeimageChanged.com'
+      })
+      .expect(404);
   });
 
   it('invalid sport name lenght', async () => {
