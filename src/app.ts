@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 
 import routerApi from './routes';
+import { errorHandler } from './utils/handleErrors';
+
 // import { sendMassiveVerificationEmail } from './scripts/EmailVerification';
 
 function createApp() {
@@ -26,7 +28,8 @@ function createApp() {
 
   routerApi(app);
 
+  app.use(errorHandler);
+
   return app;
 }
-
 export default createApp;
