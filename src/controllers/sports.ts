@@ -49,7 +49,7 @@ async function createSport(req: Request, res: Response) {
     const newsport = await models.sports.create(body);
     res.send(newsport);
   } catch (error) {
-    handleHttpError(res, 'Cannot create sport');
+    handleHttpError(res, 'Cannot create sport', 409);
   }
 }
 

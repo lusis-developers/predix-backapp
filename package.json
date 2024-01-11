@@ -10,7 +10,7 @@
     "start": "nodemon src/index.ts",
     "test:unit": "jest tests/unit",
     "test:unit:coverage": "jest tests/unit --coverage",
-    "test:integration": "jest tests/integration",
+    "test:integration": "jest tests/integration --runInBand",
     "test:integration:coverage": "jest tests/integration --coverage",
     "test": "npm run test:unit && npm run test:integration",
     "test:coverage": "npm run test:unit:coverage && npm run test:integration:coverage",

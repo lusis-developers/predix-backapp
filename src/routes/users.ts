@@ -17,7 +17,7 @@ router.get('/users', getUsers);
 // TODO: endpoint to upload image
 // to GCP before create user on POST METHOD
 router.post(
-  '/UserImage',
+  '/userImage',
   uploadMiddleware.single('userImage'),
   uploadUserImage
 );
