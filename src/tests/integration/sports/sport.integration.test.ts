@@ -10,6 +10,7 @@ describe('GET api/sport/:id', () => {
   let app: Application;
   let sportId: string;
   let wrongSportId: string;
+  let nonExistentId: string;
 
   beforeAll(async () => {
     await dbConnect();
@@ -22,6 +23,7 @@ describe('GET api/sport/:id', () => {
       .send({ name: 'TestSportName', image: 'http://fakeimage.com' });
     sportId = createResponse.body._id;
     wrongSportId = '000dd234234000df';
+    nonExistentId = '507f1f77bcf86cd799439012';
   });
 
   afterEach(async () => {
@@ -44,6 +46,10 @@ describe('GET api/sport/:id', () => {
       .expect(400);
 
     expect(response.body).toHaveProperty('errors');
+  });
+
+  it('should return not found for non-existent sport id', async () => {
+    await request(app).get(`/api/sports/${nonExistentId}`).expect(404);
   });
 
   afterAll(async () => {
